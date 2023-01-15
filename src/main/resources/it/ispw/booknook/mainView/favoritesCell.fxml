@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="cell" prefHeight="150.0" prefWidth="490.0" style="-fx-background-color: #ececec;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <ImageView fx:id="cover" fitHeight="113.0" fitWidth="82.0" layoutX="14.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="18.0" AnchorPane.topAnchor="19.0" />
+        <Label fx:id="title" layoutX="105.0" layoutY="23.0" AnchorPane.topAnchor="19.0">
+            <font>
+                <Font name="Roboto Medium" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="author" layoutX="105.0" layoutY="51.0" AnchorPane.topAnchor="51.0">
+            <font>
+                <Font name="Roboto Medium" size="14.0" />
+            </font>
+        </Label>
+        <Button fx:id="borrowBtn" layoutX="150.0" layoutY="110.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" stylesheets="@buttonYellow.css" text="Borrow" />
+      <Label fx:id="toBeReturned" layoutX="105.0" layoutY="83.0" text="To be returned within:" visible="false" AnchorPane.topAnchor="83.0">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="expireDate" layoutX="249.0" layoutY="83.0" prefHeight="18.0" prefWidth="82.0">
+         <font>
+            <Font name="Roboto Medium" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="fromLabel" layoutX="105.0" layoutY="112.0" text="From:" visible="false">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="libraryName" layoutX="150.0" layoutY="112.0">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="removeBtn" layoutX="404.0" layoutY="110.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" style="-fx-background-color: #8a8a8a66;" stylesheets="@buttonYellow.css" text="Remove" />
+    </children>
+</AnchorPane>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.ispw.booknook.logic.boundary.main_view.MyListsUIController">
+    <center>
+        <BorderPane minHeight="-Infinity" prefHeight="300.0" prefWidth="900.0">
+            <top>
+                <BorderPane fx:id="homePage" prefHeight="94.0" prefWidth="900.0" stylesheets="@home.css">
+                    <center>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="My Lists">
+                            <font>
+                                <Font name="Roboto Medium" size="30.0" />
+                            </font>
+                        </Label>
+                    </center>
+                    <left>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <ImageView fx:id="backBtn" fitHeight="37.0" fitWidth="91.0" layoutX="51.0" layoutY="29.0" onMouseClicked="#onBackClick" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="51.0">
+                                    <image>
+                                        <Image url="@back.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                        </AnchorPane>
+                    </left>
+                    <right>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                    </right>
+                </BorderPane>
+            </top>
+            <left>
+                <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="301.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Rectangle fx:id="booksOnLoan" arcHeight="8.0" arcWidth="8.0" disable="true" fill="#e8be8e" height="28.0" layoutX="62.0" layoutY="95.0" stroke="#8a8a8a67" strokeType="INSIDE" strokeWidth="0.0" width="174.0" AnchorPane.leftAnchor="62.0" AnchorPane.topAnchor="95.0" />
+                        <Rectangle fx:id="booksILiked" arcHeight="8.0" arcWidth="8.0" fill="#8a8a8a66" height="28.0" layoutX="62.0" layoutY="143.0" stroke="#8a8a8a66" strokeType="INSIDE" strokeWidth="0.0" width="175.0" AnchorPane.leftAnchor="62.0" AnchorPane.topAnchor="143.0" />
+                        <Rectangle fx:id="wantToRead" arcHeight="8.0" arcWidth="8.0" fill="#8a8a8a66" height="28.0" layoutX="61.0" layoutY="191.0" stroke="#8a8a8a66" strokeType="INSIDE" strokeWidth="0.0" width="175.0" AnchorPane.leftAnchor="61.0" AnchorPane.topAnchor="191.0" />
+                  <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="87.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="87.0" AnchorPane.topAnchor="96.0">
+                     <image>
+                        <Image url="@menu_book_black_24dp.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="87.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="87.0" AnchorPane.topAnchor="144.0">
+                     <image>
+                        <Image url="@thumb_up_black_24dp.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="87.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="87.0" AnchorPane.topAnchor="192.0">
+                     <image>
+                        <Image url="@favorite_border_black_24dp.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="87.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons8-plus-+-24.png" />
+                     </image>
+                  </ImageView>
+                        <Label alignment="CENTER_RIGHT" layoutX="62.0" layoutY="95.0" onMouseClicked="#onLoanClick" prefHeight="27.0" prefWidth="173.0" text=" Books on loan      " textAlignment="CENTER" AnchorPane.leftAnchor="62.0" AnchorPane.topAnchor="95.0">
+                            <font>
+                                <Font name="Roboto Medium" size="14.0" />
+                            </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" layoutX="63.0" layoutY="143.0" onMouseClicked="#onLikesClick" prefHeight="28.0" prefWidth="175.0" text="Books I Liked        " AnchorPane.leftAnchor="63.0" AnchorPane.topAnchor="143.0">
+                            <font>
+                                <Font name="Roboto Medium" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" layoutX="59.0" layoutY="192.0" onMouseClicked="#onWantToReadClick" prefHeight="26.0" prefWidth="178.0" text="Want to read        " AnchorPane.leftAnchor="59.0" AnchorPane.topAnchor="192.0">
+                            <font>
+                                <Font name="Roboto Medium" size="14.0" />
+                            </font>
+                        </Label>
+                  <Label alignment="CENTER" layoutX="89.0" layoutY="234.0" prefHeight="18.0" prefWidth="147.0" text="Add a list">
+                     <font>
+                        <Font name="Roboto Medium" size="14.0" />
+                     </font>
+                  </Label>
+                    </children>
+                </AnchorPane>
+            </left>
+            <center>
+                <AnchorPane BorderPane.alignment="CENTER">
+               <children>
+                  <ListView fx:id="currentList" layoutX="36.0" layoutY="42.0" prefHeight="359.0" prefWidth="526.0" />
+               </children></AnchorPane>
+            </center>
+        </BorderPane>
+    </center>
+    <top>
+        <BorderPane prefHeight="90.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+            <center>
+                <ImageView fitHeight="71.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                    <image>
+                        <Image url="@logoNoText.png" />
+                    </image>
+                    <viewport>
+                        <Rectangle2D />
+                    </viewport>
+                </ImageView>
+            </center>
+            <left>
+                <AnchorPane prefHeight="90.0" prefWidth="370.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button fx:id="discoverBtn" layoutX="37.0" layoutY="30.0" mnemonicParsing="false" onAction="#onDiscoverClick" style="-fx-background-color: transparent;" text="Discover " textFill="#8c8c8c" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="30.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="consultBtn" layoutX="136.0" layoutY="30.0" mnemonicParsing="false" onAction="#onConsultationClick" style="-fx-background-color: transparent;" text="Consultation" textFill="#8c8c8c" AnchorPane.leftAnchor="136.0" AnchorPane.topAnchor="30.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="clubsBtn" layoutX="263.0" layoutY="30.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Clubs" textFill="#8c8c8c" AnchorPane.leftAnchor="263.0" AnchorPane.topAnchor="30.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </AnchorPane>
+            </left>
+            <right>
+                <AnchorPane prefHeight="90.0" prefWidth="370.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <ImageView fx:id="profileBtn" fitHeight="60.0" fitWidth="60.0" layoutX="286.0" layoutY="18.0" onMouseClicked="#onProfileClick" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="18.0">
+                            <image>
+                                <Image url="@account_circle_24dp.png" />
+                            </image>
+                        </ImageView>
+                        <Button fx:id="myListBtn" layoutX="171.0" layoutY="30.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="My List" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="30.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Button>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e9bf8e" height="7.0" layoutX="183.0" layoutY="83.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 0;" width="62.0" />
+                    </children>
+                </AnchorPane>
+            </right>
+        </BorderPane>
+    </top>
+</BorderPane>

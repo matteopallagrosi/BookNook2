@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="cell" prefHeight="235.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="clubName" layoutX="221.0" layoutY="39.0" prefHeight="25.0" prefWidth="340.0" text="Simo's wonderful book club " AnchorPane.leftAnchor="221.0" AnchorPane.topAnchor="39.0">
+         <font>
+            <Font name="Roboto Medium" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="numMembers" layoutX="222.0" layoutY="78.0" text="20500 members " AnchorPane.leftAnchor="222.0" AnchorPane.topAnchor="78.0">
+         <font>
+            <Font name="Roboto Medium" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="description" layoutX="222.0" layoutY="118.0" prefHeight="61.0" prefWidth="461.0" text="Keeping romance, history, humor, mystery, love, intrigue, and passion interesting, fun, and clean for all Christians. We discuss everything from reading to music to playing games to what makes a book good...and the best part? It's all clean!!" textAlignment="JUSTIFY" wrapText="true" AnchorPane.leftAnchor="222.0" AnchorPane.rightAnchor="30.0">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="exitBtn" layoutX="463.0" layoutY="188.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" stylesheets="@buttonYellow.css" text="Exit group" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="188.0">
+         <font>
+            <Font name="Roboto Medium" size="14.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="logo" fitHeight="152.0" fitWidth="170.0" layoutX="22.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="39.0">
+         <image>
+            <Image url="@book-clubs.png" />
+         </image>
+      </ImageView>
+      <Separator layoutX="221.0" layoutY="109.0" prefHeight="0.0" prefWidth="448.0" AnchorPane.leftAnchor="221.0" AnchorPane.rightAnchor="30.0" />
+   </children>
+</AnchorPane>

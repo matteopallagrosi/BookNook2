@@ -1,0 +1,10 @@
+.list-cell{
+    -fx-font-size:15.0;
+    -fx-font-family: "Roboto Medium";
+    -fx-background-color: white;
+}
+
+.list-cell:hover {
+    -fx-background-color: #8c8c8c;
+    -fx-text-fill: white;
+}

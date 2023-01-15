@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.ispw.booknook.logic.boundary.main_view.ConsultationDetailsUIController">
+    <center>
+        <BorderPane minHeight="-Infinity" prefHeight="300.0" prefWidth="900.0">
+            <top>
+            <BorderPane fx:id="homePage" prefHeight="94.0" prefWidth="900.0" stylesheets="@home.css">
+               <center>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="London Library">
+                            <font>
+                                <Font name="Roboto Medium" size="30.0" />
+                            </font>
+                        </Label>
+               </center>
+               <left>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <ImageView fx:id="backBtn" fitHeight="37.0" fitWidth="91.0" layoutX="51.0" layoutY="29.0" onMouseClicked="#onBackClick" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="51.0">
+                           <image>
+                              <Image url="@back.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </left>
+               <right>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </right>
+            </BorderPane>
+            </top>
+         <left>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="301.0" BorderPane.alignment="CENTER">
+               <children>
+                  <DatePicker fx:id="datePicker" editable="false" layoutX="63.0" layoutY="47.0" onAction="#onDateClick" prefHeight="34.0" prefWidth="175.0" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="63.0" AnchorPane.topAnchor="47.0" />
+                  <Label layoutX="63.0" layoutY="19.0" text="Select date" AnchorPane.leftAnchor="63.0" AnchorPane.topAnchor="19.0">
+                     <font>
+                        <Font name="Roboto Medium" size="18.0" />
+                     </font>
+                  </Label>
+                  <ListView fx:id="timeTable" layoutX="63.0" layoutY="127.0" prefHeight="200.0" prefWidth="171.0" stylesheets="@list.css" AnchorPane.leftAnchor="63.0" AnchorPane.topAnchor="127.0" />
+                  <Label layoutX="63.0" layoutY="99.0" text="Select time" AnchorPane.leftAnchor="63.0" AnchorPane.topAnchor="99.0">
+                     <font>
+                        <Font name="Roboto Medium" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="confirmBtn" disable="true" layoutX="63.0" layoutY="350.0" mnemonicParsing="false" onAction="#onConfirmClick" style="-fx-background-color: #e9bf8e; -fx-background-radius: 8; -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 2);" text="Confirm" textFill="WHITE" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="63.0" AnchorPane.topAnchor="350.0">
+                     <font>
+                        <Font name="Roboto Medium" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </left>
+         <center>
+            <WebView fx:id="map" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </center>
+        </BorderPane>
+    </center>
+    <top>
+        <BorderPane prefHeight="90.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+            <center>
+                <ImageView fitHeight="71.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                    <image>
+                        <Image url="@logoNoText.png" />
+                    </image>
+                    <viewport>
+                        <Rectangle2D />
+                    </viewport>
+                </ImageView>
+            </center>
+            <left>
+                <AnchorPane prefHeight="90.0" prefWidth="370.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button fx:id="discoverBtn" layoutX="37.0" layoutY="30.0" mnemonicParsing="false" onAction="#onDiscoverClick" style="-fx-background-color: transparent;" text="Discover " textFill="#8c8c8c" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="30.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="consultBtn" layoutX="136.0" layoutY="30.0" mnemonicParsing="false" onAction="#onConsultationClick" style="-fx-background-color: transparent;" text="Consultation" AnchorPane.leftAnchor="136.0" AnchorPane.topAnchor="30.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="clubsBtn" layoutX="263.0" layoutY="30.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Clubs" textFill="#8c8c8c" AnchorPane.leftAnchor="263.0" AnchorPane.topAnchor="30.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Button>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e9bf8e" height="6.0" layoutX="147.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 0;" width="105.0" AnchorPane.leftAnchor="147.0" />
+                    </children>
+                </AnchorPane>
+            </left>
+            <right>
+                <AnchorPane prefHeight="90.0" prefWidth="370.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <ImageView fx:id="profileBtn" fitHeight="60.0" fitWidth="60.0" layoutX="286.0" layoutY="18.0" onMouseClicked="#onProfileClick" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="18.0">
+                            <image>
+                                <Image url="@account_circle_24dp.png" />
+                            </image>
+                        </ImageView>
+                        <Button fx:id="myListBtn" layoutX="171.0" layoutY="30.0" mnemonicParsing="false" onAction="#onMyListClick" style="-fx-background-color: transparent;" text="My List" textFill="#8c8c8c" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="30.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </AnchorPane>
+            </right>
+        </BorderPane>
+    </top>
+</BorderPane>

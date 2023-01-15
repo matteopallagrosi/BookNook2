@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.ispw.booknook.logic.boundary.main_view.DeliveryDetailsUIController">
+    <center>
+        <BorderPane minHeight="-Infinity" prefHeight="300.0" prefWidth="900.0">
+            <top>
+                <BorderPane fx:id="homePage" prefHeight="94.0" prefWidth="900.0" stylesheets="@home.css">
+                    <center>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Payment Information">
+                            <font>
+                                <Font name="Roboto Medium" size="30.0" />
+                            </font>
+                        </Label>
+                    </center>
+                    <left>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <ImageView fx:id="backBtn" fitHeight="37.0" fitWidth="91.0" layoutX="51.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="51.0">
+                                    <image>
+                                        <Image url="@back.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                        </AnchorPane>
+                    </left>
+                    <right>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                    </right>
+                </BorderPane>
+            </top>
+         <center>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label layoutX="512.0" layoutY="104.0" text="Enter Payment Details" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="104.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Label>
+                  <Separator layoutX="511.0" layoutY="129.0" prefHeight="0.0" prefWidth="344.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="129.0" />
+                        <Label layoutX="514.0" layoutY="153.0" text="Name On Card" AnchorPane.rightAnchor="294.0" AnchorPane.topAnchor="153.0">
+                            <font>
+                                <Font name="Roboto Medium" size="14.0" />
+                            </font>
+                        </Label>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="513.0" layoutY="171.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.7" width="340.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="171.0" />
+                  <TextField layoutX="518.0" layoutY="171.0" prefHeight="30.0" prefWidth="337.0" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="171.0" />
+                  <Label layoutX="513.0" layoutY="215.0" text="Card Number" AnchorPane.rightAnchor="303.0" AnchorPane.topAnchor="215.0">
+                     <font>
+                        <Font name="Roboto Medium" size="14.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="513.0" layoutY="233.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.7" width="340.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="233.0" />
+                  <TextField layoutX="515.0" layoutY="233.0" prefHeight="30.0" prefWidth="337.0" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="233.0" />
+                        <Label layoutX="513.0" layoutY="277.0" text="Expiry Date " AnchorPane.rightAnchor="312.0" AnchorPane.topAnchor="277.0">
+                            <font>
+                                <Font name="Roboto Medium" size="14.0" />
+                            </font>
+                        </Label>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="513.0" layoutY="295.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.7" width="155.0" AnchorPane.rightAnchor="232.0" AnchorPane.topAnchor="295.0" />
+                  <TextField layoutX="515.0" layoutY="295.0" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="233.0" AnchorPane.topAnchor="295.0" />
+                        <Label layoutX="698.0" layoutY="277.0" text="Security code" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="277.0">
+                            <font>
+                                <Font name="Roboto Medium" size="14.0" />
+                            </font>
+                        </Label>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="698.0" layoutY="295.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.7" width="155.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="295.0" />
+                  <PasswordField layoutX="700.0" layoutY="295.0" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="295.0" />
+                        <Button layoutX="514.0" layoutY="355.0" mnemonicParsing="false" style="-fx-background-color: #e9bf8e; -fx-background-radius: 8; -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 2);" text="Confirm Order" textFill="WHITE" AnchorPane.rightAnchor="277.0" AnchorPane.topAnchor="355.0">
+                            <font>
+                                <Font name="Roboto Medium" size="14.0" />
+                            </font>
+                        </Button>
+                  <Label layoutX="45.0" layoutY="339.0" text="City" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="339.0">
+                     <font>
+                        <Font name="Roboto Medium" size="14.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="45.0" layoutY="357.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.7" width="155.0" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="357.0" />
+                  <TextField layoutX="47.0" layoutY="357.0" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="357.0" />
+                  <Label layoutX="227.0" layoutY="339.0" text="Zip" AnchorPane.leftAnchor="227.0" AnchorPane.topAnchor="339.0">
+                     <font>
+                        <Font name="Roboto Medium" size="14.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="225.0" layoutY="357.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.7" width="155.0" AnchorPane.leftAnchor="225.0" AnchorPane.topAnchor="357.0" />
+                  <TextField layoutX="227.0" layoutY="357.0" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="227.0" AnchorPane.topAnchor="357.0" />
+                  <Label layoutX="45.0" layoutY="277.0" text="Country" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="277.0">
+                     <font>
+                        <Font name="Roboto Medium" size="14.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="45.0" layoutY="295.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.7" width="337.0" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="295.0" />
+                  <TextField layoutX="45.0" layoutY="295.0" prefHeight="30.0" prefWidth="337.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="295.0" />
+                  <Label layoutX="45.0" layoutY="215.0" text="Street" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="215.0">
+                     <font>
+                        <Font name="Roboto Medium" size="14.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="45.0" layoutY="233.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.7" width="337.0" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="233.0" />
+                  <TextField layoutX="45.0" layoutY="233.0" prefHeight="30.0" prefWidth="337.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="233.0" />
+                  <Label layoutX="45.0" layoutY="167.0" text="Shipping information" AnchorPane.topAnchor="167.0">
+                     <font>
+                        <Font name="Roboto Medium" size="18.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="43.0" layoutY="191.0" prefHeight="0.0" prefWidth="344.0" AnchorPane.topAnchor="191.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ececec73" height="102.0" layoutX="42.0" layoutY="26.0" opacity="0.54" stroke="BLACK" strokeLineJoin="ROUND" strokeType="OUTSIDE" width="336.0" AnchorPane.leftAnchor="41.0" AnchorPane.topAnchor="25.0" />
+                  <ImageView fitHeight="86.0" fitWidth="65.0" layoutX="50.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@harryPotter1.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="115.0" layoutY="65.0" text="J. K. Rowling" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="65.0">
+                     <font>
+                        <Font name="Roboto Medium" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="115.0" layoutY="37.0" prefHeight="26.0" prefWidth="258.0" text="Harry Potter and the Half-Blood Prince" wrapText="true" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="37.0">
+                     <font>
+                        <Font name="Roboto Medium" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="111.0" layoutY="89.0" text="Bloomsbury, 2005" AnchorPane.leftAnchor="111.0" AnchorPane.topAnchor="89.0">
+                     <font>
+                        <Font name="Roboto Medium" size="14.0" />
+                     </font>
+                  </Label>
+                    </children>
+                </AnchorPane>
+         </center>
+        </BorderPane>
+    </center>
+    <top>
+        <BorderPane prefHeight="90.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+            <center>
+                <ImageView fitHeight="71.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                    <image>
+                        <Image url="@logoNoText.png" />
+                    </image>
+                    <viewport>
+                        <Rectangle2D />
+                    </viewport>
+                </ImageView>
+            </center>
+            <left>
+                <AnchorPane prefHeight="90.0" prefWidth="370.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button fx:id="discoverBtn" layoutX="37.0" layoutY="30.0" mnemonicParsing="false" onAction="#onDiscoverClick" style="-fx-background-color: transparent;" text="Discover " AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="30.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="consultBtn" layoutX="136.0" layoutY="30.0" mnemonicParsing="false" onAction="#onConsultationClick" style="-fx-background-color: transparent;" text="Consultation" textFill="#8c8c8c" AnchorPane.leftAnchor="136.0" AnchorPane.topAnchor="30.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="clubsBtn" layoutX="263.0" layoutY="30.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Clubs" textFill="#8c8c8c" AnchorPane.leftAnchor="263.0" AnchorPane.topAnchor="30.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Button>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e9bf8e" height="6.0" layoutX="48.0" layoutY="87.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 0;" width="70.0" />
+                    </children>
+                </AnchorPane>
+            </left>
+            <right>
+                <AnchorPane prefHeight="90.0" prefWidth="370.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <ImageView fx:id="profileBtn" fitHeight="60.0" fitWidth="60.0" layoutX="286.0" layoutY="18.0" onMouseClicked="#onProfileClick" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="18.0">
+                            <image>
+                                <Image url="@account_circle_24dp.png" />
+                            </image>
+                        </ImageView>
+                        <Button fx:id="myListBtn" layoutX="171.0" layoutY="30.0" mnemonicParsing="false" onAction="#onMyListClick" style="-fx-background-color: transparent;" text="My List" textFill="#8c8c8c" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="30.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </AnchorPane>
+            </right>
+        </BorderPane>
+    </top>
+</BorderPane>

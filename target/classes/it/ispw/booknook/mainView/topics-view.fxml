@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.ispw.booknook.logic.boundary.main_view.TopicsUIController">
+   <children>
+      <ImageView fx:id="adventureView" fitHeight="145.0" fitWidth="110.0" layoutX="48.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);;" AnchorPane.leftAnchor="47.12000274658203" AnchorPane.rightAnchor="456.87999725341797">
+         <image>
+            <Image url="@gatsby.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="66.0" layoutY="180.0" text="Classics">
+         <font>
+            <Font name="Roboto Medium" size="16.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="adventureView1" fitHeight="145.0" fitWidth="110.0" layoutX="189.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);;" AnchorPane.leftAnchor="188.27999877929688" AnchorPane.rightAnchor="314.7200012207031">
+         <image>
+            <Image url="@orientExpress.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="adventureView11" fitHeight="145.0" fitWidth="110.0" layoutX="337.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);;" AnchorPane.leftAnchor="336.95999908447266" AnchorPane.rightAnchor="169.04000091552734">
+         <image>
+            <Image url="@theroad.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="adventureView111" fitHeight="145.0" fitWidth="110.0" layoutX="468.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);;" AnchorPane.leftAnchor="467.6097869873047" AnchorPane.rightAnchor="29.390213012695312">
+         <image>
+            <Image url="@thehobbit.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="adventureView2" fitHeight="145.0" fitWidth="110.0" layoutX="48.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);;" AnchorPane.leftAnchor="47.279998779296875" AnchorPane.rightAnchor="455.7200012207031">
+         <image>
+            <Image url="@IRobot.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="adventureView21" fitHeight="145.0" fitWidth="110.0" layoutX="189.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);;" AnchorPane.leftAnchor="188.6386947631836" AnchorPane.rightAnchor="316.3613052368164">
+         <image>
+            <Image url="@harrypotter.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="adventureView211" fitHeight="145.0" fitWidth="110.0" layoutX="336.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);;" AnchorPane.leftAnchor="335.12652587890625" AnchorPane.rightAnchor="168.87347412109375">
+         <image>
+            <Image url="@it.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="adventureView2111" fitHeight="145.0" fitWidth="110.0" layoutX="471.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);;" AnchorPane.leftAnchor="470.98999786376953" AnchorPane.rightAnchor="33.01000213623047">
+         <image>
+            <Image url="@sapiens.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="215.0" layoutY="180.0" text="Crime">
+         <font>
+            <Font name="Roboto Medium" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="348.0" layoutY="180.0" text="Dystopian">
+         <font>
+            <Font name="Roboto Medium" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="491.0" layoutY="180.0" text="Fantasy">
+         <font>
+            <Font name="Roboto Medium" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="77.0" layoutY="374.0" text="Sci-fi">
+         <font>
+            <Font name="Roboto Medium" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="218.0" layoutY="374.0" text="Teen">
+         <font>
+            <Font name="Roboto Medium" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="366.0" layoutY="374.0" text="Horror">
+         <font>
+            <Font name="Roboto Medium" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="479.0" layoutY="373.0" text="Non-fiction">
+         <font>
+            <Font name="Roboto Medium" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

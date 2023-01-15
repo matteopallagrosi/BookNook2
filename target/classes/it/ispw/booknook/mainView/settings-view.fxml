@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.ispw.booknook.logic.boundary.main_view.SettingsUIController">
+    <center>
+        <BorderPane fx:id="currentSettingsPane" minHeight="-Infinity" prefHeight="300.0" prefWidth="900.0">
+            <top>
+                <BorderPane fx:id="homePage" prefHeight="94.0" prefWidth="900.0" stylesheets="@home.css">
+                    <center>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Settings">
+                            <font>
+                                <Font name="Roboto Medium" size="30.0" />
+                            </font>
+                        </Label>
+                    </center>
+                    <left>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <ImageView fx:id="backBtn" fitHeight="37.0" fitWidth="91.0" layoutX="51.0" layoutY="29.0" onMouseClicked="#onBackClick" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="51.0">
+                                    <image>
+                                        <Image url="@back.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                        </AnchorPane>
+                    </left>
+                    <right>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                    </right>
+                </BorderPane>
+            </top>
+            <left>
+                <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="301.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Rectangle fx:id="accountBtn" arcHeight="8.0" arcWidth="8.0" disable="true" fill="#e9bf8e" height="28.0" layoutX="62.0" layoutY="95.0" stroke="#e9bf8e66" strokeType="INSIDE" strokeWidth="0.0" width="174.0" AnchorPane.leftAnchor="62.0" AnchorPane.topAnchor="95.0" />
+                  <Rectangle fx:id="profSettingsBtn" arcHeight="8.0" arcWidth="8.0" fill="#8a8a8a66" height="28.0" layoutX="62.0" layoutY="143.0" stroke="#8a8a8a66" strokeType="INSIDE" strokeWidth="0.0" width="175.0" AnchorPane.leftAnchor="62.0" AnchorPane.topAnchor="143.0" />
+                  <Rectangle fx:id="deleteBtn" arcHeight="8.0" arcWidth="8.0" fill="#8a8a8a66" height="28.0" layoutX="61.0" layoutY="191.0" stroke="#8a8a8a66" strokeType="INSIDE" strokeWidth="0.0" width="175.0" AnchorPane.leftAnchor="61.0" AnchorPane.topAnchor="191.0" />
+                  <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="70.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@accountsettings_black_24dp.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="70.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@person_black_24dp.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="71.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@delete_black_24dp.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="61.0" layoutY="95.0" onMouseClicked="#onAccountSettingsClick" prefHeight="27.0" prefWidth="176.0" text="Account Settings" AnchorPane.leftAnchor="61.0" AnchorPane.topAnchor="95.0">
+                     <font>
+                        <Font name="Roboto Medium" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="61.0" layoutY="143.0" onMouseClicked="#onProfileSettingsClick" prefHeight="27.0" prefWidth="176.0" text="Profile Settings" AnchorPane.leftAnchor="61.0" AnchorPane.topAnchor="143.0">
+                     <font>
+                        <Font name="Roboto Medium" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="60.0" layoutY="191.0" onMouseClicked="#onDeleteClick" prefHeight="28.0" prefWidth="176.0" text="Delete Account" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="191.0">
+                     <font>
+                        <Font name="Roboto Medium" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+                </AnchorPane>
+            </left>
+        </BorderPane>
+    </center>
+    <top>
+        <BorderPane prefHeight="90.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+            <center>
+                <ImageView fitHeight="71.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                    <image>
+                        <Image url="@logoNoText.png" />
+                    </image>
+                    <viewport>
+                        <Rectangle2D />
+                    </viewport>
+                </ImageView>
+            </center>
+            <left>
+                <AnchorPane prefHeight="90.0" prefWidth="370.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button fx:id="discoverBtn" layoutX="37.0" layoutY="30.0" mnemonicParsing="false" onAction="#onDiscoverClick" style="-fx-background-color: transparent;" text="Discover " textFill="#8c8c8c" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="30.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="consultBtn" layoutX="136.0" layoutY="30.0" mnemonicParsing="false" onAction="#onConsultationClick" style="-fx-background-color: transparent;" text="Consultation" textFill="#8c8c8c" AnchorPane.leftAnchor="136.0" AnchorPane.topAnchor="30.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="clubsBtn" layoutX="263.0" layoutY="30.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Clubs" textFill="#8c8c8c" AnchorPane.leftAnchor="263.0" AnchorPane.topAnchor="30.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </AnchorPane>
+            </left>
+            <right>
+                <AnchorPane prefHeight="90.0" prefWidth="370.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <ImageView fx:id="profileBtn" fitHeight="60.0" fitWidth="60.0" layoutX="286.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="18.0">
+                            <image>
+                                <Image url="@account_circle_black_24dp.png" />
+                            </image>
+                        </ImageView>
+                        <Button fx:id="myListBtn" layoutX="171.0" layoutY="30.0" mnemonicParsing="false" onAction="#onMyListClick" style="-fx-background-color: transparent;" text="My List" textFill="#8c8c8c" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="30.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Button>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e9bf8e" height="6.0" layoutX="276.0" layoutY="86.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 0;" width="55.0" />
+                    </children>
+                </AnchorPane>
+            </right>
+        </BorderPane>
+    </top>
+</BorderPane>
