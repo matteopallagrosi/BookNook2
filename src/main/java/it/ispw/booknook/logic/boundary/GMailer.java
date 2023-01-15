@@ -55,7 +55,7 @@ public class GMailer {
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
     }
 
-    public void sendMail(String subject, String message) throws Exception {
+    public void sendEMail(String subject, String message) throws Exception {
         Properties props = new Properties();
         Session session = Session.getDefaultInstance(props, null);
         MimeMessage email = new MimeMessage(session);
@@ -84,20 +84,4 @@ public class GMailer {
             }
         }
     }
-
-    public static void main(String[] args) {
-        try {
-            new GMailer().sendMail("A new message", """
-                    Dear reader,
-                                    
-                    Hello world.
-                                    
-                    Best regards,
-                    myself
-                    """);
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 }

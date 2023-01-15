@@ -2,6 +2,7 @@ package it.ispw.booknook.logic.control;
 
 import it.ispw.booknook.logic.bean.BookBean;
 import it.ispw.booknook.logic.bean.LibraryBean;
+import it.ispw.booknook.logic.boundary.GMailer;
 import it.ispw.booknook.logic.boundary.JSONManager;
 import it.ispw.booknook.logic.database.dao.BookDao;
 import it.ispw.booknook.logic.database.dao.LibraryDao;
@@ -10,7 +11,6 @@ import it.ispw.booknook.logic.entity.*;
 import java.util.*;
 
 public class BorrowBookController {
-
 
     public List<BookBean> borrowByName(BookBean requestedBook) {
         List<BookBean> bookBeans = new ArrayList<BookBean>();
@@ -155,8 +155,8 @@ public class BorrowBookController {
         copyToBorrow.setLibrary(library);
         LibraryDao.setCopyOnLoan(copyToBorrow);
         //manda mail di conferma dell'ordine a utente e bibliotecario
-        /*try {
-            new GMailer().sendEmail("A new message", """
+        try {
+            new GMailer().sendEMail("A new message", """
                     Dear reader,
                     
                     Hello World.
@@ -166,7 +166,7 @@ public class BorrowBookController {
                     """);
         } catch(Exception e) {
             e.printStackTrace();
-        } */
+        }
     }
 
 
