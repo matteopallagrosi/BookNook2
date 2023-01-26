@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="269.0" prefWidth="495.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.ispw.booknook.logic.boundary.main_view.ReviewUIController">
+   <children>
+      <TextArea fx:id="contentArea" editable="false" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="142.0" prefWidth="495.0" text="Una biblioteca non grandissima, ma ricca in volumi e con un personale davvero gentile e disponibile. I posti per leggere/studiare sono purtroppo limitati, quindi succede spesso di non potersi sedere se la si frequenta durante il primo pomeriggio o nelle mattine delle giornate di sessione universitaria.Carino lo spiazzo esterno collocato tra il piano terra ed il -1, dove in primavera/estate sono disponibili alcuni tavolini e delle sedie per la lettura all'aperto.La sala inferiore ospita un piccolo spazio per conferenze, la ludoteca per i bambini ed i bagni. In alcuni punti, al -1, il wi-fi non funziona!" wrapText="true" />
+      <Label fx:id="servicesLabel" layoutX="214.0" layoutY="13.0" text="services:">
+         <font>
+            <Font name="Roboto Medium" size="16.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="43.0" fitWidth="40.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@account_circle_24dp.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="usernameLabel" layoutX="60.0" layoutY="25.0" text="matteo">
+         <font>
+            <Font name="Roboto Medium" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="57.0" text="Recensito il:">
+         <font>
+            <Font name="Roboto Light" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="dateLabel" layoutX="81.0" layoutY="56.0" text="28-12-2022" />
+      <Label fx:id="titleLabel" layoutX="14.0" layoutY="102.0" text="Una buona biblioteca di quartiere">
+         <font>
+            <Font name="Roboto Medium" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="servStar3" fitHeight="22.0" fitWidth="22.0" layoutX="374.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons8-stella-riempita-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="servStar1" fitHeight="22.0" fitWidth="22.0" layoutX="314.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons8-stella-riempita-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="servStar2" fitHeight="22.0" fitWidth="22.0" layoutX="344.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons8-stella-riempita-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="servStar4" fitHeight="22.0" fitWidth="22.0" layoutX="404.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons8-stella-riempita-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="servStar5" fitHeight="23.0" fitWidth="24.0" layoutX="434.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons8-stella-riempita-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="avStar1" fitHeight="22.0" fitWidth="22.0" layoutX="314.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons8-stella-riempita-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="avStar3" fitHeight="22.0" fitWidth="22.0" layoutX="374.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons8-stella-riempita-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="avStar2" fitHeight="22.0" fitWidth="22.0" layoutX="344.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons8-stella-riempita-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="avStar4" fitHeight="22.0" fitWidth="22.0" layoutX="404.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons8-stella-riempita-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="avStar5" fitHeight="22.0" fitWidth="22.0" layoutX="434.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons8-stella-riempita-30.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="availabilityLabel" layoutX="214.0" layoutY="42.0" text="availability:">
+         <font>
+            <Font name="Roboto Medium" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="locationLabel" layoutX="214.0" layoutY="71.0" text="location:">
+         <font>
+            <Font name="Roboto Medium" size="16.0" />
+         </font></Label>
+      <ImageView fx:id="locStar1" fitHeight="22.0" fitWidth="22.0" layoutX="314.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons8-stella-riempita-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="locStar3" fitHeight="22.0" fitWidth="22.0" layoutX="374.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons8-stella-riempita-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="locStar2" fitHeight="22.0" fitWidth="22.0" layoutX="344.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons8-stella-riempita-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="locStar4" fitHeight="23.0" fitWidth="24.0" layoutX="404.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons8-stella-riempita-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="locStar5" fitHeight="23.0" fitWidth="24.0" layoutX="434.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons8-stella-riempita-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="medStar1" fitHeight="20.0" fitWidth="20.0" layoutX="14.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons8-stella-riempita-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="medStar3" fitHeight="20.0" fitWidth="20.0" layoutX="74.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons8-stella-riempita-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="medStar2" fitHeight="20.0" fitWidth="20.0" layoutX="44.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons8-stella-riempita-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="medStar4" fitHeight="20.0" fitWidth="20.0" layoutX="104.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons8-stella-riempita-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="medStar5" fitHeight="20.0" fitWidth="20.0" layoutX="134.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons8-stella-riempita-30.png" />
+         </image>
+      </ImageView>
+      <Rectangle fill="#fafafa" height="1.0" layoutX="-1.0" layoutY="272.0" stroke="#5b5b5b" width="497.0" />
+   </children>
+</AnchorPane>

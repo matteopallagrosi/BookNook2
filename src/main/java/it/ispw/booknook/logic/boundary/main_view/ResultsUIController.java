@@ -64,6 +64,20 @@ public class ResultsUIController extends UIController {
             Button tagBtn = new Button(tag);
             tagBtn.setStyle("-fx-background-radius: 8; -fx-background-color:  #c9c9c9; -fx-effect:  dropshadow(one-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 2)");
             box.getChildren().add(tagBtn);
+            tagBtn.setOnAction(actionEvent -> {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/ispw/booknook/mainView/tagResults-view.fxml"));
+                    Parent root = loader.load();
+                    TagResultsUIController controller = loader.getController();
+                    controller.setListView(tag);
+                    Scene scene = ((Node)(actionEvent.getSource())).getScene();
+                    scene.setRoot(root);
+                    root.requestFocus();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
         });
 
         System.out.println("Ho recuperato i tag");
@@ -140,26 +154,5 @@ public class ResultsUIController extends UIController {
             }
         };
 
-    }
-
-    @FXML
-    void onDiscoverClick(ActionEvent event) throws IOException {
-        changePage("/it/ispw/booknook/mainView/homepage-view.fxml", event);
-    }
-
-    @FXML
-    void onConsultationClick(ActionEvent event) throws IOException {
-        changePage("/it/ispw/booknook/mainView/consultation-view.fxml", event);
-    }
-
-    @FXML
-    void onProfileClick(MouseEvent event) throws IOException {
-        changePage("/it/ispw/booknook/mainView/settings-view.fxml", event);
-    }
-
-
-    @FXML
-    void onMyListClick(ActionEvent event) throws IOException {
-        changePage("/it/ispw/booknook/mainView/myLists-view.fxml", event);
     }
 }

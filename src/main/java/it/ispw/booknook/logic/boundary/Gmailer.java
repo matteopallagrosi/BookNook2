@@ -24,16 +24,15 @@ import java.io.InputStreamReader;
 import java.nio.file.Paths;
 import java.util.Properties;
 import java.util.Set;
-
 import static com.google.api.services.gmail.GmailScopes.GMAIL_SEND;
 import static javax.mail.Message.RecipientType.TO;
 
-public class GMailer {
+public class Gmailer {
 
     private static final String TEST_EMAIL = "matteo.pallagrosi18@gmail.com";
     private final Gmail service;
 
-    public GMailer() throws Exception {
+    public Gmailer() throws Exception {
         NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
         GsonFactory jsonFactory = GsonFactory.getDefaultInstance();
         service = new Gmail.Builder(httpTransport, jsonFactory, getCredentials(httpTransport, jsonFactory))
@@ -43,7 +42,7 @@ public class GMailer {
 
     private static Credential getCredentials(final NetHttpTransport httpTransport, GsonFactory jsonFactory)
             throws IOException {
-        GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(jsonFactory, new InputStreamReader(GMailer.class.getResourceAsStream("/client_secret_1063677381766-to0i80i7q6his75rak5os0qrh34lr07k.apps.googleusercontent.com.json")));
+        GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(jsonFactory, new InputStreamReader(Gmailer.class.getResourceAsStream("/credentials.json")));
 
         GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
                 httpTransport, jsonFactory, clientSecrets, Set.of(GMAIL_SEND))
@@ -55,12 +54,14 @@ public class GMailer {
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
     }
 
-    public void sendEMail(String subject, String message) throws Exception {
+    public void sendEmail(String recipient, String subject, String message) throws Exception {
+        //per motivi di sviluppo l'email viene inoltrata ad un indirizzo di default
+        System.out.println("Sending email to " + recipient + "...");
         Properties props = new Properties();
         Session session = Session.getDefaultInstance(props, null);
         MimeMessage email = new MimeMessage(session);
         email.setFrom(new InternetAddress(TEST_EMAIL));
-        email.addRecipient(TO, new InternetAddress(TEST_EMAIL));
+        email.addRecipient(TO, new InternetAddress(recipient));
         email.setSubject(subject);
         email.setText(message);
 
@@ -84,4 +85,18 @@ public class GMailer {
             }
         }
     }
+    /*public static void main(String args[]) {
+        try {
+            new Gmailer().sendEmail("matteo.pallagrosi18@gmail.com", "A new message", """
+                    Dear reader,
+                                        
+                    Hello World.
+                                        
+                    Best regards,
+                    myself.
+                    """);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
 }

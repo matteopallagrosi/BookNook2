@@ -4,14 +4,10 @@ import it.ispw.booknook.logic.bean.LoginBean;
 import it.ispw.booknook.logic.control.SignUpController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class SignupUIController extends UIController {
 
@@ -56,10 +52,11 @@ public class SignupUIController extends UIController {
             showPasswordError();
             return;
         }
+        loginBean.setIsReader(true);
 
         //se corrette registra utente (inserisce dati sul db), chiamando controller applicativo
         SignUpController controller = new SignUpController();
-        controller.registerReader(loginBean);
+        controller.registerUser(loginBean);
 
 
         //aprire messaggio registrazione con successo
@@ -70,10 +67,8 @@ public class SignupUIController extends UIController {
         alert.showAndWait();
 
        //alla chiusura del dialog apre l'homepage
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/it/ispw/booknook/mainView/homepage-view.fxml")));
-        Scene scene = ((Button)(event.getSource())).getScene();
-        scene.setRoot(root);
-        root.requestFocus();
+        changePage("/it/ispw/booknook/mainView/homepage-view.fxml", event);
+
 
     }
 
@@ -101,10 +96,12 @@ public class SignupUIController extends UIController {
 
     @FXML
     void onSigninClick(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/it/ispw/booknook/mainView/login-view.fxml")));
-        Scene scene = ((Button)(event.getSource())).getScene();
-        scene.setRoot(root);
-        root.requestFocus();
+        changePage("/it/ispw/booknook/mainView/login-view.fxml", event);
+    }
+
+    @FXML
+    void onLibrarianClick(ActionEvent event) throws IOException {
+        changePage("/it/ispw/booknook/mainView/libraryreg-view.fxml", event);
     }
 
     public void setErrorMessage() {

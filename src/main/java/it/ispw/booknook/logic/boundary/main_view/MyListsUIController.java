@@ -93,22 +93,6 @@ public class MyListsUIController extends UIController implements Initializable {
         showList(wantToReadList);
     }
 
-    @FXML
-    void onProfileClick(MouseEvent event) throws IOException {
-        changePage("/it/ispw/booknook/mainView/settings-view.fxml", event);
-
-    }
-
-    @FXML
-    void onDiscoverClick(ActionEvent event) throws IOException {
-        changePage("/it/ispw/booknook/mainView/homepage-view.fxml", event);
-    }
-
-    @FXML
-    void onConsultationClick(ActionEvent event) throws IOException {
-        changePage("/it/ispw/booknook/mainView/consultation-view.fxml", event);
-    }
-
     //mostra la lista selezionata
     public void showList(ObservableList<BookBean> listToShow) {
         currentList.setItems(listToShow);

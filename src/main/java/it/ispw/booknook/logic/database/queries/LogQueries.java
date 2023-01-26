@@ -2,23 +2,21 @@ package it.ispw.booknook.logic.database.queries;
 
 import it.ispw.booknook.logic.entity.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.math.BigDecimal;
+import java.sql.*;
 
 public class LogQueries {
 
     private LogQueries() {
     }
 
-    public static int saveReaderUser(Connection connection, User user) throws SQLException {
-        String query = "INSERT INTO utenti (username, email, password) VALUES (?, ?, ?)";
+    public static int saveReaderUser(Connection connection, User user, String userType) throws SQLException {
+        String query = "INSERT INTO utenti (username, email, password, tipo) VALUES (?, ?, ?, ?)";
         PreparedStatement pstmt = connection.prepareStatement(query);
         pstmt.setString(1, user.getUsername());
         pstmt.setString(2, user.getEmail());
         pstmt.setString(3, user.getPassword());
-
+        pstmt.setString(4, userType);
         return pstmt.executeUpdate();  // ritorna il numero di righe inserite/aggiornate
     }
 
@@ -107,6 +105,21 @@ public class LogQueries {
         String query = "DELETE FROM utenti WHERE username = ?";
         PreparedStatement pstmt = connection.prepareStatement(query);
         pstmt.setString(1, username);
+        return pstmt.executeUpdate();
+    }
+
+    public static int insertLibraryDetails(Connection connection, String username, String name, String address, String city, Time start, Time end) throws SQLException {
+        String query = "INSERT INTO biblioteche (username, nome, indirizzo, ora_apertura, ora_chiusura, latitudine, longitudine, città) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement pstmt = connection.prepareStatement(query);
+        pstmt.setString(1, username);
+        pstmt.setString(2, name);
+        pstmt.setString(3, address);
+        pstmt.setTime(4, start);
+        pstmt.setTime(5, end);
+        //TODO
+        pstmt.setBigDecimal(6, BigDecimal.valueOf(48.675463));
+        pstmt.setBigDecimal(7, BigDecimal.valueOf(48.675463));
+        pstmt.setString(8, city);
         return pstmt.executeUpdate();
     }
 }

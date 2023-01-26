@@ -41,5 +41,10 @@
          </font>
       </Label>
       <Button fx:id="removeBtn" layoutX="404.0" layoutY="110.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" style="-fx-background-color: #8a8a8a66;" stylesheets="@buttonYellow.css" text="Remove" />
+      <Label fx:id="reviewLabel" layoutX="388.0" layoutY="114.0" text="Review library" underline="true" visible="false">
+         <font>
+            <Font name="Roboto Medium" size="14.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

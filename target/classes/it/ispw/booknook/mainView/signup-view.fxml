@@ -33,15 +33,15 @@
                <effect>
                   <Shadow />
                </effect></Button>
-            <Label layoutX="29.0" layoutY="533.0" text="Already have an account?" textFill="#6f6d6d">
+            <Label layoutX="29.0" layoutY="522.0" text="Already have an account?" textFill="#6f6d6d" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="115.79999999999998">
                <font>
                   <Font name="Roboto" size="15.0" />
                </font></Label>
-            <Button fx:id="signinBtn" layoutX="195.0" layoutY="528.0" mnemonicParsing="false" onAction="#onSigninClick" prefHeight="29.0" prefWidth="105.0" style="-fx-background-color: transparent;" text="Sign in here" textFill="#33a8ea">
+            <Button fx:id="signinBtn" layoutX="195.0" layoutY="516.0" mnemonicParsing="false" onAction="#onSigninClick" prefHeight="29.0" prefWidth="105.0" style="-fx-background-color: transparent;" text="Sign in here" textFill="#33a8ea" underline="true" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="14.599999999999994">
                <font>
                   <Font name="Roboto Black" size="15.0" />
                </font></Button>
-            <Separator layoutX="91.0" layoutY="524.0" prefHeight="4.0" prefWidth="139.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" />
+            <Separator layoutX="90.0" layoutY="513.0" prefHeight="4.0" prefWidth="139.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" />
             <Label layoutX="32.0" layoutY="154.0" prefHeight="37.0" prefWidth="100.0" text="Sign Up" AnchorPane.topAnchor="154.0">
                <font>
                   <Font name="Roboto Bold" size="26.0" />
@@ -61,7 +61,7 @@
                   <Font name="Roboto Medium" size="15.0" />
                </font>
             </PasswordField>
-            <Button layoutX="42.0" layoutY="467.0" mnemonicParsing="false" onAction="#onContinueNoAccount" prefHeight="35.0" prefWidth="221.0" style="-fx-background-color: #33a8ea; -fx-background-radius: 8; -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 2);" text="Continue without an account" textFill="WHITE" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="42.0">
+            <Button layoutX="42.0" layoutY="462.0" mnemonicParsing="false" onAction="#onContinueNoAccount" prefHeight="35.0" prefWidth="221.0" style="-fx-background-color: #33a8ea; -fx-background-radius: 8; -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 2);" text="Continue without an account" textFill="WHITE" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="42.0">
                <effect>
                   <Shadow />
                </effect>
@@ -69,7 +69,7 @@
                   <Font name="Roboto Medium" size="15.0" />
                </font>
             </Button>
-            <Label layoutX="149.0" layoutY="437.0" text="Or" AnchorPane.leftAnchor="149.0" AnchorPane.rightAnchor="149.0">
+            <Label layoutX="149.0" layoutY="434.0" text="Or" AnchorPane.leftAnchor="149.0" AnchorPane.rightAnchor="149.0">
                <font>
                   <Font name="Roboto Medium" size="16.0" />
                </font>
@@ -94,6 +94,16 @@
                   <Font name="Roboto Medium" size="15.0" />
                </font>
             </TextField>
+            <Label layoutX="29.0" layoutY="547.0" text="Are you a librarian?" textFill="#6f6d6d" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="159.0">
+               <font>
+                  <Font name="Roboto" size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="librarianButton" layoutX="152.0" layoutY="541.0" mnemonicParsing="false" onAction="#onLibrarianClick" prefHeight="30.0" prefWidth="119.0" style="-fx-background-color: transparent;" text="Register here" textFill="#696868" underline="true" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="43.999999999999986">
+               <font>
+                  <Font name="Roboto Black" size="15.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </center>

@@ -1,11 +1,10 @@
 package it.ispw.booknook.logic.database.dao;
 
+import com.esri.arcgisruntime.internal.portal.SubscriptionInfoStateTypeAdapter;
+import it.ispw.booknook.logic.bean.LibraryBean;
 import it.ispw.booknook.logic.database.BookNookDB;
 import it.ispw.booknook.logic.database.queries.LibraryQueries;
-import it.ispw.booknook.logic.entity.Book;
-import it.ispw.booknook.logic.entity.BookCopy;
-import it.ispw.booknook.logic.entity.Library;
-import it.ispw.booknook.logic.entity.User;
+import it.ispw.booknook.logic.entity.*;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -45,6 +44,8 @@ public class LibraryDao {
                 library.setLongitude(rs.getBigDecimal("longitudine"));
                 library.setCity(rs.getString("città"));
                 libraries.put(name, library);
+                book.setTitle(rs.getString("titolo"));
+                book.setAuthor(rs.getString("autore"));
                 library.addBook(book);
             }
 
@@ -87,4 +88,36 @@ public class LibraryDao {
             e.printStackTrace();
         }
     }
+
+    public static void getLibraryShift(Library library, Date dateCons) {
+        System.out.println(dateCons);
+        System.out.println(library.getUsername());
+        Connection conn = null;
+
+        BookNookDB db = BookNookDB.getInstance();
+        conn = db.getConn();
+        try {
+            ResultSet rs = LibraryQueries.getShifts(conn, library.getUsername(), dateCons);
+
+            if (!rs.first()) {
+                throw new Exception("No shifts available");
+            }
+
+            rs.previous();
+
+            while(rs.next()){
+                ConsultationShift consultationShift = new ConsultationShift(rs.getDate("data"), rs.getTime("ora_inizio"), rs.getTime("ora_fine"));
+                library.addShift(consultationShift);
+            }
+
+            rs.close();
+
+        } catch(SQLException e) {
+            Logger logger = Logger.getLogger("MyLog");
+            logger.log(Level.INFO, "This is message 1", e);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

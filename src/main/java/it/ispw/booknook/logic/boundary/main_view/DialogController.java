@@ -2,14 +2,13 @@ package it.ispw.booknook.logic.boundary.main_view;
 
 import it.ispw.booknook.logic.bean.LibraryBean;
 import it.ispw.booknook.logic.bean.LoginBean;
-import it.ispw.booknook.logic.control.BorrowBookController;
-import it.ispw.booknook.logic.control.LoginController;
-import it.ispw.booknook.logic.control.SettingsController;
-import it.ispw.booknook.logic.control.SignUpController;
+import it.ispw.booknook.logic.bean.ShiftBean;
+import it.ispw.booknook.logic.control.*;
 import it.ispw.booknook.logic.entity.User;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -115,7 +114,7 @@ public class DialogController extends UIController {
                     if (loginBean.getEmail() == null || loginBean.getPassword() == null) {
                         errorLabel.setVisible(true);
                         event.consume();
-                    } else signUpController.registerReader(loginBean);
+                    } else signUpController.registerUser(loginBean);
                 }
                 default -> errorLabel.setVisible(true);
             }
@@ -138,25 +137,27 @@ public class DialogController extends UIController {
         Optional result =  d.showAndWait();
         //selezionato ritiro in libreria
         if (result.isPresent() && result.get().equals("In-library pickup")) {
-            createPickUpDialog(library);
+            createPickUpDialog(actionEvent, library);
         }
         //selezionata consegna a casa
         else if (result.isPresent() && result.get().equals("Home delivery")) {
             //passa a schermata con informazioni di spedizione
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/ispw/booknook/mainView/deliverydetails-view.fxml"));
             Parent root = null;
             try {
-                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/it/ispw/booknook/mainView/deliverydetails-view.fxml")));
+                root = loader.load();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Scene scene = ((Button) (actionEvent.getSource())).getScene();
+            DeliveryDetailsUIController controller = loader.getController();
+            controller.setInitialDetails(library);
+            Scene scene = ((Node) (actionEvent.getSource())).getScene();
             scene.setRoot(root);
-            assert root != null;
             root.requestFocus();
         }
     }
 
-    private void createPickUpDialog(LibraryBean library) {
+    private void createPickUpDialog(ActionEvent actionEvent, LibraryBean library) {
         //result contiene la stringa In-libraryPickup o homedelivery
         //se homedelivery apre pagina metodo di consegna
         //se pickup informa sui tempi di ritiro
@@ -178,6 +179,17 @@ public class DialogController extends UIController {
             //aggiorna db e manda mail di conferma (delega il controller applicativo)
             BorrowBookController borrowBookController = new BorrowBookController();
             borrowBookController.borrowBook(library);
+            //ritorna alla pagine iniziale
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/it/ispw/booknook/mainView/homepage-view.fxml")));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene scene = ((Button) (actionEvent.getSource())).getScene();
+            scene.setRoot(root);
+            assert root != null;
+            root.requestFocus();
         }
     }
 
@@ -241,6 +253,88 @@ public class DialogController extends UIController {
                     }
                 }
             }
+        }
+    }
+
+    public void successLoanDialog(ActionEvent actionEvent) {
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setTitle("Successfull loan");
+        dialog.setContentText("Loan has been successfull! You will receive an email with the order details.");
+        ButtonType confirm = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().add(confirm);
+        dialog.getDialogPane().setStyle(STYLE);
+        dialog.getDialogPane().getStylesheets().add(
+                Objects.requireNonNull(getClass().getResource(STYLESHEET)).toExternalForm());
+        Optional result = dialog.showAndWait();
+        if (result.isPresent() && result.get() == confirm) {
+            //riporta alla schermata iniziale
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/it/ispw/booknook/mainView/homepage-view.fxml")));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene scene = ((Button)(actionEvent.getSource())).getScene();
+            scene.setRoot(root);
+            assert root != null;
+            root.requestFocus();
+        }
+    }
+
+    public void createConsultationDialog(ShiftBean currentShift, LibraryBean currentLibrary, ActionEvent event) {
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setTitle("Confirm consultation");
+        ButtonType type = new ButtonType("Confirm", ButtonBar.ButtonData.OK_DONE);
+        dialog.setContentText("Please confirm your reservation.\nYou will receive an email with the details.");
+        dialog.getDialogPane().setStyle("-fx-font-size: 15px;" +
+                "-fx-font-family: Roboto ");
+        dialog.getDialogPane().getButtonTypes().add(type);
+        ButtonBar buttonBar = (ButtonBar)dialog.getDialogPane().lookup(".button-bar");
+        buttonBar.getButtons().forEach(b -> b.setStyle("-fx-background-color: #e9bf8e;" +
+                "-fx-background-radius: 8;" +
+                "-fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 2);" +
+                "-fx-text-fill: white;" +
+                "-fx-font-family: 'Roboto Medium'"));
+
+        Optional<ButtonType> result = dialog.showAndWait();
+        if (result.isPresent() && result.get() == type) {
+            //invoca il controller applicativo per aggiornamento db e invio email
+
+            //conferma la prenotazione, invia email, riporta alla schermata iniziale
+            try {
+                changePage("/it/ispw/booknook/mainView/consultation-view.fxml", event);
+            } catch(IOException e) {
+                 e.printStackTrace();
+            }
+            //invoca il controller applicativo per aggiornamento db e invio email
+            ConsultationController controller = new ConsultationController();
+            controller.reserveConsultation(currentShift, currentLibrary);
+            System.out.println("data scelta: " + currentShift.getDate());
+        }
+    }
+
+    public void createSuccessInsertDialog(ActionEvent event) {
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setTitle("Successfull insertion");
+        dialog.setContentText("Your book has been correctly added in the system!");
+        ButtonType confirm = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().add(confirm);
+        dialog.getDialogPane().setStyle(STYLE);
+        dialog.getDialogPane().getStylesheets().add(
+                Objects.requireNonNull(getClass().getResource(STYLESHEET)).toExternalForm());
+        Optional result = dialog.showAndWait();
+        if (result.isPresent() && result.get() == confirm) {
+            //riporta alla schermata iniziale
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/it/ispw/booknook/mainView/librarian-home-view.fxml")));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene scene = ((Button)(event.getSource())).getScene();
+            scene.setRoot(root);
+            assert root != null;
+            root.requestFocus();
         }
     }
 }

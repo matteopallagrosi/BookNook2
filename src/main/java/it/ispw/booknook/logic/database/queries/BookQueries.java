@@ -1,19 +1,17 @@
 package it.ispw.booknook.logic.database.queries;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class BookQueries {
 
     private BookQueries() {}
 
     public static ResultSet getBooks(Connection connection, String title) throws SQLException {
-        String query = "SELECT titolo,autore FROM libri where titolo LIKE ? or autore LIKE ?";
+        String query = "SELECT titolo,autore FROM libri where (titolo LIKE ? or autore LIKE ?) AND consultabile = ?";
         PreparedStatement pstmt = connection.prepareStatement( query );
         pstmt.setString( 1, "%" + title + "%");
         pstmt.setString( 2, "%" + title + "%");
+        pstmt.setInt(3,0);
         return pstmt.executeQuery();
     }
 
@@ -85,4 +83,76 @@ public class BookQueries {
         pstmt.setString( 2, isbn);
         return pstmt.executeUpdate();
     }
+
+    public static ResultSet getBooksByGenre(Connection connection, String tag) throws SQLException {
+        String query = "SELECT * FROM tag_libri JOIN tag ON tag_libri.tag = tag.id JOIN libri ON libri.ISBN = tag_libri.ISBN WHERE tag.descrizione = ?";
+        PreparedStatement pstmt = connection.prepareStatement(query);
+        pstmt.setString(1, tag);
+        return pstmt.executeQuery();
+    }
+
+
+    public static ResultSet getConsultationBooks(Connection connection, String title) throws SQLException {
+        String query = "SELECT * FROM libri where (titolo LIKE ? or autore LIKE ?) AND consultabile = 1";
+        PreparedStatement pstmt = connection.prepareStatement( query );
+        pstmt.setString( 1, "%" + title + "%");
+        pstmt.setString( 2, "%" + title + "%");
+        return pstmt.executeQuery();
+    }
+
+    public static int updateConsultation(Connection connection, String username, String library, Date consDate, Time start) throws SQLException {
+        System.out.println("lettore: " + username + " biblioteca: " +  library + " data: " + consDate + " ora: " + start);
+        String query = "UPDATE turni_consultazione SET lettore_prenotato = ? WHERE biblioteca LIKE ? AND data = ? AND ora_inizio = ?";
+        PreparedStatement pstmt = connection.prepareStatement( query );
+        pstmt.setString( 1, username);
+        pstmt.setString( 2, library);
+        pstmt.setDate( 3, consDate);
+        pstmt.setTime( 4, start);
+        return pstmt.executeUpdate();
+    }
+
+    public static int insertBook(Connection connection, String isbn, String title, String author, String publisher, int year, int consultation) throws SQLException {
+        String query = "INSERT INTO libri (ISBN, titolo, autore, editore, anno, consultabile) VALUES (?, ?, ?, ?, ?, ?)";
+        PreparedStatement pstmt = connection.prepareStatement(query);
+        pstmt.setString( 1, isbn);
+        pstmt.setString(2,title);
+        pstmt.setString(3, author);
+        pstmt.setString(4, publisher);
+        pstmt.setInt(5, year);
+        pstmt.setInt(6, consultation);
+        return pstmt.executeUpdate();
+    }
+
+    public static int insertCopy(Connection connection, String isbn, String library) throws SQLException {
+        String query = "INSERT INTO copie (ISBN, biblioteca, stato) VALUES (?, ?, ?)";
+        PreparedStatement pstmt = connection.prepareStatement(query);
+        pstmt.setString( 1, isbn);
+        pstmt.setString(2,library);
+        pstmt.setInt(3, 1);
+        return pstmt.executeUpdate();
+    }
+
+    public static ResultSet getAllTags(Connection connection) throws SQLException {
+        String query = "SELECT descrizione FROM tag";
+        PreparedStatement pstmt = connection.prepareStatement( query );
+        return pstmt.executeQuery();
+    }
+
+    //assegna un nuovo tag ad un libro
+    public static int setTag(Connection connection, String isbn, int idTag) throws SQLException {
+        String query = "INSERT INTO tag_libri (ISBN, tag) VALUES (?, ?)";
+        PreparedStatement pstmt = connection.prepareStatement(query);
+        pstmt.setString( 1, isbn);
+        pstmt.setInt(2, idTag);
+        return pstmt.executeUpdate();
+    }
+
+    public static ResultSet getIdTag(Connection connection, String description) throws SQLException {
+        String query = "SELECT id FROM tag WHERE descrizione LIKE ?";
+        PreparedStatement pstmt = connection.prepareStatement( query );
+        pstmt.setString(1, description);
+        return pstmt.executeQuery();
+    }
+
+
 }

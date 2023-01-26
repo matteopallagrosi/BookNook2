@@ -17,20 +17,21 @@ public class Library {
         private String city;
         private List<Book> ownedBooks;
         private List<BookCopy> ownedCopies;
+        private List<ConsultationShift> shifts = null;
 
         public Library(){}
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Library(String name) {
-            this.name = name;
+        public String getUsername() {
+            return username;
         }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public Library(String name) {
+                this.name = name;
+            }
 
         public String getName() {
             return name;
@@ -104,12 +105,25 @@ public class Library {
             this.ownedCopies = ownedCopies;
         }
 
+        public List<ConsultationShift> getShifts() {
+            return shifts;
+        }
+
+        public void setShifts(List<ConsultationShift> shifts) {
+            this.shifts = shifts;
+        }
+
+        public void addShift(ConsultationShift shift) {
+            if (shifts == null) this.shifts = new ArrayList<>();
+            this.shifts.add(shift);
+        }
+
         public void addBook(Book book){
-                if(ownedBooks == null){
-                    ownedBooks = new ArrayList<Book>();
+                    if(ownedBooks == null){
+                        ownedBooks = new ArrayList<Book>();
+                    }
+                    ownedBooks.add(book);
                 }
-                ownedBooks.add(book);
-            }
 
             public void addCopy(BookCopy copy) {
                 if(ownedCopies == null){

@@ -2,6 +2,7 @@ package it.ispw.booknook.logic.bean;
 
 import it.ispw.booknook.logic.Observer;
 import it.ispw.booknook.logic.entity.User;
+import it.ispw.booknook.logic.entity.UserType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -22,6 +23,7 @@ public class LoginBean extends Observer {
     private String city;
     private String zip;
     private String country;
+    private boolean isReader;
 
     public LoginBean() {}
 
@@ -173,5 +175,15 @@ public class LoginBean extends Observer {
         Image newImageProfile = new Image(newImageUrl);
         avatar.setImage(newImageProfile);
     }
+
+    public UserType getType() {
+        if (isReader) return UserType.READER;
+        else return UserType.LIBRARIAN;
+    }
+
+    public void setIsReader(boolean state) {
+        this.isReader = state;
+    }
+
 
 }

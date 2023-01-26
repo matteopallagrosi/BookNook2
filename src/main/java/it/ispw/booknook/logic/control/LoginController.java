@@ -1,20 +1,25 @@
 package it.ispw.booknook.logic.control;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
+import it.ispw.booknook.logic.Encrypter;
 import it.ispw.booknook.logic.bean.LoginBean;
-import it.ispw.booknook.logic.database.dao.ReaderUserDao;
+import it.ispw.booknook.logic.boundary.BcryptAdapter;
+import it.ispw.booknook.logic.database.dao.UserDao;
 import it.ispw.booknook.logic.entity.User;
+import it.ispw.booknook.logic.entity.UserType;
 
 public class LoginController {
 
     public boolean checkUserLogged(LoginBean loginBean) {
         String userPass = null;
         try {
-            userPass = ReaderUserDao.getPassUser(loginBean.getEmail());
-            BCrypt.Result result = BCrypt.verifyer().verify(loginBean.getPassword().toCharArray(), userPass);
-            if (result.verified) {
+            //recupera l'hash della password dal db
+            userPass = UserDao.getPassUser(loginBean.getEmail());
+            //verica se la password inserita dall'utente corrisponde
+            Encrypter encrypter = new BcryptAdapter();
+            encrypter.verify(loginBean.getPassword(), userPass);
+            if ( encrypter.verify(loginBean.getPassword(), userPass)) {
                 //crea l'istanza di utente loggato
-                ReaderUserDao.getReaderUser(loginBean.getEmail());
+                UserDao.getReaderUser(loginBean.getEmail());
                 return true;
             }
             else {
@@ -41,5 +46,13 @@ public class LoginController {
         }
     }
 
+    public boolean isUserReader() {
+        return User.getUser().getType() == UserType.READER;
+    }
 
+    public LoginBean getCurrentUsername() {
+        LoginBean loginDetails = new LoginBean();
+        loginDetails.setUsername(User.getUser().getUsername());
+        return loginDetails;
+    }
 }

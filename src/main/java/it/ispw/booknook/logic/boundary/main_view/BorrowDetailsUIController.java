@@ -13,6 +13,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
@@ -55,6 +59,11 @@ public class BorrowDetailsUIController extends UIController {
     @FXML
     private Label introLabel;
 
+    @FXML
+    private Label reviewsLabel;
+
+    private LibraryBean currentLibrary;
+
 
     public void displayLibraryList(String isbn, String title) {
         setAvatar();
@@ -67,6 +76,8 @@ public class BorrowDetailsUIController extends UIController {
         book.setIsbn(isbn);
         //recupera la lista di librerie con disponibilità (borrow/reserve) della copia
         List<LibraryBean> libraries = controller.calculateLibraries(book);
+
+        currentLibrary = libraries.get(0);
 
         ObservableList<LibraryBean> observableList = FXCollections.observableArrayList(libraries);
         libraryList.setItems(observableList);
@@ -81,6 +92,8 @@ public class BorrowDetailsUIController extends UIController {
                 addrLabel.setText(t1.getAddress() + ", " + t1.getCity());
                 hoursLabel.setText(t1.getOpeningTime() + " - " + t1.getClosingTime());
                 mapViewer.changePosition(t1.getLatitude(), t1.getLongitude());
+                currentLibrary = t1;
+
             }
         });
 
@@ -147,25 +160,20 @@ public class BorrowDetailsUIController extends UIController {
     } */
 
 
-
     @FXML
-    void onDiscoverClick(ActionEvent event) throws IOException {
-        changePage("/it/ispw/booknook/mainView/homepage-view.fxml", event);
-    }
-
-    @FXML
-    void onConsultationClick(ActionEvent event) throws IOException {
-        changePage("/it/ispw/booknook/mainView/consultation-view.fxml", event);
-    }
-
-    @FXML
-    void onProfileClick(MouseEvent event) throws IOException {
-        changePage("/it/ispw/booknook/mainView/settings-view.fxml", event);
-    }
-
-    @FXML
-    void onMyListClick(ActionEvent event) throws IOException {
-        changePage("/it/ispw/booknook/mainView/myLists-view.fxml", event);
+    void onReviewsClick(MouseEvent event) {
+        //apre pagina recensioni libreria
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/ispw/booknook/mainView/rate-view.fxml"));
+            Parent root = loader.load();
+            ReviewUIController controller = loader.getController();
+            controller.setReviews(currentLibrary);
+            Scene scene = ((Node)(event.getSource())).getScene();
+            scene.setRoot(root);
+            root.requestFocus();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

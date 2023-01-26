@@ -22,6 +22,10 @@ public class BookBean extends Subject {
     private String libraryName;
     private boolean isAddedtoList;
     private ImageView viewToUpdate;
+    private String usernameLibrary;
+    private String publisher;
+    private String publishingYear;
+    private int numCopies;
 
     public void setViewToUpdate(ImageView view) {
         this.viewToUpdate = view;
@@ -142,5 +146,45 @@ public class BookBean extends Subject {
 
     public void setAddedtoList(boolean addedtoList) {
         isAddedtoList = addedtoList;
+    }
+
+    public String getUsernameLibrary() {
+        return usernameLibrary;
+    }
+
+    public void setUsernameLibrary(String usernameLibrary) {
+        this.usernameLibrary = usernameLibrary;
+    }
+
+    public String getPublishingYear() {
+        return publishingYear;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public void setPublishingYear(int publishingYear) {
+        this.publishingYear = Integer.toString(publishingYear);
+    }
+
+    public int getYear() {
+        return Integer.parseInt(this.getPublishingYear());
+    }
+
+    public void setYear(String year) {
+        this.publishingYear = year;
+    }
+
+    public int getNumCopies() {
+        return numCopies;
+    }
+
+    public void setNumCopies(int numCopies) {
+        this.numCopies = numCopies;
     }
 }

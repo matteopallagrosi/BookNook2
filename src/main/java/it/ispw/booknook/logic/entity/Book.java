@@ -13,6 +13,7 @@ public class Book {
     private int publishingYear;
     private String cover;
     private List<BookCopy> copies;
+    private boolean consultationState;
 
 
     public Book() {
@@ -86,6 +87,10 @@ public class Book {
         return tags;
     }
 
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
     public String getCover() {
         return cover;
     }
@@ -107,5 +112,13 @@ public class Book {
             copies = new ArrayList<BookCopy>();
         }
         copies.add(copy);
+    }
+
+    public void setConsultationState(boolean consultationState) {
+        this.consultationState = consultationState;
+    }
+
+    public boolean isConsultable() {
+        return consultationState;
     }
 }

@@ -8,3 +8,8 @@
     -fx-background-color: #8c8c8c;
     -fx-text-fill: white;
 }
+
+.list-cell:selected {
+    -fx-background-color: #8c8c8c;
+    -fx-text-fill: white;
+}

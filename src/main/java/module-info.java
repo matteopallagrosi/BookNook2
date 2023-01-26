@@ -18,6 +18,10 @@ module it.ispw.booknook {
     requires com.google.api.services.gmail;
     requires org.apache.commons.codec;
     requires mail;
+    requires jdk.unsupported;
+    requires jdk.httpserver;
+    requires org.controlsfx.controls;
+
 
     opens it.ispw.booknook to javafx.fxml;
     exports it.ispw.booknook;

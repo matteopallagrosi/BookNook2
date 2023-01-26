@@ -119,6 +119,19 @@ public class BookCell extends Observer {
             Button tagBtn = new Button(tag);
             tagBtn.setStyle("-fx-background-radius: 8; -fx-background-color:  #c9c9c9; -fx-effect:  dropshadow(one-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 2)");
             box.getChildren().add(tagBtn);
+            tagBtn.setOnAction(actionEvent -> {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/ispw/booknook/mainView/tagResults-view.fxml"));
+                    Parent root = loader.load();
+                    TagResultsUIController controller = loader.getController();
+                    controller.setListView(tag);
+                    Scene scene = ((Node)(actionEvent.getSource())).getScene();
+                    scene.setRoot(root);
+                    root.requestFocus();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
         });
 
         borrowBtn.setOnAction(new EventHandler<>() {

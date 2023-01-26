@@ -2,6 +2,11 @@ package it.ispw.booknook.logic.bean;
 
 import it.ispw.booknook.logic.entity.Library;
 
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
 public class LibraryBean {
     private String username;
     private String name;
@@ -14,6 +19,10 @@ public class LibraryBean {
     private boolean availability;
     private String isbnAvailableBook;
     private int idCopyAvailable;
+    private String titleCopyAvailable;
+    private String authorCopyAvailable;
+
+    public LibraryBean() {}
 
     public LibraryBean(Library library) {
         this.setUsername(library.getUsername());
@@ -24,6 +33,30 @@ public class LibraryBean {
         this.setLatitude(library.getLatitude().doubleValue());
         this.setLongitude(library.getLongitude().doubleValue());
         this.setCity(library.getCity());
+    }
+
+    public Time opening() {
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+        Time t = null;
+        try {
+            long ms = sdf.parse(this.openingTime).getTime();
+            t = new Time(ms);
+        } catch (ParseException e ) {
+            e.printStackTrace();
+        }
+        return t;
+    }
+
+    public Time closing() {
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+        Time t = null;
+        try {
+            long ms = sdf.parse(this.closingTime).getTime();
+            t = new Time(ms);
+        } catch (ParseException e ) {
+            e.printStackTrace();
+        }
+        return t;
     }
 
     public String getUsername() {
@@ -112,5 +145,21 @@ public class LibraryBean {
 
     public void setIdCopyAvailable(int idCopyAvailable) {
         this.idCopyAvailable = idCopyAvailable;
+    }
+
+    public String getTitleCopyAvailable() {
+        return titleCopyAvailable;
+    }
+
+    public void setTitleCopyAvailable(String titleCopyAvailable) {
+        this.titleCopyAvailable = titleCopyAvailable;
+    }
+
+    public String getAuthorCopyAvailable() {
+        return authorCopyAvailable;
+    }
+
+    public void setAuthorCopyAvailable(String authorCopyAvailable) {
+        this.authorCopyAvailable = authorCopyAvailable;
     }
 }

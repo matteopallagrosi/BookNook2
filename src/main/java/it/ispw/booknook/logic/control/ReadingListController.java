@@ -49,6 +49,7 @@ public class ReadingListController {
             bookBean.setTitle(copy.getBook().getTitle());
             bookBean.setLoanDate(copy.getLoanDate());
             bookBean.setLibraryName(copy.getLibrary().getName());
+            bookBean.setUsernameLibrary(copy.getLibrary().getUsername());
             JSONManager jsonManager = new JSONManager(bookBean);
             Thread t1 = new Thread(jsonManager);
             t1.start();

@@ -2,6 +2,7 @@ package it.ispw.booknook.logic.boundary.main_view;
 
 import it.ispw.booknook.logic.Observer;
 import it.ispw.booknook.logic.bean.BookBean;
+import it.ispw.booknook.logic.bean.LibraryBean;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -50,6 +52,9 @@ public class FavoritesCell extends Observer {
     @FXML
     private Button borrowBtn;
 
+    @FXML
+    private Label reviewLabel;
+
     private BookBean currentBook;
 
 
@@ -81,6 +86,7 @@ public class FavoritesCell extends Observer {
             borrowBtn.setDisable(true);
             borrowBtn.setVisible(false);
             fromLabel.setVisible(true);
+            reviewLabel.setVisible(true);
         }
 
         borrowBtn.setOnAction(new EventHandler<>() {
@@ -100,6 +106,28 @@ public class FavoritesCell extends Observer {
                 root.requestFocus();
             }
         });
+
+        reviewLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/ispw/booknook/mainView/newReview-view.fxml"));
+                Parent root = null;
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                CreateReviewUIController controller = loader.getController();
+                LibraryBean library = new LibraryBean();
+                library.setUsername(book.getUsernameLibrary());
+                controller.setLibraryDetails(library);
+                Scene scene = ((Node) (mouseEvent.getSource())).getScene();
+                scene.setRoot(root);
+                root.requestFocus();
+
+            }
+        });
+
     }
 
     public AnchorPane getCell()

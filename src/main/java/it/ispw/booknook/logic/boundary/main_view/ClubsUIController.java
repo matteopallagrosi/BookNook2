@@ -1,6 +1,5 @@
 package it.ispw.booknook.logic.boundary.main_view;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -56,19 +55,10 @@ public class ClubsUIController extends UIController implements Initializable {
     }
 
     @FXML
-    void onConsultationClick(ActionEvent event) {
-
-    }
-
-    @FXML
     void onCreateClubClick(MouseEvent event) {
 
     }
 
-    @FXML
-    void onDiscoverClick(ActionEvent event) {
-
-    }
 
     @FXML
     void onMapClick(MouseEvent event) throws IOException {
@@ -86,11 +76,6 @@ public class ClubsUIController extends UIController implements Initializable {
         myClubsBtn.setFill((Color.web(SELECTED_COLOR)));
         AnchorPane mapPane = FXMLLoader.load(getClass().getResource("/it/ispw/booknook/mainView/myClubs-view.fxml"));
         currentPane.setCenter(mapPane);
-
-    }
-
-    @FXML
-    void onMyListClick(ActionEvent event) {
 
     }
 

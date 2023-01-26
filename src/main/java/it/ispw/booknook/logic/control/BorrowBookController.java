@@ -2,12 +2,13 @@ package it.ispw.booknook.logic.control;
 
 import it.ispw.booknook.logic.bean.BookBean;
 import it.ispw.booknook.logic.bean.LibraryBean;
-import it.ispw.booknook.logic.boundary.GMailer;
+import it.ispw.booknook.logic.boundary.Gmailer;
 import it.ispw.booknook.logic.boundary.JSONManager;
 import it.ispw.booknook.logic.database.dao.BookDao;
 import it.ispw.booknook.logic.database.dao.LibraryDao;
 import it.ispw.booknook.logic.entity.*;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class BorrowBookController {
@@ -133,6 +134,8 @@ public class BorrowBookController {
                     if (copy.getState() == CopyState.AVAILABLE) {
                         bean.setIdCopyAvailable(copy.getId());
                         bean.setIsbnAvailableBook(book.getIsbn());
+                        bean.setTitleCopyAvailable(copy.getBook().getTitle());
+                        bean.setAuthorCopyAvailable(copy.getBook().getAuthor());
                     }
                 });
             }
@@ -155,20 +158,44 @@ public class BorrowBookController {
         copyToBorrow.setLibrary(library);
         LibraryDao.setCopyOnLoan(copyToBorrow);
         //manda mail di conferma dell'ordine a utente e bibliotecario
+        String readerToNotify = User.getUser().getEmail();
+        String username = User.getUser().getUsername();
+        System.out.println(libraryDetails.getName());
+        System.out.println(libraryDetails.getAddress());
+        System.out.println(libraryDetails.getCity());
+        System.out.println(libraryDetails.getOpeningTime());
+        System.out.println(libraryDetails.getClosingTime());
+        String messageToReader = "Hi " + username + ",\n" + "thanks from your order!\nYou borrowed " + libraryDetails.getTitleCopyAvailable() + ", " +  libraryDetails.getAuthorCopyAvailable() + " from the library " + libraryDetails.getName() +
+                " (" + libraryDetails.getAddress() + ", " + libraryDetails.getCity() + ", " + libraryDetails.getOpeningTime() + "-" + libraryDetails.getClosingTime() + ") " + "since " + LocalDate.now().toString() +
+                    ".\nYou will have to return it within " + LocalDate.now().plusMonths(1) + ".";
+
         try {
-            new GMailer().sendEMail("A new message", """
-                    Dear reader,
-                    
-                    Hello World.
-                    
-                    Best regards,
-                    myself.
-                    """);
+            new Gmailer().sendEmail(readerToNotify, "Loan confirmation from BookNook", messageToReader);
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
 
-
-
+    public List<BookBean> borrowByTag(BookBean book) {
+        String selectedTag = book.getTags().get(0);
+        List<Book> bookList = BookDao.getBookByCategory(selectedTag);
+        List<BookBean> bookBeans = new ArrayList<>();
+        for (int i = 0; i < bookList.size(); i++) {
+            BookBean bookBean = new BookBean();
+            bookBean.setIsbn(bookList.get(i).getIsbn());
+            bookBean.setBookDetails(bookList.get(i));
+            bookBean.setTags(bookList.get(i).getTags());
+            bookBeans.add(bookBean);
+            JSONManager jsonManager = new JSONManager(bookBean);
+            Thread t1 = new Thread(jsonManager);
+            t1.start();
+            //se l'utente è loggato deve scoprire quali libri sono stati aggiunti ad una qualche lista
+            if (new LoginController().verifyLogin()) {
+                String username = User.getUser().getUsername();
+                String isbn = bookBean.getIsbn();
+                bookBean.setAddedtoList(BookDao.getListByISBN(username, isbn));
+            }
+        }
+        return bookBeans;
+    }
 }

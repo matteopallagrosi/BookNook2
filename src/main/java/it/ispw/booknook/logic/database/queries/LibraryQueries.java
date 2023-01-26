@@ -7,7 +7,7 @@ public class LibraryQueries {
     private LibraryQueries() {}
 
     public static ResultSet getLibraries(Connection connection, String isbn) throws SQLException {
-        String query = "SELECT * FROM biblioteche JOIN copie ON biblioteca = username where ISBN LIKE ?";
+        String query = "SELECT * FROM biblioteche JOIN copie ON biblioteca = username JOIN libri on libri.ISBN = copie.ISBN where libri.ISBN LIKE ?";
         PreparedStatement pstmt = connection.prepareStatement( query );
         pstmt.setString( 1, isbn);
         return pstmt.executeQuery();
@@ -24,5 +24,12 @@ public class LibraryQueries {
         return pstmt.executeUpdate();
     }
 
-
+    //ritorna turni consultazione liberi
+    public static ResultSet getShifts(Connection connection, String username, Date date) throws SQLException {
+        String query = "SELECT * FROM turni_consultazione where biblioteca LIKE ? AND data = ? AND lettore_prenotato IS NULL";
+        PreparedStatement pstmt = connection.prepareStatement( query );
+        pstmt.setString( 1, username);
+        pstmt.setDate( 2, date);
+        return pstmt.executeQuery();
+    }
 }

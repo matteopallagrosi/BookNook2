@@ -33,10 +33,17 @@ public class LoginUIController extends UIController {
         LoginBean loginB = new LoginBean(emailTf.getText(), passwTf.getText());
         //verifica email e password inseriti su database
         LoginController controller = new LoginController();
-        //se corretti apre homepage
+        //se corretti verifica tipo utente
         if (controller.checkUserLogged(loginB)) {
-            //apre hompepage
-            changePage("/it/ispw/booknook/mainView/homepage-view.fxml", event);
+            //se utente lettore apre homepage per reader
+            if (controller.isUserReader()) {
+                //apre hompepage
+                changePage("/it/ispw/booknook/mainView/homepage-view.fxml", event);
+            }
+            //se utente bibliotecario apre interfaccia bibliotecario
+            else {
+                changePage("/it/ispw/booknook/mainView/librarian-home-view.fxml", event);
+            }
         }
         //altrimenti mostra messaggio d'errore
         else {

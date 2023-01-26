@@ -43,6 +43,18 @@ public class DiscoverUIController extends UIController implements Initializable 
     @FXML
     private Button thrillerBtn;
 
+    @FXML
+    private Button dystBtn;
+
+    @FXML
+    private Button horrorBtn;
+
+    @FXML
+    private Button fantasyBtn;
+
+    @FXML
+    private Button poetryBtn;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         resultList.setOnMouseClicked(mouseEvent -> {
@@ -60,36 +72,28 @@ public class DiscoverUIController extends UIController implements Initializable 
         });
         setAvatar();
     }
-
-
     @FXML
-    void onConsultationClick(ActionEvent event) throws IOException {
-        changePage("/it/ispw/booknook/mainView/consultation-view.fxml", event);
+    void onTagClick(ActionEvent event) {
+        String tag = ((Button) event.getSource()).getText();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/ispw/booknook/mainView/tagResults-view.fxml"));
+            Parent root = loader.load();
+            TagResultsUIController controller = loader.getController();
+            controller.setListView(tag);
+            Scene scene = ((Node)(event.getSource())).getScene();
+            scene.setRoot(root);
+            root.requestFocus();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    @FXML
-    void onProfileClick(MouseEvent event) throws IOException {
-        super.onProfileClick(event);
-    }
-
-
-    @FXML
-    void onMyListClick(ActionEvent event) throws IOException {
-        super.onMyListsClick(event);
-
-    }
-
-    @FXML
-    void onClubsClick(ActionEvent event) throws IOException {
-        changePage("/it/ispw/booknook/mainView/clubs-view.fxml", event);
-    }
 
     @FXML
     void borrowBookByName(ActionEvent event) {
             String searchedTx = searchField.getText(); //titolo o autore libro richiesto
             BookBean searchedBook = new BookBean(searchedTx);
             BorrowBookController controller = new BorrowBookController();
-
             List<BookBean> results = controller.borrowByName(searchedBook);
             resultList.getItems().clear();
             results.forEach(bookBean -> resultList.getItems().add(bookBean.getTitle() + ", " + bookBean.getAuthor()));

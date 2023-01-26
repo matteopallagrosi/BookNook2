@@ -1,8 +1,9 @@
 package it.ispw.booknook.logic.control;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
+import it.ispw.booknook.logic.Encrypter;
 import it.ispw.booknook.logic.bean.LoginBean;
-import it.ispw.booknook.logic.database.dao.ReaderUserDao;
+import it.ispw.booknook.logic.boundary.BcryptAdapter;
+import it.ispw.booknook.logic.database.dao.UserDao;
 import it.ispw.booknook.logic.entity.User;
 
 import java.sql.SQLException;
@@ -22,14 +23,15 @@ public class SettingsController {
 
     public void changeEmail(LoginBean oldDetails, LoginBean newDetails) throws SQLException {
         if (!newDetails.getEmail().equals(oldDetails.getEmail())) {
-            ReaderUserDao.updateEmail(oldDetails.getEmail(), newDetails.getEmail());
+            UserDao.updateEmail(oldDetails.getEmail(), newDetails.getEmail());
         }
     }
 
     public void changePassword(LoginBean newDetails) throws SQLException {
-        String newPassword = BCrypt.withDefaults().hashToString(12, newDetails.getPassword().toCharArray());
-        ReaderUserDao.updatePassword(User.getUser().getUsername(), newPassword);
-        User.getUser().setPassword(newPassword);
+        Encrypter encrypter = new BcryptAdapter();
+        String encryptedHash = encrypter.encrypt(newDetails.getPassword());
+        UserDao.updatePassword(User.getUser().getUsername(), encryptedHash);
+        User.getUser().setPassword(encryptedHash);
     }
 
     public LoginBean processProfileDetails() {
@@ -46,7 +48,7 @@ public class SettingsController {
             //altrimenti li recupera dal db
             if (firstName == null || lastName == null || address == null || city == null || zip == null || country == null) {
                 try {
-                    ReaderUserDao.getProfile(username);  //potrebbero essere ancora nulli
+                    UserDao.getProfile(username);  //potrebbero essere ancora nulli
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -79,17 +81,17 @@ public class SettingsController {
         User.getUser().setCity(newCity);
         User.getUser().setZip(newZip);
         User.getUser().setCountry(newCountry);
-        ReaderUserDao.updateProfile(username, newName, newLastName, newAddress, newCity, newZip, newCountry);
+        UserDao.updateProfile(username, newName, newLastName, newAddress, newCity, newZip, newCountry);
     }
 
     public void updateImageProfile(LoginBean newProfile) {
         User.getUser().setImageProfile(newProfile.getImageUrl());
-        ReaderUserDao.saveProfileImage(User.getUser());
+        UserDao.saveProfileImage(User.getUser());
     }
 
     public void deleteAccount() {
         User userToDelete = User.getUser();
-        ReaderUserDao.deleteProfile(userToDelete);
+        UserDao.deleteProfile(userToDelete);
         User.deleteUser();
     }
 }

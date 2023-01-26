@@ -59,42 +59,42 @@
                 <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="86.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="scifiBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #bcbcbc; -fx-border-width: 1; -fx-border-radius: 5;" text="Sci-fi" textFill="#8c8c8c" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="scifiBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onTagClick" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #bcbcbc; -fx-border-width: 1; -fx-border-radius: 5;" text="Sci-fi" textFill="#8c8c8c" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Roboto Medium" size="18.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #bcbcbc; -fx-border-width: 1; -fx-border-radius: 5;" text="Horror" textFill="#8c8c8c" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <Button fx:id="horrorBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onTagClick" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #bcbcbc; -fx-border-width: 1; -fx-border-radius: 5;" text="Horror" textFill="#8c8c8c" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <font>
                         <Font name="Roboto Medium" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="romanceBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #bcbcbc; -fx-border-width: 1; -fx-border-radius: 5;" text="Romance" textFill="#8c8c8c" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="romanceBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onTagClick" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #bcbcbc; -fx-border-width: 1; -fx-border-radius: 5;" text="Romance" textFill="#8c8c8c" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Roboto Medium" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="thrillerBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #bcbcbc; -fx-border-width: 1; -fx-border-radius: 5;" text="Thriller" textFill="#8c8c8c" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                  <Button fx:id="thrillerBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onTagClick" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #bcbcbc; -fx-border-width: 1; -fx-border-radius: 5;" text="Thriller" textFill="#8c8c8c" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                      <font>
                         <Font name="Roboto Medium" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="adventureBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #bcbcbc; -fx-border-width: 1; -fx-border-radius: 5;" text="Adventure" textFill="#8c8c8c" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                  <Button fx:id="adventureBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onTagClick" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #bcbcbc; -fx-border-width: 1; -fx-border-radius: 5;" text="Adventure" textFill="#8c8c8c" GridPane.columnIndex="3" GridPane.halignment="CENTER">
                      <font>
                         <Font name="Roboto Medium" size="18.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #bcbcbc; -fx-border-width: 1; -fx-border-radius: 5;" text="Poetry" textFill="#8c8c8c" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <Button fx:id="poetryBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onTagClick" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #bcbcbc; -fx-border-width: 1; -fx-border-radius: 5;" text="Poetry" textFill="#8c8c8c" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <font>
                         <Font name="Roboto Medium" size="18.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #bcbcbc; -fx-border-width: 1; -fx-border-radius: 5;" text="Fantasy" textFill="#8c8c8c" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <Button fx:id="fantasyBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onTagClick" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #bcbcbc; -fx-border-width: 1; -fx-border-radius: 5;" text="Fantasy" textFill="#8c8c8c" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <font>
                         <Font name="Roboto Medium" size="18.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #bcbcbc; -fx-border-width: 1; -fx-border-radius: 5;" text="Dystopia" textFill="#8c8c8c" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <Button fx:id="dystBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onTagClick" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #bcbcbc; -fx-border-width: 1; -fx-border-radius: 5;" text="Dystopia" textFill="#8c8c8c" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <font>
                         <Font name="Roboto Medium" size="18.0" />
                      </font>
@@ -129,7 +129,7 @@
          <left>
             <AnchorPane prefHeight="90.0" prefWidth="370.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="37.0" layoutY="30.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Discover " AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="30.0">
+                  <Button layoutX="37.0" layoutY="30.0" mnemonicParsing="false" onAction="#onDiscoverClick" style="-fx-background-color: transparent;" text="Discover " AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="30.0">
                      <font>
                         <Font name="Roboto Medium" size="18.0" />
                      </font>

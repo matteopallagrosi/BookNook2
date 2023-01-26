@@ -5,10 +5,9 @@ import it.ispw.booknook.logic.database.queries.BookQueries;
 import it.ispw.booknook.logic.entity.Book;
 import it.ispw.booknook.logic.entity.BookCopy;
 import it.ispw.booknook.logic.entity.Library;
+import it.ispw.booknook.logic.entity.User;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -254,6 +253,7 @@ public class BookDao {
             copy.setBook(book);
             Library library = new Library();
             library.setName(rs.getString("biblioteche.nome")); //biblioteca da cui è in prestito la copia
+            library.setUsername(rs.getString("biblioteche.username"));
             copy.setLibrary(library);
             list.add(copy); //lista di copie in prestito al lettore
 
@@ -318,5 +318,178 @@ public class BookDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static List<Book> getBookByCategory(String tag){
+        List<Book> bookList = new ArrayList<>();
+        Connection conn = null;
+        BookNookDB db = BookNookDB.getInstance();
+        conn = db.getConn();
+        try {
+                ResultSet rs = BookQueries.getBooksByGenre(conn, tag);
+                while(rs.next()){
+                    Book book = new Book();
+                    book.setIsbn(rs.getString("libri.ISBN"));
+                    book.setTitle(rs.getString("titolo"));
+                    book.setAuthor(rs.getString("autore"));
+                    book.setPublisher(rs.getString("editore"));
+                    book.setPublishingYear(rs.getInt("anno"));
+                    ResultSet tags = BookQueries.getTags(conn, book.getIsbn());
+                    while(tags.next()){
+                        book.setTag(tags.getString("descrizione"));
+                    }
+                    tags.close();
+                    bookList.add(book);
+
+                }
+                rs.close();
+        } catch(SQLException e) {
+            Logger logger = Logger.getLogger("MyLog");
+            logger.log(Level.INFO, "This is message 1", e);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bookList;
+    }
+
+    public static List<Book>  getConsutableBook(String title) {
+        List<Book> list = new ArrayList<Book>();
+        Connection conn = null;
+        Book book;
+
+        BookNookDB db = BookNookDB.getInstance();
+        conn = db.getConn();
+        try {
+            ResultSet rs = BookQueries.getConsultationBooks(conn, title);
+
+            if (!rs.first()){ // rs empty
+                throw new Exception("No Books found matching with title or author");
+            }
+
+            book = new Book(rs.getString("titolo"), rs.getString("autore"));
+            book.setIsbn(rs.getString("ISBN"));
+            book.setPublisher(rs.getString("editore"));
+            book.setPublishingYear(rs.getInt("anno"));
+            list.add(book);
+
+            //altrimenti libri presenti
+            while (rs.next()) {
+                book = new Book(rs.getString("titolo"), rs.getString("autore"));
+                book.setIsbn(rs.getString("ISBN"));
+                book.setPublisher(rs.getString("editore"));
+                book.setPublishingYear(rs.getInt("anno"));
+                list.add(book);
+            }
+
+            rs.close();
+
+        } catch(SQLException e) {
+            Logger logger = Logger.getLogger("MyLog");
+            logger.log(Level.INFO, "This is message 1", e);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+
+    //aggiorna le prenotazioni di consultazioni
+    public static void setConsultationReserved(Library library) {
+        Connection conn = null;
+
+        BookNookDB db = BookNookDB.getInstance();
+        conn = db.getConn();
+
+        try {
+            String username = User.getUser().getUsername();
+            String libraryName = library.getUsername();
+            Date consultationDate = library.getShifts().get(0).getDate();
+            Time startTime =  library.getShifts().get(0).getStartTime();
+            BookQueries.updateConsultation(conn, username, libraryName, consultationDate, startTime);
+
+        } catch(SQLException e) {
+            Logger logger = Logger.getLogger("MyLog");
+            logger.log(Level.INFO, "This is message 1", e);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addNewBook(Book book) {
+        Connection conn = null;
+
+        BookNookDB db = BookNookDB.getInstance();
+        conn = db.getConn();
+
+        try {
+            String isbn = book.getIsbn();
+            String title = book.getTitle();
+            String author = book.getAuthor();
+            String publisher = book.getPublisher();
+            int publicationYear = book.getPublishingYear();
+            int state = (book.isConsultable() ? 1 : 0);
+            //inserisce il libro nel db
+            BookQueries.insertBook(conn, isbn, title, author, publisher, publicationYear, state);
+
+            String libraryUsername = book.getCopies().get(0).getLibrary().getUsername();
+            //inserisce le copie nel db
+            for (int i = 1; i<=book.getCopies().size(); i++) {
+                BookQueries.insertCopy(conn, isbn, libraryUsername);
+            }
+
+            ResultSet rs = null;
+            //assegna i tag scelti al libro
+            for (int i = 0; i<book.getTags().size(); i++) {
+                System.out.println(book.getTags().get(i));
+                rs = BookQueries.getIdTag(conn, book.getTags().get(i));
+                rs.first();
+                int id = rs.getInt("id");
+                BookQueries.setTag(conn, book.getIsbn(), id);
+            }
+
+            rs.close();
+
+
+        } catch(SQLException e) {
+            Logger logger = Logger.getLogger("MyLog");
+            logger.log(Level.INFO, "This is message 1", e);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static List<String> getAvailableTags() {
+        List<String> tags= new ArrayList<>();
+        Connection conn = null;
+
+        BookNookDB db = BookNookDB.getInstance();
+        conn = db.getConn();
+        try {
+            ResultSet rs = BookQueries.getAllTags(conn);
+
+            if (!rs.first()){ // rs empty
+                throw new Exception("No tags available");
+            }
+
+            rs.previous();
+
+            //altrimenti libri presenti
+            while (rs.next()) {
+                String newTag = rs.getString("descrizione");
+                tags.add(newTag);
+            }
+
+            rs.close();
+
+        } catch(SQLException e) {
+            Logger logger = Logger.getLogger("MyLog");
+            logger.log(Level.INFO, "This is message 1", e);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return tags;
     }
 }
