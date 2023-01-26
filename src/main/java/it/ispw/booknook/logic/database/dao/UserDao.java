@@ -7,7 +7,6 @@ import it.ispw.booknook.logic.entity.User;
 import it.ispw.booknook.logic.entity.UserType;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;

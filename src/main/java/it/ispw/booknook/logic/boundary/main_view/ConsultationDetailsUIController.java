@@ -52,11 +52,6 @@ public class ConsultationDetailsUIController extends UIController {
     @FXML
     private Button confirmBtn;
 
-
-
-
-    private static final String PAGE_NAME = "/it/ispw/booknook/mainView/consultation-view.fxml";
-
     public void initializeDetails(LibraryBean library) {
 
         setAvatar();
@@ -128,7 +123,7 @@ public class ConsultationDetailsUIController extends UIController {
 
     @FXML
     void onBackClick(MouseEvent event) throws IOException {
-        changePage(PAGE_NAME, event);
+        changePage("/it/ispw/booknook/mainView/consultation-view.fxml", event);
     }
 
     @FXML

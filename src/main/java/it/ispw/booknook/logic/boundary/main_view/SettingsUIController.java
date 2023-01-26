@@ -62,11 +62,6 @@ public class SettingsUIController extends UIController implements Initializable 
     }
 
     @FXML
-    void onBackClick(MouseEvent event) {
-
-    }
-
-    @FXML
     void onProfileSettingsClick(MouseEvent event) throws IOException {
         profSettingsBtn.setFill(Color.web("#e9bf8e"));
         accountBtn.setFill(Color.web("#8a8a8a66"));

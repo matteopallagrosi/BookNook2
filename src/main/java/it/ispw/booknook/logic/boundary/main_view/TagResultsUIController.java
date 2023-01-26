@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 
 import java.io.IOException;
@@ -152,5 +153,10 @@ public class TagResultsUIController extends UIController{
             }
         };
 
+    }
+
+    @FXML
+    void onBackClick(MouseEvent event) throws IOException {
+        changePage("/it/ispw/booknook/mainView/homepage-view.fxml", event);
     }
 }

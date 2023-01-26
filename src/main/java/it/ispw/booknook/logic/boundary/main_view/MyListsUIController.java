@@ -64,9 +64,6 @@ public class MyListsUIController extends UIController implements Initializable {
         currentList.setCellFactory(listView -> new FavoritesViewCell());
     }
 
-    @FXML
-    void onBackClick(MouseEvent event) {
-    }
 
     @FXML
     void onLikesClick(MouseEvent event) {

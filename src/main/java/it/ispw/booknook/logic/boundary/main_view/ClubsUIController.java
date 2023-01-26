@@ -49,10 +49,6 @@ public class ClubsUIController extends UIController implements Initializable {
         setAvatar();
     }
 
-    @FXML
-    void onBackClick(MouseEvent event) {
-
-    }
 
     @FXML
     void onMapClick(MouseEvent event) throws IOException {

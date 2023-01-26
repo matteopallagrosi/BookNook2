@@ -147,6 +147,10 @@ public class ResultsUIController extends UIController {
                 listBtn.setDisable(true);
             }
         };
+    }
 
+    @FXML
+    void onBackClick(MouseEvent event) throws IOException {
+        changePage("/it/ispw/booknook/mainView/homepage-view.fxml", event);
     }
 }

@@ -32,9 +32,6 @@ public class LibraryReviewsUIController extends UIController implements Initiali
     private Button addBookBtn;
 
     @FXML
-    private ImageView backBtn;
-
-    @FXML
     private BorderPane homePage;
 
     @FXML
