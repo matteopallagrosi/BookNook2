@@ -237,12 +237,12 @@ public class DialogController extends UIController {
             SettingsController settingsController = new SettingsController();
             settingsController.deleteAccount();
             //apre dialog conferma
-            Dialog<String> dialog = new Dialog<>();
+            Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setTitle(DELETE_TITLE);
             dialog.setContentText("Account successfully deleted!");
             ButtonType okButtonType = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
             dialog.getDialogPane().getButtonTypes().add(okButtonType);
-            Optional newResult = dialog.showAndWait();
+            Optional<ButtonType> newResult = dialog.showAndWait();
             if (newResult.isPresent() && newResult.get() == okButtonType) {
                 //ritorno all'homePage
                 try {

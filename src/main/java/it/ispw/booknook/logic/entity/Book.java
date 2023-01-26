@@ -8,7 +8,7 @@ public class Book {
     private String title;
     private String author;
     private List<String> tags = new ArrayList<String>();
-    public String expireData;
+    private String expireData;
     private String publisher;
     private int publishingYear;
     private String cover;
