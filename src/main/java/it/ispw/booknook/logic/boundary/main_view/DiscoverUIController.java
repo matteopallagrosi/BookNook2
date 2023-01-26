@@ -55,7 +55,6 @@ public class DiscoverUIController extends UIController implements Initializable 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String a;
         resultList.setOnMouseClicked(mouseEvent -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/ispw/booknook/mainView/bookorder-view.fxml"));
