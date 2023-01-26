@@ -6,6 +6,7 @@ import it.ispw.booknook.logic.entity.Library;
 import it.ispw.booknook.logic.entity.User;
 import it.ispw.booknook.logic.entity.UserType;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -258,7 +259,11 @@ public class UserDao {
         }
 
         //crea file per memorizzazione recensioni della biblioteca
-        try (FileOutputStream ignored = new FileOutputStream("src/main/resources/" + library.getUsername() + ".ser")) {
+        try {
+            File myObj = new File("src/main/resources/" + library.getUsername() + ".ser");
+            if (!myObj.createNewFile()) {
+                throw new IOException();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
