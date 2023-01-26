@@ -17,7 +17,6 @@ import org.apache.commons.codec.binary.Base64;
 
 import javax.mail.MessagingException;
 import javax.mail.Session;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.ByteArrayOutputStream;
@@ -73,14 +72,7 @@ public class Gmailer {
         Message msg = new Message();
         msg.setRaw(encodedEmail);
 
-        try {
-            msg = service.users().messages().send("me", msg).execute();
-        } catch (GoogleJsonResponseException e) {
-            GoogleJsonError error = e.getDetails();
-            if (error.getCode() == 403) {
-            } else {
-                throw e;
-            }
-        }
+
+        service.users().messages().send("me", msg).execute();
     }
 }

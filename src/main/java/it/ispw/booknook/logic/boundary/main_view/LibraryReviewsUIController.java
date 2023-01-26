@@ -53,9 +53,6 @@ public class LibraryReviewsUIController extends UIController implements Initiali
     private ImageView medStar5;
 
     @FXML
-    private ImageView profileBtn;
-
-    @FXML
     private VBox reviewContainer;
 
     @FXML

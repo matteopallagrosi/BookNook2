@@ -232,7 +232,7 @@ public class DialogController extends UIController {
         alert.getDialogPane().getStylesheets().add(
                 Objects.requireNonNull(getClass().getResource(STYLESHEET)).toExternalForm());
         alert.getDialogPane().setPrefWidth(300);
-        Optional result = alert.showAndWait();
+        Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             SettingsController settingsController = new SettingsController();
             settingsController.deleteAccount();
@@ -263,7 +263,7 @@ public class DialogController extends UIController {
         dialog.getDialogPane().setStyle(STYLE);
         dialog.getDialogPane().getStylesheets().add(
                 Objects.requireNonNull(getClass().getResource(STYLESHEET)).toExternalForm());
-        Optional result = dialog.showAndWait();
+        Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == confirm) {
             //riporta alla schermata iniziale
             Parent root = null;
@@ -319,7 +319,7 @@ public class DialogController extends UIController {
         dialog.getDialogPane().setStyle(STYLE);
         dialog.getDialogPane().getStylesheets().add(
                 Objects.requireNonNull(getClass().getResource(STYLESHEET)).toExternalForm());
-        Optional result = dialog.showAndWait();
+        Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == confirm) {
             //riporta alla schermata iniziale
             Parent root = null;

@@ -128,7 +128,6 @@ public class ConsultationDetailsUIController extends UIController {
 
     @FXML
     void onBackClick(MouseEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(PAGE_NAME));
         changePage(PAGE_NAME, event);
     }
 
