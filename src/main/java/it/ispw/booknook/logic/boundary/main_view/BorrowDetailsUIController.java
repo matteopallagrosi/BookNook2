@@ -54,7 +54,6 @@ public class BorrowDetailsUIController extends UIController {
 
     private MapView mapView;
 
-    private GraphicsOverlay graphicsOverlay;
 
     @FXML
     private Label introLabel;
@@ -85,16 +84,13 @@ public class BorrowDetailsUIController extends UIController {
         libraryList.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/it/ispw/booknook/mainView/libraryList.css")).toExternalForm());
         libraryList.setFocusTraversable(false);
         libraryList.setCellFactory(listView -> new LibraryViewCell());
-        libraryList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LibraryBean>() {
-            @Override
-            public void changed(ObservableValue<? extends LibraryBean> observableValue, LibraryBean libraryBean, LibraryBean t1) {
-                nameLabel.setText(t1.getName());
-                addrLabel.setText(t1.getAddress() + ", " + t1.getCity());
-                hoursLabel.setText(t1.getOpeningTime() + " - " + t1.getClosingTime());
-                mapViewer.changePosition(t1.getLatitude(), t1.getLongitude());
-                currentLibrary = t1;
+        libraryList.getSelectionModel().selectedItemProperty().addListener((observableValue, libraryBean, t1) -> {
+            nameLabel.setText(t1.getName());
+            addrLabel.setText(t1.getAddress() + ", " + t1.getCity());
+            hoursLabel.setText(t1.getOpeningTime() + " - " + t1.getClosingTime());
+            mapViewer.changePosition(t1.getLatitude(), t1.getLongitude());
+            currentLibrary = t1;
 
-            }
         });
 
         nameLabel.setText(libraries.get(0).getName());

@@ -74,22 +74,4 @@ public class SettingsUIController extends UIController implements Initializable 
         DialogController controller = new DialogController();
         controller.createDeleteDialog(event);
     }
-
-    @FXML
-    void onDiscoverClick(ActionEvent event) throws IOException {
-        changePage("/it/ispw/booknook/mainView/homepage-view.fxml", event);
-    }
-
-    @FXML
-    void onConsultationClick(ActionEvent event) throws IOException {
-        changePage("/it/ispw/booknook/mainView/consultation-view.fxml", event);
-    }
-
-    @FXML
-    void onMyListClick(ActionEvent event) throws IOException {
-        changePage("/it/ispw/booknook/mainView/myLists-view.fxml", event);
-    }
-
-
-
 }

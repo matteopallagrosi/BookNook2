@@ -3,7 +3,6 @@ package it.ispw.booknook.logic.boundary.main_view;
 import it.ispw.booknook.logic.bean.LibraryBean;
 import it.ispw.booknook.logic.bean.ReviewBean;
 import it.ispw.booknook.logic.control.ReviewController;
-import it.ispw.booknook.logic.entity.Library;
 import it.ispw.booknook.logic.entity.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,7 +21,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 public class CreateReviewUIController extends UIController {
 

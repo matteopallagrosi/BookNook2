@@ -13,19 +13,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 
 public class ConsultationUIController extends UIController implements Initializable {
-
-    private ObservableList<String> items;
 
     @FXML
     private AnchorPane listPane;

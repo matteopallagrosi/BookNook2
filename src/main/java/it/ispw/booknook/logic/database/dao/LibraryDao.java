@@ -1,11 +1,8 @@
 package it.ispw.booknook.logic.database.dao;
 
-import com.esri.arcgisruntime.internal.portal.SubscriptionInfoStateTypeAdapter;
-import it.ispw.booknook.logic.bean.LibraryBean;
 import it.ispw.booknook.logic.database.BookNookDB;
 import it.ispw.booknook.logic.database.queries.LibraryQueries;
 import it.ispw.booknook.logic.entity.*;
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;

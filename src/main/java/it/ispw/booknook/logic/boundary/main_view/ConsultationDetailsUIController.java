@@ -6,8 +6,6 @@ import it.ispw.booknook.logic.bean.ShiftBean;
 import it.ispw.booknook.logic.boundary.MapViewer;
 import it.ispw.booknook.logic.control.ConsultationController;
 import it.ispw.booknook.logic.control.LoginController;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

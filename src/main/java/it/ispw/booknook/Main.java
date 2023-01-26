@@ -1,7 +1,6 @@
 package it.ispw.booknook;
 
 import com.esri.arcgisruntime.ArcGISRuntimeEnvironment;
-import it.ispw.booknook.logic.boundary.Gmailer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
