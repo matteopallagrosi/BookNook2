@@ -48,7 +48,6 @@ public class ResultsUIController extends UIController {
 
     public void setListView(String details)
     {
-        System.out.println("Sono di nuovo qui");
         box.getChildren().clear();
         setAvatar();
         BookBean bookBean = new BookBean();
@@ -79,8 +78,6 @@ public class ResultsUIController extends UIController {
             });
 
         });
-
-        System.out.println("Ho recuperato i tag");
 
         String isbn = results.get(0).getIsbn();
 
@@ -127,8 +124,6 @@ public class ResultsUIController extends UIController {
 
         list1.setOnAction(action);
         list2.setOnAction(action);
-
-        System.out.println("Ho finito");
     }
 
     private EventHandler<ActionEvent> onFavoriteClick(String isbn) {
@@ -140,7 +135,6 @@ public class ResultsUIController extends UIController {
                 DialogController dialogController = new DialogController();
                 dialogController.createLoginDialog();
             }
-            //se l'utente è loggato il libro è aggiunto alla lista scelta;
             if (loginController.verifyLogin()) {
                 MenuItem mItem = (MenuItem) actionEvent.getSource();
                 String selectedList = mItem.getText();

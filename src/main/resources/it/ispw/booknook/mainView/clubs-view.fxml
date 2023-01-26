@@ -80,7 +80,7 @@
                         <Image url="@icons8-plus-+-24.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="createClubBtn" alignment="CENTER_RIGHT" layoutX="59.0" layoutY="318.0" onMouseClicked="#onCreateClubClick" prefHeight="28.0" prefWidth="178.0" text="Create a club         " AnchorPane.topAnchor="318.0">
+                  <Label fx:id="createClubBtn" alignment="CENTER_RIGHT" layoutX="59.0" layoutY="318.0" prefHeight="28.0" prefWidth="178.0" text="Create a club         " AnchorPane.topAnchor="318.0">
                      <font>
                         <Font name="Roboto Medium" size="14.0" />
                      </font>

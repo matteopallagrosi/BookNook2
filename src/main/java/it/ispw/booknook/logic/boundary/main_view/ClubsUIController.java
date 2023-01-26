@@ -55,12 +55,6 @@ public class ClubsUIController extends UIController implements Initializable {
     }
 
     @FXML
-    void onCreateClubClick(MouseEvent event) {
-
-    }
-
-
-    @FXML
     void onMapClick(MouseEvent event) throws IOException {
         mapBtn.setFill(Color.web(SELECTED_COLOR));
         topicBtn.setFill(Color.web(DEFAULT_COLOR));

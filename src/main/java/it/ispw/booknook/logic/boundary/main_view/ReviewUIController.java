@@ -25,6 +25,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ReviewUIController extends UIController {
@@ -48,9 +49,6 @@ public class ReviewUIController extends UIController {
     private Button myListBtn;
 
     @FXML
-    private ImageView profileBtn;
-
-    @FXML
     private VBox reviewContainer;
 
     @FXML
@@ -70,9 +68,6 @@ public class ReviewUIController extends UIController {
 
     @FXML
     private Label availabilityLabel;
-
-    @FXML
-    private Label dateLabel;
 
     @FXML
     private ImageView locStar1;
@@ -138,7 +133,7 @@ public class ReviewUIController extends UIController {
         currentLibrary = library;
         //Chiama ReviewController e carica le recensioni
         ReviewController reviewController = new ReviewController();
-        ArrayList<ReviewBean> reviews = reviewController.getReviews(library);
+        List<ReviewBean> reviews = reviewController.getReviews(library);
         int sum  = 0;
         for (ReviewBean review : reviews) {
             //creare una cella nello scroll pane che mostra la review
@@ -177,7 +172,7 @@ public class ReviewUIController extends UIController {
             }
         }
         int medium = 0;
-        if (reviews.size() != 0) {
+        if (!reviews.isEmpty()) {
             medium = sum / reviews.size();
         }
         for (int i = 1; i <= medium; i++) {
@@ -195,7 +190,6 @@ public class ReviewUIController extends UIController {
             DialogController dialogController = new DialogController();
             dialogController.createLoginDialog();
         }
-        //se l'utente è loggato il libro è aggiunto alla lista scelta;
         if (loginController.verifyLogin()) {
             //aprire pagina nuova recensione
             try {

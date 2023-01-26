@@ -23,9 +23,10 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class LibraryReviewsUIController implements Initializable {
+public class LibraryReviewsUIController extends UIController implements Initializable {
 
     @FXML
     private Button addBookBtn;
@@ -63,9 +64,6 @@ public class LibraryReviewsUIController implements Initializable {
     @FXML
     private AnchorPane rightBox;
 
-    @FXML
-    private Label titleLabel;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -75,7 +73,7 @@ public class LibraryReviewsUIController implements Initializable {
         library.setUsername(loginDetails.getUsername());
         //Chiama ReviewController e carica le recensioni
         ReviewController reviewController = new ReviewController();
-        ArrayList<ReviewBean> reviews = reviewController.getReviews(library);
+        List<ReviewBean> reviews = reviewController.getReviews(library);
         int sum  = 0;
         for (ReviewBean review : reviews) {
             //creare una cella nello scroll pane che mostra la review
@@ -114,7 +112,7 @@ public class LibraryReviewsUIController implements Initializable {
             }
         }
         int medium = 0;
-        if (reviews.size() != 0) {
+        if (!reviews.isEmpty()) {
             medium = sum / reviews.size();
         }
         for (int i = 1; i <= medium; i++) {
@@ -124,12 +122,7 @@ public class LibraryReviewsUIController implements Initializable {
     }
 
     @FXML
-    void onAddBookClick(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onProfileClick(MouseEvent event) {
-
+    void onAddBookClick(ActionEvent event) throws IOException {
+        changePage("/it/ispw/booknook/mainView/librarian-home-view.fxml", event);
     }
 }

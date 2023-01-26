@@ -4,11 +4,14 @@ import it.ispw.booknook.logic.entity.Review;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ReviewDao {
 
+    private ReviewDao(){}
+
     //deserializzazione
-    public static ArrayList<Review> getReviews(String usernameLibrary) {
+    public static List<Review> getReviews(String usernameLibrary) {
         ArrayList<Review> reviews = null;
         try(FileInputStream f = new FileInputStream("src/main/resources/" + usernameLibrary + ".ser");
             ObjectInputStream s = new ObjectInputStream(f)) {
@@ -25,7 +28,7 @@ public class ReviewDao {
 
     //serializzazione di una nuova recensione
     public static void addReview(Review review, String usernameLibrary) {
-        ArrayList<Review> reviews = getReviews(usernameLibrary);
+        List<Review> reviews = getReviews(usernameLibrary);
         if (reviews == null) reviews = new ArrayList<Review>();
         reviews.add(0, review);
         try (FileOutputStream f = new FileOutputStream("src/main/resources/" + usernameLibrary + ".ser");

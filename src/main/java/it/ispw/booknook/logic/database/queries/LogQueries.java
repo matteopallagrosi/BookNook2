@@ -66,16 +66,16 @@ public class LogQueries {
         return pstmt.executeUpdate();
     }
 
-    public static int updateProfileDetails(Connection connection, String username, String firstName, String lastName, String address, String city, String zip, String country) throws SQLException {
+    public static int updateProfileDetails(Connection connection) throws SQLException {
         String query = "UPDATE lettori SET nome = ?, cognome = ?, indirizzo = ?, città = ?, codice_postale = ?, paese = ? WHERE username = ?";
         PreparedStatement pstmt = connection.prepareStatement(query);
-        pstmt.setString(1, firstName);
-        pstmt.setString(2, lastName);
-        pstmt.setString(3, address);
-        pstmt.setString(4, city);
-        pstmt.setString(5, zip);
-        pstmt.setString(6, country);
-        pstmt.setString(7, username);
+        pstmt.setString(1, User.getUser().getFirstName());
+        pstmt.setString(2, User.getUser().getLastName());
+        pstmt.setString(3, User.getUser().getAddress());
+        pstmt.setString(4, User.getUser().getCity());
+        pstmt.setString(5, User.getUser().getZip());
+        pstmt.setString(6, User.getUser().getCountry());
+        pstmt.setString(7, User.getUser().getUsername());
         return pstmt.executeUpdate();
     }
 
@@ -116,7 +116,6 @@ public class LogQueries {
         pstmt.setString(3, address);
         pstmt.setTime(4, start);
         pstmt.setTime(5, end);
-        //TODO
         pstmt.setBigDecimal(6, BigDecimal.valueOf(48.675463));
         pstmt.setBigDecimal(7, BigDecimal.valueOf(48.675463));
         pstmt.setString(8, city);

@@ -42,9 +42,6 @@ public class AddBookUIController extends UIController implements Initializable {
     private ComboBox<Integer> numCopiesField;
 
     @FXML
-    private ImageView profileBtn;
-
-    @FXML
     private TextField publisherField;
 
     @FXML
@@ -82,12 +79,7 @@ public class AddBookUIController extends UIController implements Initializable {
         AddBookController controller = new AddBookController();
         BookBean bookTags = controller.calculateAvailableTags();
         ObservableList<String> tags = FXCollections.observableArrayList(bookTags.getTags());
-        tagsComboBox = new CheckComboBox<String>(tags);
-        tagsComboBox.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
-            public void onChanged(ListChangeListener.Change<? extends String> c) {
-                System.out.println(tagsComboBox.getCheckModel().getCheckedItems());
-            }
-        });
+        tagsComboBox = new CheckComboBox<>(tags);
 
         centralPane.getChildren().add(tagsComboBox);
         tagsComboBox.setLayoutX(112);
@@ -111,8 +103,6 @@ public class AddBookUIController extends UIController implements Initializable {
             return;
         }
 
-        //verifica ISBN
-        //TODO
 
         BookBean insertedBook = new BookBean();
         insertedBook.setIsbn(isbnField.getText());

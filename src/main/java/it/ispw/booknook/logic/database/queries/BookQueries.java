@@ -101,7 +101,6 @@ public class BookQueries {
     }
 
     public static int updateConsultation(Connection connection, String username, String library, Date consDate, Time start) throws SQLException {
-        System.out.println("lettore: " + username + " biblioteca: " +  library + " data: " + consDate + " ora: " + start);
         String query = "UPDATE turni_consultazione SET lettore_prenotato = ? WHERE biblioteca LIKE ? AND data = ? AND ora_inizio = ?";
         PreparedStatement pstmt = connection.prepareStatement( query );
         pstmt.setString( 1, username);

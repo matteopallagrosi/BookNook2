@@ -45,8 +45,7 @@ public class MapViewer {
         // crea il punto
         Point point = new Point(currentLongitude, currentLatitude, SpatialReferences.getWgs84());
 
-        // crea un cerchio rosso da usare come marker
-        //SimpleMarkerSymbol redCircleSymbol = new SimpleMarkerSymbol(SimpleMarkerSymbol.Style.CIRCLE, 0xFFFF0000, 20);
+        // crea un puntatore da usare come marker
         Image markerImage = new Image(MARKER_SYMBOL);
         PictureMarkerSymbol markerSymbol = new PictureMarkerSymbol(markerImage);
         // crea un oggetto che conterrà il Punto e il marker

@@ -90,8 +90,6 @@ public class LibraryDao {
     }
 
     public static void getLibraryShift(Library library, Date dateCons) {
-        System.out.println(dateCons);
-        System.out.println(library.getUsername());
         Connection conn = null;
 
         BookNookDB db = BookNookDB.getInstance();
@@ -100,7 +98,7 @@ public class LibraryDao {
             ResultSet rs = LibraryQueries.getShifts(conn, library.getUsername(), dateCons);
 
             if (!rs.first()) {
-                throw new Exception("No shifts available");
+                throw new SQLException("No shifts available");
             }
 
             rs.previous();
@@ -113,9 +111,6 @@ public class LibraryDao {
             rs.close();
 
         } catch(SQLException e) {
-            Logger logger = Logger.getLogger("MyLog");
-            logger.log(Level.INFO, "This is message 1", e);
-        } catch (Exception e) {
             e.printStackTrace();
         }
     }

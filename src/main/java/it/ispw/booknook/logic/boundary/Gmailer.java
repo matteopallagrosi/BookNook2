@@ -15,13 +15,16 @@ import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.Message;
 import org.apache.commons.codec.binary.Base64;
 
+import javax.mail.MessagingException;
 import javax.mail.Session;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Paths;
+import java.security.GeneralSecurityException;
 import java.util.Properties;
 import java.util.Set;
 import static com.google.api.services.gmail.GmailScopes.GMAIL_SEND;
@@ -32,7 +35,7 @@ public class Gmailer {
     private static final String TEST_EMAIL = "matteo.pallagrosi18@gmail.com";
     private final Gmail service;
 
-    public Gmailer() throws Exception {
+    public Gmailer() throws GeneralSecurityException, IOException {
         NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
         GsonFactory jsonFactory = GsonFactory.getDefaultInstance();
         service = new Gmail.Builder(httpTransport, jsonFactory, getCredentials(httpTransport, jsonFactory))
@@ -54,9 +57,7 @@ public class Gmailer {
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
     }
 
-    public void sendEmail(String recipient, String subject, String message) throws Exception {
-        //per motivi di sviluppo l'email viene inoltrata ad un indirizzo di default
-        System.out.println("Sending email to " + recipient + "...");
+    public void sendEmail(String recipient, String subject, String message) throws MessagingException, IOException {
         Properties props = new Properties();
         Session session = Session.getDefaultInstance(props, null);
         MimeMessage email = new MimeMessage(session);
@@ -74,29 +75,12 @@ public class Gmailer {
 
         try {
             msg = service.users().messages().send("me", msg).execute();
-            System.out.println("Message id: " + msg.getId());
-            System.out.println(msg.toPrettyString());
         } catch (GoogleJsonResponseException e) {
             GoogleJsonError error = e.getDetails();
             if (error.getCode() == 403) {
-                System.err.println("Unable to send message: " + e.getDetails());
             } else {
                 throw e;
             }
         }
     }
-    /*public static void main(String args[]) {
-        try {
-            new Gmailer().sendEmail("matteo.pallagrosi18@gmail.com", "A new message", """
-                    Dear reader,
-                                        
-                    Hello World.
-                                        
-                    Best regards,
-                    myself.
-                    """);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
 }

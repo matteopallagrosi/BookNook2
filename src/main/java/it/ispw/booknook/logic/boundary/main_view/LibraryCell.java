@@ -30,7 +30,7 @@ public class LibraryCell {
         }
         catch (IOException e)
         {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 

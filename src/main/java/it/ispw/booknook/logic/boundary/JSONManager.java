@@ -45,7 +45,6 @@ public class JSONManager implements Runnable {
         try {
             URL url = new URL(urlString);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            int responseCode = con.getResponseCode();
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
             String inputLine;
             StringBuilder response = new StringBuilder();

@@ -5,7 +5,6 @@ import it.ispw.booknook.logic.entity.Library;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 public class LibraryBean {
     private String username;

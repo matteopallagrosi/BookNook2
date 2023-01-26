@@ -25,7 +25,6 @@ public class ReadingListController {
         List<BookBean> bookList = new ArrayList<>();
         readingList.forEach(book -> {
             BookBean bookBean = new BookBean();
-            System.out.println("isbn " + book.getIsbn());
             bookBean.setIsbn(book.getIsbn());
             bookBean.setAuthor(book.getAuthor());
             bookBean.setTitle(book.getTitle());

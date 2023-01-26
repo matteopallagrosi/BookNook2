@@ -62,7 +62,7 @@ public class BookCell extends Observer {
         }
         catch (IOException e)
         {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
     }
@@ -91,9 +91,8 @@ public class BookCell extends Observer {
                 DialogController dialogController = new DialogController();
                 dialogController.createLoginDialog();
             }
-            //se l'utente è loggato il libro è aggiunto alla lista scelta;
+            //se l'utente è loggato aggiunge il libro alla lista scelta
             if (loginController.verifyLogin()) {
-                System.out.println("Sono rientrato");
                 MenuItem mItem = (MenuItem) actionEvent.getSource();
                 String selectedList = mItem.getText();
                 //aggiunge il libro alla lista selezionata

@@ -9,12 +9,13 @@ import it.ispw.booknook.logic.entity.Review;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ReviewController {
 
-    public ArrayList<ReviewBean> getReviews(LibraryBean library) {
+    public List<ReviewBean> getReviews(LibraryBean library) {
         String username = library.getUsername();
-        ArrayList<Review> reviews = ReviewDao.getReviews(username);
+        List<Review> reviews = ReviewDao.getReviews(username);
         //calcola numero medio di rate
         ArrayList<ReviewBean> reviewBeans = new ArrayList<>();
         if (reviews != null) {

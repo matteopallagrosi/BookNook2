@@ -23,9 +23,12 @@ public class DialogController extends UIController {
 
     private static final String LOGIN = "Login";
     private static final String SIGNUP = "Sign up";
+    private static final String CONFIRM = "Confirm";
     private static final String STYLESHEET = "/it/ispw/booknook/mainView/buttonYellow.css";
     private static final String CANCEL = "Cancel";
     private static final String STYLE = "-fx-font-size: 15px;" + "-fx-font-family: Roboto ";
+    private static final String HOMEPAGE = "/it/ispw/booknook/mainView/homepage-view.fxml";
+    private static final String DELETE_TITLE = "Delete account";
 
     public void createLoginDialog() {
         Dialog<User> dialog = new Dialog<>();
@@ -60,7 +63,7 @@ public class DialogController extends UIController {
         grid.add(errorLabel, 3, 1);
         dialog.getDialogPane().setContent(grid);
 
-        ButtonType buttonTypeOk = new ButtonType("Confirm", ButtonBar.ButtonData.OK_DONE);
+        ButtonType buttonTypeOk = new ButtonType(CONFIRM, ButtonBar.ButtonData.OK_DONE);
         ButtonType buttonTypeCancel = new ButtonType(CANCEL, ButtonBar.ButtonData.CANCEL_CLOSE);
 
         dialog.getDialogPane().getButtonTypes().add(buttonTypeOk);
@@ -134,7 +137,7 @@ public class DialogController extends UIController {
         ((Button) d.getDialogPane().lookupButton(ButtonType.CANCEL)).setText(CANCEL);
         d.getDialogPane().getStylesheets().add(
                 Objects.requireNonNull(getClass().getResource(STYLESHEET)).toExternalForm());
-        Optional result =  d.showAndWait();
+        Optional<Object> result =  d.showAndWait();
         //selezionato ritiro in libreria
         if (result.isPresent() && result.get().equals("In-library pickup")) {
             createPickUpDialog(actionEvent, library);
@@ -164,7 +167,7 @@ public class DialogController extends UIController {
         Dialog<ButtonType> dialogPickup = new Dialog<>();
         dialogPickup.setTitle("In-library Pickup");
         dialogPickup.setContentText("You can pick up your book within three days.");
-        ButtonType confirm = new ButtonType("Confirm", ButtonBar.ButtonData.OK_DONE);
+        ButtonType confirm = new ButtonType(CONFIRM, ButtonBar.ButtonData.OK_DONE);
         ButtonType cancel = new ButtonType(CANCEL, ButtonBar.ButtonData.CANCEL_CLOSE);
         dialogPickup.getDialogPane().getButtonTypes().add(confirm);
         dialogPickup.getDialogPane().getButtonTypes().add(cancel);
@@ -173,16 +176,13 @@ public class DialogController extends UIController {
                 Objects.requireNonNull(getClass().getResource(STYLESHEET)).toExternalForm());
         Optional<ButtonType> result = dialogPickup.showAndWait();
         if (result.isPresent() && result.get() == confirm) {
-            //conferma ordine con ritiro in libreria
-            //chiama il borrowBook controller
-            System.out.print("id: " + library.getIdCopyAvailable() + " Isbn: " + library.getIsbnAvailableBook() + "biblioteca: " + library.getUsername());
             //aggiorna db e manda mail di conferma (delega il controller applicativo)
             BorrowBookController borrowBookController = new BorrowBookController();
             borrowBookController.borrowBook(library);
             //ritorna alla pagine iniziale
             Parent root = null;
             try {
-                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/it/ispw/booknook/mainView/homepage-view.fxml")));
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(HOMEPAGE)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -208,7 +208,7 @@ public class DialogController extends UIController {
             //conferma la prenotazione, invia email, riporta alla schermata iniziale
             Parent root = null;
             try {
-                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/it/ispw/booknook/mainView/homepage-view.fxml")));
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(HOMEPAGE)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -222,10 +222,10 @@ public class DialogController extends UIController {
 
     public void createDeleteDialog(Event event) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Delete account");
-        alert.setHeaderText("Delete account");
+        alert.setTitle(DELETE_TITLE);
+        alert.setHeaderText(DELETE_TITLE);
         alert.setContentText("By confirming you will lose all data associated with your account. Are you sure?");
-        ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Confirm");
+        ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText(CONFIRM);
         ButtonType cancel = new ButtonType(CANCEL, ButtonBar.ButtonData.CANCEL_CLOSE);
         alert.getDialogPane().getButtonTypes().add(cancel);
         alert.getDialogPane().setStyle(STYLE);
@@ -233,24 +233,22 @@ public class DialogController extends UIController {
                 Objects.requireNonNull(getClass().getResource(STYLESHEET)).toExternalForm());
         alert.getDialogPane().setPrefWidth(300);
         Optional result = alert.showAndWait();
-        if (result.isPresent()) {
-            if (result.get() == ButtonType.OK) {
-                SettingsController settingsController = new SettingsController();
-                settingsController.deleteAccount();
-                //apre dialog conferma
-                Dialog<String> dialog = new Dialog<>();
-                dialog.setTitle("Delete account");
-                dialog.setContentText("Account successfully deleted!");
-                ButtonType okButtonType = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
-                dialog.getDialogPane().getButtonTypes().add(okButtonType);
-                Optional newResult = dialog.showAndWait();
-                if (newResult.isPresent() && newResult.get() == okButtonType) {
-                    //ritorno all'homePage
-                    try {
-                        changePage("/it/ispw/booknook/mainView/homepage-view.fxml", event);
-                    } catch(IOException e) {
-                        e.printStackTrace();
-                    }
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            SettingsController settingsController = new SettingsController();
+            settingsController.deleteAccount();
+            //apre dialog conferma
+            Dialog<String> dialog = new Dialog<>();
+            dialog.setTitle(DELETE_TITLE);
+            dialog.setContentText("Account successfully deleted!");
+            ButtonType okButtonType = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+            dialog.getDialogPane().getButtonTypes().add(okButtonType);
+            Optional newResult = dialog.showAndWait();
+            if (newResult.isPresent() && newResult.get() == okButtonType) {
+                //ritorno all'homePage
+                try {
+                    changePage(HOMEPAGE, event);
+                } catch(IOException e) {
+                    e.printStackTrace();
                 }
             }
         }
@@ -270,7 +268,7 @@ public class DialogController extends UIController {
             //riporta alla schermata iniziale
             Parent root = null;
             try {
-                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/it/ispw/booknook/mainView/homepage-view.fxml")));
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(HOMEPAGE)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -284,7 +282,7 @@ public class DialogController extends UIController {
     public void createConsultationDialog(ShiftBean currentShift, LibraryBean currentLibrary, ActionEvent event) {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Confirm consultation");
-        ButtonType type = new ButtonType("Confirm", ButtonBar.ButtonData.OK_DONE);
+        ButtonType type = new ButtonType(CONFIRM, ButtonBar.ButtonData.OK_DONE);
         dialog.setContentText("Please confirm your reservation.\nYou will receive an email with the details.");
         dialog.getDialogPane().setStyle("-fx-font-size: 15px;" +
                 "-fx-font-family: Roboto ");
@@ -309,7 +307,6 @@ public class DialogController extends UIController {
             //invoca il controller applicativo per aggiornamento db e invio email
             ConsultationController controller = new ConsultationController();
             controller.reserveConsultation(currentShift, currentLibrary);
-            System.out.println("data scelta: " + currentShift.getDate());
         }
     }
 

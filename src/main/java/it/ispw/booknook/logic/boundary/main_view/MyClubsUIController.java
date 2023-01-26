@@ -16,6 +16,10 @@ public class MyClubsUIController extends UIController implements Initializable {
     @FXML
     private ListView<Club> clubsList;
 
+    private static final String CLUB_TITLE = "Simo's wonderful book club ";
+    private static final long NUM_MEMBERS = 20500l;
+    private static final String CLUB_DESCRIPTION = "Keeping romance, history, humor, mystery, love, intrigue, and passion interesting, fun, and clean for all Christians. We discuss everything from reading to music to playing games to what makes a book good...and the best part? It's all clean!!";
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setAvatar();
@@ -24,10 +28,10 @@ public class MyClubsUIController extends UIController implements Initializable {
 
     public void setListView()
     {
-        Club club1 = new Club("Simo's wonderful book club ", 20500l, "Keeping romance, history, humor, mystery, love, intrigue, and passion interesting, fun, and clean for all Christians. We discuss everything from reading to music to playing games to what makes a book good...and the best part? It's all clean!!");
-        Club club2 = new Club("Simo's wonderful book club ", 20500l, "Keeping romance, history, humor, mystery, love, intrigue, and passion interesting, fun, and clean for all Christians. We discuss everything from reading to music to playing games to what makes a book good...and the best part? It's all clean!!");
-        Club club3 = new Club("Simo's wonderful book club ", 20500l, "Keeping romance, history, humor, mystery, love, intrigue, and passion interesting, fun, and clean for all Christians. We discuss everything from reading to music to playing games to what makes a book good...and the best part? It's all clean!!");
-        Club club4 = new Club("Simo's wonderful book club ", 20500l, "Keeping romance, history, humor, mystery, love, intrigue, and passion interesting, fun, and clean for all Christians. We discuss everything from reading to music to playing games to what makes a book good...and the best part? It's all clean!!");
+        Club club1 = new Club(CLUB_TITLE, NUM_MEMBERS, CLUB_DESCRIPTION);
+        Club club2 = new Club(CLUB_TITLE, NUM_MEMBERS, CLUB_DESCRIPTION);
+        Club club3 = new Club(CLUB_TITLE, NUM_MEMBERS, CLUB_DESCRIPTION);
+        Club club4 = new Club(CLUB_TITLE, NUM_MEMBERS, CLUB_DESCRIPTION);
         ObservableList<Club> observableList = FXCollections.observableArrayList(club1, club2, club3, club4);
         clubsList.setItems(observableList);
         clubsList.setStyle("-fx-focus-color: transparent;");

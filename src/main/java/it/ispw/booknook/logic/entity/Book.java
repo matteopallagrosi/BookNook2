@@ -121,4 +121,13 @@ public class Book {
     public boolean isConsultable() {
         return consultationState;
     }
+
+
+    public String getExpireData() {
+        return expireData;
+    }
+
+    public void setExpireData(String expireData) {
+        this.expireData = expireData;
+    }
 }

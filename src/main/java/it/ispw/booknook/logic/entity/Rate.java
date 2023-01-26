@@ -34,7 +34,6 @@ public class Rate implements Serializable {
     //ritorna il numero medio di stelle assegnato in una certa recensione
     public int getMediumRate() {
         int sum = getService() + getAvailability() + getLocation();
-        int medium = sum/3;
-        return medium;
+        return sum/3;
     }
 }

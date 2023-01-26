@@ -15,6 +15,12 @@ import java.util.logging.Logger;
 
 public class BookDao {
 
+    private static final String TITLE_FIELD = "titolo";
+    private static final String AUTHOR_FIELD = "autore";
+    private static final String PUBLISHER_FIELD = "editore";
+    private static final String DESCRIPTION_FIELD = "descrizione";
+    private static final String ISBN_FIELD = "libri.ISBN";
+
     private BookDao() {}
 
     public static List<Book>  getRequestedBooks(String title) {
@@ -28,25 +34,23 @@ public class BookDao {
             ResultSet rs = BookQueries.getBooks(conn, title);
 
             if (!rs.first()){ // rs empty
-                throw new Exception("No Books found matching with title or author");
+                throw new SQLException("No Books found matching with title or author");
             }
-           book = new Book(rs.getString("titolo"), rs.getString("autore"));
+           book = new Book(rs.getString(TITLE_FIELD), rs.getString(AUTHOR_FIELD));
            list.add(book);
 
             //altrimenti libri presenti
             while (rs.next()) {
-                book = new Book(rs.getString("titolo"), rs.getString("autore"));
+                book = new Book(rs.getString(TITLE_FIELD), rs.getString(AUTHOR_FIELD));
                 list.add(book);
             }
 
             rs.close();
 
         } catch(SQLException e) {
-            Logger logger = Logger.getLogger("MyLog");
-            logger.log(Level.INFO, "This is message 1", e);
-        } catch (Exception e) {
             e.printStackTrace();
         }
+
 
         return list;
     }
@@ -62,21 +66,18 @@ public class BookDao {
             ResultSet rs = BookQueries.getABook(conn, title, author);
 
             if (!rs.first()){ // rs empty
-                throw new Exception("No Books found matching with title or author");
+                throw new SQLException("No Book found matching with title or author");
             }
 
             book.setIsbn(rs.getString("ISBN"));
-            book.setTitle(rs.getString("titolo"));
-            book.setAuthor(rs.getString("autore"));
-            book.setPublisher(rs.getString("editore"));
+            book.setTitle(rs.getString(TITLE_FIELD));
+            book.setAuthor(rs.getString(AUTHOR_FIELD));
+            book.setPublisher(rs.getString(PUBLISHER_FIELD));
             book.setPublishingYear(rs.getInt("anno"));
 
             rs.close();
 
         } catch(SQLException e) {
-            Logger logger = Logger.getLogger("MyLog");
-            logger.log(Level.INFO, "This is message 1", e);
-        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -85,27 +86,24 @@ public class BookDao {
             ResultSet rs = BookQueries.getTags(conn, book.getIsbn());
 
             if (!rs.first()){ // rs empty
-                throw new Exception("No Books found matching with title or author");
+                throw new SQLException("No tags");
             }
 
-            book.setTag(rs.getString("descrizione"));
+            book.setTag(rs.getString(DESCRIPTION_FIELD));
 
             while (rs.next()) {
-                book.setTag(rs.getString("descrizione"));
+                book.setTag(rs.getString(DESCRIPTION_FIELD));
             }
 
             rs.close();
         } catch(SQLException e) {
-            Logger logger = Logger.getLogger("MyLog");
-            logger.log(Level.INFO, "This is message 1", e);
-        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return book;
     }
 
-    public static List<String> getTagsByISBN(String ISBN) {
+    public static List<String> getTagsByISBN(String isbn) {
         //recupera i tag associati a quel libro
         Connection conn = null;
         List<String> tags = new ArrayList<>();
@@ -114,24 +112,21 @@ public class BookDao {
         conn = db.getConn();
 
         try {
-            ResultSet rs = BookQueries.getTags(conn, ISBN);
+            ResultSet rs = BookQueries.getTags(conn, isbn);
 
 
             if (!rs.first()){ // rs empty
-                throw new Exception("No Books found matching with title or author");
+                throw new SQLException("No tags");
             }
 
-            tags.add(rs.getString("descrizione"));
+            tags.add(rs.getString(DESCRIPTION_FIELD));
 
             while (rs.next()) {
-                tags.add(rs.getString("descrizione"));
+                tags.add(rs.getString(DESCRIPTION_FIELD));
             }
 
             rs.close();
         } catch(SQLException e) {
-            Logger logger = Logger.getLogger("MyLog");
-            logger.log(Level.INFO, "This is message 1", e);
-        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -148,10 +143,10 @@ public class BookDao {
                 ResultSet rs = BookQueries.getBooksByTags(conn, isbn, tags.get(i));
                 while(rs.next()){
                     Book book = new Book();
-                    book.setIsbn(rs.getString("libri.ISBN"));
-                    book.setTitle(rs.getString("titolo"));
-                    book.setAuthor(rs.getString("autore"));
-                    book.setPublisher(rs.getString("editore"));
+                    book.setIsbn(rs.getString(ISBN_FIELD));
+                    book.setTitle(rs.getString(TITLE_FIELD));
+                    book.setAuthor(rs.getString(AUTHOR_FIELD));
+                    book.setPublisher(rs.getString(PUBLISHER_FIELD));
                     book.setPublishingYear(rs.getInt("anno"));
                     book.setTag(tags.get(i));
                     bookList.add(book);
@@ -160,11 +155,9 @@ public class BookDao {
             }
 
         } catch(SQLException e) {
-            Logger logger = Logger.getLogger("MyLog");
-            logger.log(Level.INFO, "This is message 1", e);
-        } catch (Exception e) {
             e.printStackTrace();
         }
+
         return bookList;
     }
 
@@ -178,9 +171,6 @@ public class BookDao {
             BookQueries.insertBookInList(conn, reader, listName, isbn);
 
         } catch(SQLException e) {
-            Logger logger = Logger.getLogger("MyLog");
-            logger.log(Level.INFO, "This is message 1", e);
-        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -196,33 +186,28 @@ public class BookDao {
             ResultSet rs = BookQueries.getList(conn, username, listName);
 
             if (!rs.first()){ // rs empty
-                throw new Exception("No List found matching with name");
+                throw new SQLException("No List found matching with name");
             }
 
             rs.first();
             book = new Book();
-            book.setIsbn(rs.getString("libri.ISBN"));
-            System.out.println(rs.getString("libri.ISBN"));
-            book.setTitle(rs.getString("titolo"));
-            book.setAuthor(rs.getString("autore"));
+            book.setIsbn(rs.getString(ISBN_FIELD));
+            book.setTitle(rs.getString(TITLE_FIELD));
+            book.setAuthor(rs.getString(AUTHOR_FIELD));
             list.add(book);
 
             //altrimenti libri presenti
             while (rs.next()) {
                 book = new Book();
-                book.setIsbn(rs.getString("libri.ISBN"));
-                System.out.println(rs.getString("libri.ISBN"));
-                book.setTitle(rs.getString("titolo"));
-                book.setAuthor(rs.getString("autore"));
+                book.setIsbn(rs.getString(ISBN_FIELD));
+                book.setTitle(rs.getString(TITLE_FIELD));
+                book.setAuthor(rs.getString(AUTHOR_FIELD));
                 list.add(book);
             }
 
             rs.close();
 
         } catch(SQLException e) {
-            Logger logger = Logger.getLogger("MyLog");
-            logger.log(Level.INFO, "This is message 1", e);
-        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -240,14 +225,14 @@ public class BookDao {
             ResultSet rs = BookQueries.getLoanBooks(conn, username);
 
             if (!rs.first()){ // rs empty
-                throw new Exception("No List found matching with username");
+                throw new SQLException("No List found matching with username");
             }
 
             rs.first();
             Book book = new Book();
-            book.setIsbn(rs.getString("libri.ISBN"));
-            book.setTitle(rs.getString("titolo"));
-            book.setAuthor(rs.getString("autore"));
+            book.setIsbn(rs.getString(ISBN_FIELD));
+            book.setTitle(rs.getString(TITLE_FIELD));
+            book.setAuthor(rs.getString(AUTHOR_FIELD));
             BookCopy copy = new BookCopy();
             copy.setLoanDate(rs.getDate("data_prestito"));
             copy.setBook(book);
@@ -260,9 +245,9 @@ public class BookDao {
             //altrimenti libri presenti
             while (rs.next()) {
                 book = new Book();
-                book.setIsbn(rs.getString("libri.ISBN"));
-                book.setTitle(rs.getString("titolo"));
-                book.setAuthor(rs.getString("autore"));
+                book.setIsbn(rs.getString(ISBN_FIELD));
+                book.setTitle(rs.getString(TITLE_FIELD));
+                book.setAuthor(rs.getString(AUTHOR_FIELD));
                 copy = new BookCopy();
                 copy.setLoanDate(rs.getDate("data_prestito"));
                 copy.setBook(book);
@@ -275,9 +260,6 @@ public class BookDao {
             rs.close();
 
         } catch(SQLException e) {
-            Logger logger = Logger.getLogger("MyLog");
-            logger.log(Level.INFO, "This is message 1", e);
-        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -298,9 +280,6 @@ public class BookDao {
             rs.close();
 
         } catch(SQLException e) {
-            Logger logger = Logger.getLogger("MyLog");
-            logger.log(Level.INFO, "This is message 1", e);
-        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -329,14 +308,14 @@ public class BookDao {
                 ResultSet rs = BookQueries.getBooksByGenre(conn, tag);
                 while(rs.next()){
                     Book book = new Book();
-                    book.setIsbn(rs.getString("libri.ISBN"));
-                    book.setTitle(rs.getString("titolo"));
-                    book.setAuthor(rs.getString("autore"));
-                    book.setPublisher(rs.getString("editore"));
+                    book.setIsbn(rs.getString(ISBN_FIELD));
+                    book.setTitle(rs.getString(TITLE_FIELD));
+                    book.setAuthor(rs.getString(AUTHOR_FIELD));
+                    book.setPublisher(rs.getString(PUBLISHER_FIELD));
                     book.setPublishingYear(rs.getInt("anno"));
                     ResultSet tags = BookQueries.getTags(conn, book.getIsbn());
                     while(tags.next()){
-                        book.setTag(tags.getString("descrizione"));
+                        book.setTag(tags.getString(DESCRIPTION_FIELD));
                     }
                     tags.close();
                     bookList.add(book);
@@ -344,11 +323,9 @@ public class BookDao {
                 }
                 rs.close();
         } catch(SQLException e) {
-            Logger logger = Logger.getLogger("MyLog");
-            logger.log(Level.INFO, "This is message 1", e);
-        } catch (Exception e) {
             e.printStackTrace();
         }
+
         return bookList;
     }
 
@@ -363,20 +340,20 @@ public class BookDao {
             ResultSet rs = BookQueries.getConsultationBooks(conn, title);
 
             if (!rs.first()){ // rs empty
-                throw new Exception("No Books found matching with title or author");
+                throw new SQLException("No Books found matching with title or author");
             }
 
-            book = new Book(rs.getString("titolo"), rs.getString("autore"));
+            book = new Book(rs.getString(TITLE_FIELD), rs.getString(AUTHOR_FIELD));
             book.setIsbn(rs.getString("ISBN"));
-            book.setPublisher(rs.getString("editore"));
+            book.setPublisher(rs.getString(PUBLISHER_FIELD));
             book.setPublishingYear(rs.getInt("anno"));
             list.add(book);
 
             //altrimenti libri presenti
             while (rs.next()) {
-                book = new Book(rs.getString("titolo"), rs.getString("autore"));
+                book = new Book(rs.getString(TITLE_FIELD), rs.getString(AUTHOR_FIELD));
                 book.setIsbn(rs.getString("ISBN"));
-                book.setPublisher(rs.getString("editore"));
+                book.setPublisher(rs.getString(PUBLISHER_FIELD));
                 book.setPublishingYear(rs.getInt("anno"));
                 list.add(book);
             }
@@ -384,9 +361,6 @@ public class BookDao {
             rs.close();
 
         } catch(SQLException e) {
-            Logger logger = Logger.getLogger("MyLog");
-            logger.log(Level.INFO, "This is message 1", e);
-        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -409,9 +383,6 @@ public class BookDao {
             BookQueries.updateConsultation(conn, username, libraryName, consultationDate, startTime);
 
         } catch(SQLException e) {
-            Logger logger = Logger.getLogger("MyLog");
-            logger.log(Level.INFO, "This is message 1", e);
-        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -441,7 +412,6 @@ public class BookDao {
             ResultSet rs = null;
             //assegna i tag scelti al libro
             for (int i = 0; i<book.getTags().size(); i++) {
-                System.out.println(book.getTags().get(i));
                 rs = BookQueries.getIdTag(conn, book.getTags().get(i));
                 rs.first();
                 int id = rs.getInt("id");
@@ -452,9 +422,6 @@ public class BookDao {
 
 
         } catch(SQLException e) {
-            Logger logger = Logger.getLogger("MyLog");
-            logger.log(Level.INFO, "This is message 1", e);
-        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -470,23 +437,20 @@ public class BookDao {
             ResultSet rs = BookQueries.getAllTags(conn);
 
             if (!rs.first()){ // rs empty
-                throw new Exception("No tags available");
+                throw new SQLException("No tags available");
             }
 
             rs.previous();
 
             //altrimenti libri presenti
             while (rs.next()) {
-                String newTag = rs.getString("descrizione");
+                String newTag = rs.getString(DESCRIPTION_FIELD);
                 tags.add(newTag);
             }
 
             rs.close();
 
         } catch(SQLException e) {
-            Logger logger = Logger.getLogger("MyLog");
-            logger.log(Level.INFO, "This is message 1", e);
-        } catch (Exception e) {
             e.printStackTrace();
         }
 

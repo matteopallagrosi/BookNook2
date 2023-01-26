@@ -104,14 +104,6 @@ public class SignupUIController extends UIController {
         changePage("/it/ispw/booknook/mainView/libraryreg-view.fxml", event);
     }
 
-    public void setErrorMessage() {
-
-    }
-
-    public void registerUser() {
-
-    }
-
     @FXML
     void onContinueNoAccount(ActionEvent event) throws IOException {
         //apre direttamente hompepage

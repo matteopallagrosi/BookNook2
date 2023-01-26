@@ -8,15 +8,11 @@ import javafx.scene.shape.Rectangle;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TopicsUIController implements Initializable {
+public class TopicsUIController {
 
     @FXML
     private ImageView adventureView;
 
     @FXML
     private Rectangle clip;
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-    }
 }

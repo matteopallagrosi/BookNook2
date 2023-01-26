@@ -37,7 +37,6 @@ public class UIController {
             DialogController dialogController = new DialogController();
             dialogController.createLoginDialog();
         }
-        //se l'utente è loggato il libro è aggiunto alla lista scelta;
         if (loginController.verifyLogin()) {
             changePage("/it/ispw/booknook/mainView/settings-view.fxml", event);
         }
@@ -52,7 +51,6 @@ public class UIController {
             DialogController dialogController = new DialogController();
             dialogController.createLoginDialog();
         }
-        //se l'utente è loggato il libro è aggiunto alla lista scelta;
         if (loginController.verifyLogin()) {
             changePage("/it/ispw/booknook/mainView/myLists-view.fxml", event);
         }

@@ -128,8 +128,6 @@ public class TagResultsUIController extends UIController{
 
         list1.setOnAction(action);
         list2.setOnAction(action);
-
-        System.out.println("Ho finito");
     }
 
     private EventHandler<ActionEvent> onFavoriteClick(String isbn) {
@@ -141,7 +139,6 @@ public class TagResultsUIController extends UIController{
                 DialogController dialogController = new DialogController();
                 dialogController.createLoginDialog();
             }
-            //se l'utente è loggato il libro è aggiunto alla lista scelta;
             if (loginController.verifyLogin()) {
                 MenuItem mItem = (MenuItem) actionEvent.getSource();
                 String selectedList = mItem.getText();

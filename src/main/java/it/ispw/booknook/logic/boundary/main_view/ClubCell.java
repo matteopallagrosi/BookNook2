@@ -41,7 +41,7 @@ public class ClubCell {
         }
         catch (IOException e)
         {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 

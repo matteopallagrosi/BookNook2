@@ -34,7 +34,6 @@ public class ConsultationController {
 
     //recupera librerie con disponibilità del libro selezionato
     public List<LibraryBean> checkLibraries(BookBean selectedBook) {
-        System.out.println("nel controller applicativo");
         Map<String, Library> libraries = LibraryDao.getLibrariesByISBN(selectedBook.getIsbn());
         List<LibraryBean> resultLibraries = new ArrayList<>();
         libraries.forEach((name, library) -> {

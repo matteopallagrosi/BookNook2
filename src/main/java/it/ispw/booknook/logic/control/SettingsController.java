@@ -70,7 +70,6 @@ public class SettingsController {
     public void changeProfileDetails(LoginBean newProfileDetails) throws SQLException {
         String newName = newProfileDetails.getFirstName();
         String newLastName = newProfileDetails.getLastName();
-        String username =  User.getUser().getUsername();
         String newAddress = newProfileDetails.getAddress();
         String newCity = newProfileDetails.getCity();
         String newZip = newProfileDetails.getZip();
@@ -81,7 +80,7 @@ public class SettingsController {
         User.getUser().setCity(newCity);
         User.getUser().setZip(newZip);
         User.getUser().setCountry(newCountry);
-        UserDao.updateProfile(username, newName, newLastName, newAddress, newCity, newZip, newCountry);
+        UserDao.updateProfile();
     }
 
     public void updateImageProfile(LoginBean newProfile) {

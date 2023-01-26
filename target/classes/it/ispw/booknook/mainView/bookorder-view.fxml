@@ -106,7 +106,7 @@
                                 <Font name="Roboto Medium" size="18.0" />
                             </font>
                         </Button>
-                        <Button fx:id="clubsBtn" layoutX="263.0" layoutY="30.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Clubs" textFill="#8c8c8c" AnchorPane.leftAnchor="263.0" AnchorPane.topAnchor="30.0">
+                        <Button fx:id="clubsBtn" layoutX="263.0" layoutY="30.0" mnemonicParsing="false" onAction="#onClubsClick" style="-fx-background-color: transparent;" text="Clubs" textFill="#8c8c8c" AnchorPane.leftAnchor="263.0" AnchorPane.topAnchor="30.0">
                             <font>
                                 <Font name="Roboto Medium" size="18.0" />
                             </font>

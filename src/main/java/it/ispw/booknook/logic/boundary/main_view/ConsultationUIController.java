@@ -65,7 +65,6 @@ public class ConsultationUIController extends UIController implements Initializa
     }
 
     public void createListLibraries(BookBean book) {
-        System.out.println("Sto qui");
         //compare la lista delle biblioteche con disponiilità
         ConsultationController consultationController = new ConsultationController();
         List<LibraryBean> libraries = consultationController.checkLibraries(book);

@@ -35,13 +35,12 @@ public class UserDao {
             if (user.getType() == UserType.READER)
                 LogQueries.saveUsername(conn, user);
         } catch (SQLException e) {
-            Logger logger = Logger.getLogger("MyLog");
-            logger.log(Level.INFO, "This is message 1", e);
+            e.printStackTrace();
         }
     }
 
     //recupera un utente dal db se presente
-    public static User getReaderUser(String email) throws Exception {
+    public static void getReaderUser(String email) {
         Connection conn = null;
         User user = null;
 
@@ -52,7 +51,7 @@ public class UserDao {
             ResultSet rs = LogQueries.selectReaderUser(conn, email);
 
             if (!rs.first()) { // rs empty
-                throw new Exception("No User Found matching with email and password");
+                throw new SQLException("No User Found matching with email and password");
             }
 
             //altrimenti l'utente è presente
@@ -79,13 +78,13 @@ public class UserDao {
                 rs = LogQueries.getReaderImage(conn, username);
 
                 if (!rs.first()) { // rs empty
-                    throw new Exception("No User Found matching with username");
+                    throw new SQLException("No User Found matching with username");
                 }
 
                 //altrimenti l'utente è presente
                 rs.first();
 
-                Integer profileImage = rs.getInt("immagine_profilo");
+                int profileImage = rs.getInt("immagine_profilo");
 
                 String imageUrl = switch (profileImage) {
                     case 0 -> "C:\\Users\\HP\\IdeaProjects\\BookNook\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\account_circle_24dp.png";
@@ -114,10 +113,9 @@ public class UserDao {
             e.printStackTrace();
         }
 
-        return user;
     }
 
-    public static String getPassUser(String email) throws Exception {
+    public static String getPassUser(String email) {
         Connection conn = null;
         String readerPassword = null;
 
@@ -130,7 +128,7 @@ public class UserDao {
             ResultSet rs = LogQueries.getpass(conn, email);
 
             if (!rs.first()) { // rs empty
-                throw new Exception("No User Found matching with email and password");
+                throw new SQLException("No User Found matching with email and password");
             }
 
             //altrimenti l'utente è presente
@@ -142,8 +140,7 @@ public class UserDao {
             rs.close();
 
         } catch (SQLException e) {
-            Logger logger = Logger.getLogger("MyLog");
-            logger.log(Level.INFO, "This is message 1", e);
+            e.printStackTrace();
         }
         return readerPassword;
     }
@@ -167,16 +164,17 @@ public class UserDao {
         LogQueries.savePassword(conn, username, password);
     }
 
-    public static void updateProfile(String username, String firstName, String lastName, String address, String city, String zip, String country) throws SQLException {
+    public static void updateProfile() throws SQLException {
         Connection conn = null;
 
         BookNookDB db = BookNookDB.getInstance();
         conn = db.getConn();
 
-        LogQueries.updateProfileDetails(conn, username, firstName, lastName, address, city, zip, country);
+
+        LogQueries.updateProfileDetails(conn);
     }
 
-    public static void getProfile(String username) throws Exception {
+    public static void getProfile(String username) {
         Connection conn = null;
 
         BookNookDB db = BookNookDB.getInstance();
@@ -186,7 +184,7 @@ public class UserDao {
             ResultSet rs = LogQueries.getProfileDetails(conn, username);
 
             if (!rs.first()) { // rs empty
-                throw new Exception("No User Found matching with username");
+                throw new SQLException("No User Found matching with username");
             }
 
             //altrimenti l'utente è presente
@@ -224,8 +222,7 @@ public class UserDao {
             LogQueries.saveImage(conn, username, numImage);
 
         } catch (SQLException e) {
-            Logger logger = Logger.getLogger("MyLog");
-            logger.log(Level.INFO, "This is message 1", e);
+            e.printStackTrace();
         }
     }
 
@@ -259,8 +256,7 @@ public class UserDao {
             String city = library.getCity();
             LogQueries.insertLibraryDetails(conn, username, name, address, city, startTime, endTime);
         } catch (SQLException e) {
-            Logger logger = Logger.getLogger("MyLog");
-            logger.log(Level.INFO, "This is message 1", e);
+            e.printStackTrace();
         }
 
         //crea file per memorizzazione recensioni della biblioteca

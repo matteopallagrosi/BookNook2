@@ -78,9 +78,6 @@ public class CreateReviewUIController extends UIController {
     private Button myListBtn;
 
     @FXML
-    private ImageView profileBtn;
-
-    @FXML
     private ImageView servStar1;
 
     @FXML
@@ -137,6 +134,7 @@ public class CreateReviewUIController extends UIController {
             case "servStar" -> servicesRate = starNumber;
             case "avStar" -> availabilityRate = starNumber;
             case "locStar" -> locationRate = starNumber;
+            default -> servicesRate = starNumber;
         }
     }
 

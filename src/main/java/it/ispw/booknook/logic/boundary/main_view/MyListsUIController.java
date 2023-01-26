@@ -33,8 +33,8 @@ public class MyListsUIController extends UIController implements Initializable {
     @FXML
     private Rectangle booksILiked;
 
-    private final static String GREY = "#8a8a8a66";
-    private final static String YELLOW = "#e8be8e";
+    private static final  String GREY = "#8a8a8a66";
+    private static final String YELLOW = "#e8be8e";
 
     ObservableList<BookBean> booksOnLoanList = null;
     ObservableList<BookBean> booksILikedList = null;

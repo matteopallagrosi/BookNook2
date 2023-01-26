@@ -111,7 +111,7 @@ public class ConsultationDetailsUIController extends UIController {
     }
 
     @FXML
-    void onConfirmClick(ActionEvent event) throws IOException {
+    void onConfirmClick(ActionEvent event) {
         //verifica login
         LoginController loginController = new LoginController();
         if (!loginController.verifyLogin()) {
@@ -119,7 +119,6 @@ public class ConsultationDetailsUIController extends UIController {
             DialogController dialogController = new DialogController();
             dialogController.createLoginDialog();
         }
-        //se l'utente è loggato il libro è aggiunto alla lista scelta;
         if (loginController.verifyLogin()) {
             //apre un dialog per la conferma della prenotazione
             DialogController dialogController = new DialogController();
@@ -131,9 +130,6 @@ public class ConsultationDetailsUIController extends UIController {
     void onBackClick(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(PAGE_NAME));
         changePage(PAGE_NAME, event);
-        ConsultationUIController controller = fxmlLoader.<ConsultationUIController>getController();
-        ObservableList<String> items = FXCollections.observableArrayList("Primo", "Secondo", "Terzo", "Quarto",
-                "Quinto", "Sesto", "Settimo", "Ottavo");
     }
 
     @FXML

@@ -103,7 +103,8 @@ public class BorrowBookController {
 
         List<Data> sorted = new ArrayList<>();
 
-        for (String key : map.keySet()) {
+        for (Map.Entry<String,List<Book>> entry : map.entrySet()) {
+            String key = entry.getKey();
             List<Book> listOfElementsWithSameKey = map.get(key);
             int size = listOfElementsWithSameKey.size();  //numero di occorrenze di un libro
             Book book = listOfElementsWithSameKey.get(0);
@@ -140,8 +141,6 @@ public class BorrowBookController {
                 });
             }
             libraryList.add(bean);
-            /* library.getOwnedCopies().forEach(copy-> System.out.println("copia: "+ copy.getId() + "della bilbioteca " + copy.getLibrary().getName()));
-            System.out.println(library.getAvailability(book.getIsbn())); */
         });
 
         return libraryList;
@@ -160,11 +159,6 @@ public class BorrowBookController {
         //manda mail di conferma dell'ordine a utente e bibliotecario
         String readerToNotify = User.getUser().getEmail();
         String username = User.getUser().getUsername();
-        System.out.println(libraryDetails.getName());
-        System.out.println(libraryDetails.getAddress());
-        System.out.println(libraryDetails.getCity());
-        System.out.println(libraryDetails.getOpeningTime());
-        System.out.println(libraryDetails.getClosingTime());
         String messageToReader = "Hi " + username + ",\n" + "thanks from your order!\nYou borrowed " + libraryDetails.getTitleCopyAvailable() + ", " +  libraryDetails.getAuthorCopyAvailable() + " from the library " + libraryDetails.getName() +
                 " (" + libraryDetails.getAddress() + ", " + libraryDetails.getCity() + ", " + libraryDetails.getOpeningTime() + "-" + libraryDetails.getClosingTime() + ") " + "since " + LocalDate.now().toString() +
                     ".\nYou will have to return it within " + LocalDate.now().plusMonths(1) + ".";
