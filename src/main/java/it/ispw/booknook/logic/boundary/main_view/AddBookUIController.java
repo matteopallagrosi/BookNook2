@@ -23,6 +23,8 @@ import java.util.ResourceBundle;
 
 public class AddBookUIController extends UIController implements Initializable {
 
+    private String a;
+
     @FXML
     private Button addBookBtn;
 
