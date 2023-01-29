@@ -9,6 +9,8 @@ import java.util.Locale;
 
 public class ConsultationCLController {
 
+    private static final String LINE = " ***\n";
+
     public void reserveConsultation() {
         InOut.printLine("*** Insert title or author you want to consult ***\n");
 
@@ -44,7 +46,7 @@ public class ConsultationCLController {
         //liberia scelta dall'utente
         int libraryChoice = InOut.multiIntChoice(libraries.size());
         LibraryBean selectedLibrary = libraries.get(libraryChoice-1);
-        InOut.printLine("*** Choose a date for consultation in " + selectedLibrary.getName() + " ***\n");
+        InOut.printLine("*** Choose a date for consultation in " + selectedLibrary.getName() + LINE);
 
         String date = "";
         //verifica che la data non sia vuota o con un formato errato
@@ -57,7 +59,7 @@ public class ConsultationCLController {
         selectedDate.setUsernameLibrary(selectedLibrary.getUsername());
         List<ShiftBean> shifts = controller.getAvailableShifts(selectedDate);
 
-        InOut.printLine("*** Consultation shifts available in " + selectedLibrary.getName() + " ***\n");
+        InOut.printLine("*** Consultation shifts available in " + selectedLibrary.getName() + LINE);
         for (int i = 1; i <= shifts.size(); i++) {
             InOut.printLine(i + ") " + shifts.get(i - 1).getTime());
         }
@@ -69,6 +71,6 @@ public class ConsultationCLController {
         //invoca il controller applicativo per effettuare prenotazione
         controller.reserveConsultation(currentShift, selectedLibrary);
 
-        InOut.printLine("*** You succesfully reserve a consultation in " + selectedLibrary.getName() + " on " + currentShift.getDate() + ", " +  currentShift.getTime() + " ***\n");
+        InOut.printLine("*** You succesfully reserve a consultation in " + selectedLibrary.getName() + " on " + currentShift.getDate() + ", " +  currentShift.getTime() + LINE);
     }
 }

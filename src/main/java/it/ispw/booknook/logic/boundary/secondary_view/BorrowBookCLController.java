@@ -14,6 +14,9 @@ import java.util.List;
 
 public class BorrowBookCLController {
 
+    private static final String NEW_LINE = " ***\n";
+    private static final String INVALID = "Invalid condition";
+
     public void borrowBookByName() {
         InOut.printLine("*** Insert title or author ***\n");
 
@@ -92,7 +95,7 @@ public class BorrowBookCLController {
         bookBean.setTags(tags);
         List<BookBean> results = new BorrowBookController().borrowByTag(bookBean);
 
-        InOut.printLine("*** Here are some books in the category " + selectedTag + " ***\n");
+        InOut.printLine("*** Here are some books in the category " + selectedTag + NEW_LINE);
         showBookList(results);
     }
 
@@ -116,7 +119,7 @@ public class BorrowBookCLController {
         int libraryChoice = InOut.multiIntChoice(libraries.size());
         LibraryBean selectedLibrary = libraries.get(libraryChoice - 1);
 
-        InOut.printLine("*** Proceed with loan or read/write reviews of " + selectedLibrary.getName() + " ***\n");
+        InOut.printLine("*** Proceed with loan or read/write reviews of " + selectedLibrary.getName() + NEW_LINE);
 
 
         InOut.printLine("1) Proceed with loan");
@@ -133,7 +136,7 @@ public class BorrowBookCLController {
             case '2' -> reviewCLController.showReviews(selectedLibrary);
             case '3' -> reviewCLController.writeAReview(selectedLibrary);
             default -> {
-                InOut.printLine("Invalid condition");
+                InOut.printLine(INVALID);
                 return;
             }
         }
@@ -161,22 +164,13 @@ public class BorrowBookCLController {
                 try {
                     borrowBookController.borrowBook(selectedLibrary);
                 } catch (LostConnectionException e) {
-                    InOut.printLine("*** You can pickup your book within three days! "  + e.getMessage() + " ***\n");
+                    InOut.printLine("*** You can pickup your book within three days! "  + e.getMessage() + NEW_LINE);
                     return;
                 }
                 InOut.printLine("*** You can pickup your book within three days, you will receive a summary email ***\n");
             }
-            case '2' -> {
-                choosePaymentMethod(selectedLibrary);
-            }
-            case '3' -> {
-
-
-            }
-            default -> {
-                InOut.printLine("Invalid condition");
-                return;
-            }
+            case '2' -> choosePaymentMethod(selectedLibrary);
+            default -> InOut.printLine(INVALID);
         }
     }
 
@@ -197,7 +191,7 @@ public class BorrowBookCLController {
         //libro scelto dall'utente
         BookBean bookToBorrow = results.get(bookChoice - 1);
 
-        InOut.printLine("*** You choose " + bookToBorrow.getTitle() + " ***\n");
+        InOut.printLine("*** You choose " + bookToBorrow.getTitle() + NEW_LINE);
 
         InOut.printLine("1) Borrow");
 
@@ -208,9 +202,7 @@ public class BorrowBookCLController {
         char op = InOut.multiChoice(options, 2);
 
         switch (op) {
-            case '1' -> {
-                borrowABook(bookToBorrow);
-            }
+            case '1' -> borrowABook(bookToBorrow);
             case '2' -> {
                 if (bookToBorrow.isAddedtoList()) InOut.printLine("Book already added");
                 else {
@@ -218,10 +210,8 @@ public class BorrowBookCLController {
                     readingListCLController.addBookToAList(bookToBorrow);
                 }
             }
-            default -> {
-                InOut.printLine("Invalid condition");
-                return;
-            }
+            default -> InOut.printLine(INVALID);
+
         }
     }
 
@@ -232,19 +222,17 @@ public class BorrowBookCLController {
         String country = "";
         String city = "";
         String zip = "";
-        while (street.isEmpty()) {
+        while (street.isEmpty() || city.isEmpty() ) {
             InOut.print("Street: ");
             street = InOut.readLine();
+            InOut.print("City: ");
+            city = InOut.readLine();
         }
         while (country.isEmpty()) {
             InOut.print("Country: ");
             country = InOut.readLine();
 
-        } while (city.isEmpty()) {
-            InOut.print("City: ");
-            city = InOut.readLine();
-
-        } while (zip.isEmpty()) {
+        }while (zip.isEmpty()) {
             InOut.print("Zip: ");
             zip = InOut.readLine();
         }

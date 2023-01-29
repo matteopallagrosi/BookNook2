@@ -51,12 +51,9 @@ public class LibrarianCLController {
         String isbn = "";
         String numberCopies = "";
 
-        while (title.isEmpty()) {
+        while (title.isEmpty() || author.isEmpty()) {
             InOut.print("Title: ");
             title = InOut.readLine();
-        }
-
-        while (author.isEmpty()) {
             InOut.print("Author: ");
             author = InOut.readLine();
         }

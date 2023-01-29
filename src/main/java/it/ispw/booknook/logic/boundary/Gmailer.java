@@ -20,7 +20,6 @@ import javax.mail.internet.MimeMessage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.UnknownHostException;
 import java.nio.file.Paths;
 import java.security.GeneralSecurityException;
 import java.util.Properties;

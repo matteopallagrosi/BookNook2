@@ -110,8 +110,7 @@ public class InOut {
                     String result = lt.format(formatter);
                     return result.equals(value);
                 } catch (DateTimeParseException e2) {
-                    // Debugging purposes
-                    //e2.printStackTrace();
+                    e2.printStackTrace();
                 }
             }
         }

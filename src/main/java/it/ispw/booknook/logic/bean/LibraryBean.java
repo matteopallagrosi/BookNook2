@@ -5,8 +5,6 @@ import it.ispw.booknook.logic.entity.Library;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
-import java.time.format.DateTimeParseException;
 
 public class LibraryBean {
     private String username;
@@ -174,11 +172,11 @@ public class LibraryBean {
     }
 
     public boolean checkOpeningTimeFormat() {
-        return (this.openingTime.matches("(?:[0-1][0-9]|2[0-4]):[0-5]\\d"));
+        return (this.openingTime.matches("(?:[0-1]\\d|2[0-4]):[0-5]\\d"));
 
     }
 
     public boolean checkClosingTimeFormat() {
-        return (this.openingTime.matches("(?:[0-1][0-9]|2[0-4]):[0-5]\\d"));
+        return (this.openingTime.matches("(?:[0-1]\\d|2[0-4]):[0-5]\\d"));
     }
 }

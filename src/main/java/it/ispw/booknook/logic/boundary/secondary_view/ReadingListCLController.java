@@ -10,6 +10,8 @@ import java.util.List;
 
 public class ReadingListCLController {
 
+    private static final String INVALID_CONDITION = "Invalid condition";
+
     public void manageReadingList() {
         InOut.printLine("*** Here your reading lists. Choose a list ***\n");
         InOut.printLine("1) Books on loan");
@@ -39,7 +41,7 @@ public class ReadingListCLController {
                 results = readingListController.getReadingList(favoriteBean);
                 showList(results, favoriteBean, readingListController);
             }
-            default -> InOut.printLine("Invalid condition");
+            default -> InOut.printLine(INVALID_CONDITION);
         }
 
     }
@@ -70,7 +72,7 @@ public class ReadingListCLController {
             case '2' -> {
                 writeAReview(selectedBook);
             }
-            default -> InOut.printLine("Invalid condition");
+            default -> InOut.printLine(INVALID_CONDITION);
         }
     }
 
@@ -119,7 +121,7 @@ public class ReadingListCLController {
                 InOut.printLine("*** Book correctly deleted ***\n");
 
             }
-            default -> InOut.printLine("Invalid condition");
+            default -> InOut.printLine(INVALID_CONDITION);
         }
     }
 
@@ -142,7 +144,7 @@ public class ReadingListCLController {
         switch (op) {
             case '1' -> favoriteBean.setListName("Books I liked");
             case '2' -> favoriteBean.setListName("Want to read");
-            default -> InOut.printLine("Invalid condition");
+            default -> InOut.printLine(INVALID_CONDITION);
         }
 
 
