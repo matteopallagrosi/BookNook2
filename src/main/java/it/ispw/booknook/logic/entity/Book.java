@@ -21,7 +21,6 @@ public class Book {
     }
     public Book(String isbn){
         this.isbn = isbn;
-
     }
 
     public Book(String title, String author, String tag1, String tag2) {

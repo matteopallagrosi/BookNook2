@@ -33,4 +33,8 @@ module it.ispw.booknook {
     opens it.ispw.booknook.logic.bean to javafx.fxml;
     exports it.ispw.booknook.logic.boundary;
     opens it.ispw.booknook.logic.boundary to javafx.fxml;
+    exports it.ispw.booknook.logic.control;
+    exports it.ispw.booknook.logic.exception;
+    exports it.ispw.booknook.logic.boundary.secondary_view;
+
 }

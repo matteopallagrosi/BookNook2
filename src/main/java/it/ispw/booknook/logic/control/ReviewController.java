@@ -47,4 +47,16 @@ public class ReviewController {
         review.setRate(rate);
         ReviewDao.addReview(review, library.getUsername());
     }
+
+    public int calculateMedium(List<ReviewBean> reviews) {
+        int sum = 0;
+        int medium = 0;
+        for (ReviewBean review: reviews) {
+            sum +=review.getMediumRate();
+        }
+        if (!reviews.isEmpty()) {
+            medium = sum / reviews.size();
+        }
+        return medium;
+    }
 }

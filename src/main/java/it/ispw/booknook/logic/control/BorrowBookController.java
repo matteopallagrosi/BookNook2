@@ -69,10 +69,14 @@ public class BorrowBookController {
     private List<BookBean> calculateBookList(List<String> tags, String isbn) {
         List<Book> books = BookDao.getRelatedBooks(tags, isbn);
         //continua qui!
-        return sortByOccurrences(books);
+        List<Book> sortedList = sortByOccurrences(books);
+        List<BookBean> bookBeans = new ArrayList<>();  //lista con libri ordinati per affinità
+        sortedList.forEach(book -> bookBeans.add(new BookBean(book)));
+        return bookBeans;
     }
 
-    private List<BookBean> sortByOccurrences(List<Book> books) {
+    //ritorna la lista di libri ordinata per numero di tag affini (ossia numero di occorrenze di un libro nella lista in input) al libro richiesto dall'utente
+    public List<Book> sortByOccurrences(List<Book> books) {
         HashMap<String, List<Book>> map = new HashMap<>();
 
         for (Book book : books) {
@@ -127,10 +131,9 @@ public class BorrowBookController {
 
         Collections.sort(sorted);  //ordina per numero di occorrenze (ossia numero di tag uguali a quelli del libro selezionato)
 
-        List<BookBean> bookBeans = new ArrayList<>();  //lista con libri ordinati per affinità
-        sorted.forEach(book -> bookBeans.add(new BookBean(book.getBook())));
-
-        return bookBeans;
+        List<Book> sortedList = new ArrayList<>();
+        sorted.forEach(data -> sortedList.add(data.getBook()));
+        return sortedList;
     }
 
     //recupera la lista di biblioteche con disponibilità del libro richiesto

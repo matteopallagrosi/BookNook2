@@ -62,7 +62,4 @@ public class MapViewer {
         graphicsOverlay.getGraphics().clear();
         createMarkerAtCurrentPos();
     }
-
-
-
 }

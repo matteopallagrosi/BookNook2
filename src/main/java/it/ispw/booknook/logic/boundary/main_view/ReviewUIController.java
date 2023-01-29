@@ -127,7 +127,6 @@ public class ReviewUIController extends UIController {
         //Chiama ReviewController e carica le recensioni
         ReviewController reviewController = new ReviewController();
         List<ReviewBean> reviews = reviewController.getReviews(library);
-        int sum  = 0;
         for (ReviewBean review : reviews) {
             //creare una cella nello scroll pane che mostra la review
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/it/ispw/booknook/mainView/review-cell.fxml"));
@@ -159,15 +158,11 @@ public class ReviewUIController extends UIController {
                     Node star = cell.lookup("#medStar" + i);
                     star.setVisible(true);
                 }
-                sum += review.getMediumRate();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        int medium = 0;
-        if (!reviews.isEmpty()) {
-            medium = sum / reviews.size();
-        }
+        int medium = reviewController.calculateMedium(reviews);
         for (int i = 1; i <= medium; i++) {
             Node star = rightBox.lookup("#medStar" + i);
             star.setVisible(true);
