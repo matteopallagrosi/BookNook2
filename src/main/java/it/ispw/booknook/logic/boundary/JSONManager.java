@@ -34,7 +34,7 @@ public class JSONManager implements Runnable {
     public JSONObject getJsonFromUrl() {
         Properties properties = new Properties();
         String k = null;
-        try (FileInputStream f = new FileInputStream("C:\\Users\\HP\\IdeaProjects\\BookNook\\src\\main\\resources\\googleconfig.properties")) {
+        try (FileInputStream f = new FileInputStream("C:\\Users\\HP\\Desktop\\ISPW21-22\\googleconfig.properties")) {
             properties.load(f);
             k = properties.getProperty("key");
         } catch (IOException e) {
