@@ -1,13 +1,10 @@
 package it.ispw.booknook.logic.boundary.main_view;
 
-import com.esri.arcgisruntime.mapping.view.GraphicsOverlay;
 import com.esri.arcgisruntime.mapping.view.MapView;
 import it.ispw.booknook.logic.bean.BookBean;
 import it.ispw.booknook.logic.bean.LibraryBean;
 import it.ispw.booknook.logic.boundary.MapViewer;
 import it.ispw.booknook.logic.control.BorrowBookController;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

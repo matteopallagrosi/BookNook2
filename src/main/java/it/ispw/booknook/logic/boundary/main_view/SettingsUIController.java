@@ -1,7 +1,6 @@
 package it.ispw.booknook.logic.boundary.main_view;
 
 import it.ispw.booknook.logic.bean.LoginBean;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
