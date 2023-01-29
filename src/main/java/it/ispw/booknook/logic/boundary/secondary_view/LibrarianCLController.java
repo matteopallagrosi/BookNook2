@@ -73,7 +73,7 @@ public class LibrarianCLController {
             isbn = InOut.readLine();
         }
 
-        while (!InOut.isInteger(numberCopies, 10) || Integer.parseInt(numberCopies) == 0) {
+        while (!InOut.isInteger(numberCopies, 10)) {
             InOut.print("Number of copies: ");
             numberCopies = InOut.readLine();
         }
