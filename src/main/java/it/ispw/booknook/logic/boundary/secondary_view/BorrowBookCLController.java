@@ -137,7 +137,6 @@ public class BorrowBookCLController {
             case '3' -> reviewCLController.writeAReview(selectedLibrary);
             default -> {
                 InOut.printLine(INVALID);
-                return;
             }
         }
     }
@@ -221,22 +220,19 @@ public class BorrowBookCLController {
         String street = "";
         String country = "";
         String city = "";
-        String zip = "";
-        while (street.isEmpty() || city.isEmpty() ) {
+        while (street.isEmpty()) {
             InOut.print("Street: ");
             street = InOut.readLine();
+        }
+        while (city.isEmpty()) {
             InOut.print("City: ");
             city = InOut.readLine();
+
         }
         while (country.isEmpty()) {
             InOut.print("Country: ");
             country = InOut.readLine();
-
-        }while (zip.isEmpty()) {
-            InOut.print("Zip: ");
-            zip = InOut.readLine();
         }
-
         int status = 1;
 
         while(status==1) {

@@ -49,7 +49,7 @@ public class LibrarianCLController {
         String publisher = "";
         String year = "";
         String isbn = "";
-        String numberCopies = "";
+        String numberCopies = "0";
 
         while (title.isEmpty() || author.isEmpty()) {
             InOut.print("Title: ");
@@ -73,7 +73,7 @@ public class LibrarianCLController {
             isbn = InOut.readLine();
         }
 
-        while (numberCopies.isEmpty() || !InOut.isInteger(numberCopies, 10) || Integer.parseInt(numberCopies) == 0) {
+        while (!InOut.isInteger(numberCopies, 10) || Integer.parseInt(numberCopies) == 0) {
             InOut.print("Number of copies: ");
             numberCopies = InOut.readLine();
         }
