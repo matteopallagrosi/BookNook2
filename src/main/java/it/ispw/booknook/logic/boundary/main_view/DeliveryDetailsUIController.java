@@ -6,12 +6,18 @@ import it.ispw.booknook.logic.bean.LibraryBean;
 import it.ispw.booknook.logic.boundary.JSONManager;
 import it.ispw.booknook.logic.control.BorrowBookController;
 import it.ispw.booknook.logic.entity.User;
+import it.ispw.booknook.logic.exception.FormatException;
+import it.ispw.booknook.logic.exception.InvalidDateException;
+import it.ispw.booknook.logic.exception.LostConnectionException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+
+import java.net.UnknownHostException;
+import java.text.ParseException;
 
 public class DeliveryDetailsUIController extends UIController {
 
@@ -126,23 +132,28 @@ public class DeliveryDetailsUIController extends UIController {
 
         CreditCardBean card = new CreditCardBean();
         //il bean esegue la validazione sintattica del numero di carta
-        card.setNumber(cardNumber);
         card.setCode(cardCode);
         card.setOwnerName(cardName);
-        card.setExpiryDate(cardDate);
-        if (card.getNumber() == null) {
+        try {
+            card.setNumber(cardNumber);
+            card.setExpiryDate(cardDate);
+        } catch (FormatException | InvalidDateException e) {
+            invalidCardLabel.setText(e.getMessage());
             invalidCardLabel.setVisible(true);
-            return;
-        }
-        if (card.getExpiryDate() == null) {
-            dateErrorLabel.setVisible(true);
             return;
         }
         //procede con l'ordine
         BorrowBookController borrowBookController = new BorrowBookController();
-        borrowBookController.borrowBook(currentDetails);
+        try {
+            borrowBookController.borrowBook(currentDetails);
+        } catch (LostConnectionException e) {
+            //Prestito con successo ma mancato invio email per errore connessione
+            DialogController dialogController = new DialogController();
+            dialogController.successLoanDialog(event, "Loan has been successfull! " + e.getMessage());
+            return;
+        }
         //apre dialog successo e torna a homepage
         DialogController dialogController = new DialogController();
-        dialogController.successLoanDialog(event);
+        dialogController.successLoanDialog(event, "Loan has been successfull! You will receive an email with the order details.");
     }
 }

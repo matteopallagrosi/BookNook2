@@ -6,8 +6,6 @@ import it.ispw.booknook.logic.boundary.BcryptAdapter;
 import it.ispw.booknook.logic.database.dao.UserDao;
 import it.ispw.booknook.logic.entity.User;
 
-import java.sql.SQLException;
-
 public class SettingsController {
 
     public LoginBean processUserDetails() {
@@ -21,13 +19,13 @@ public class SettingsController {
         return loginBean;
     }
 
-    public void changeEmail(LoginBean oldDetails, LoginBean newDetails) throws SQLException {
+    public void changeEmail(LoginBean oldDetails, LoginBean newDetails) {
         if (!newDetails.getEmail().equals(oldDetails.getEmail())) {
             UserDao.updateEmail(oldDetails.getEmail(), newDetails.getEmail());
         }
     }
 
-    public void changePassword(LoginBean newDetails) throws SQLException {
+    public void changePassword(LoginBean newDetails) {
         Encrypter encrypter = new BcryptAdapter();
         String encryptedHash = encrypter.encrypt(newDetails.getPassword());
         UserDao.updatePassword(User.getUser().getUsername(), encryptedHash);
@@ -67,7 +65,7 @@ public class SettingsController {
         return profileDetails;
     }
 
-    public void changeProfileDetails(LoginBean newProfileDetails) throws SQLException {
+    public void changeProfileDetails(LoginBean newProfileDetails) {
         String newName = newProfileDetails.getFirstName();
         String newLastName = newProfileDetails.getLastName();
         String newAddress = newProfileDetails.getAddress();

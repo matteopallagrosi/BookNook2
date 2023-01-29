@@ -21,33 +21,29 @@ public class BookDao {
 
     private BookDao() {}
 
-    public static List<Book>  getRequestedBooks(String title) {
+    public static List<Book>  getRequestedBooks(String title) throws SQLException {
         List<Book> list = new ArrayList<Book>();
         Connection conn = null;
         Book book;
 
         BookNookDB db = BookNookDB.getInstance();
         conn = db.getConn();
-        try {
-            ResultSet rs = BookQueries.getBooks(conn, title);
 
-            if (!rs.first()){ // rs empty
-                throw new SQLException("No Books found matching with title or author");
-            }
-           book = new Book(rs.getString(TITLE_FIELD), rs.getString(AUTHOR_FIELD));
-           list.add(book);
+        ResultSet rs = BookQueries.getBooks(conn, title);
 
-            //altrimenti libri presenti
-            while (rs.next()) {
+        rs.first();
+
+        book = new Book(rs.getString(TITLE_FIELD), rs.getString(AUTHOR_FIELD));
+        list.add(book);
+
+        //altrimenti libri presenti
+        while (rs.next()) {
                 book = new Book(rs.getString(TITLE_FIELD), rs.getString(AUTHOR_FIELD));
                 list.add(book);
-            }
-
-            rs.close();
-
-        } catch(SQLException e) {
-            e.printStackTrace();
         }
+
+        rs.close();
+
 
 
         return list;
@@ -407,16 +403,18 @@ public class BookDao {
                 BookQueries.insertCopy(conn, isbn, libraryUsername);
             }
 
-            ResultSet rs = null;
-            //assegna i tag scelti al libro
-            for (int i = 0; i<book.getTags().size(); i++) {
-                rs = BookQueries.getIdTag(conn, book.getTags().get(i));
-                rs.first();
-                int id = rs.getInt("id");
-                BookQueries.setTag(conn, book.getIsbn(), id);
-            }
+            if (!book.isConsultable()) {
+                ResultSet rs = null;
+                //assegna i tag scelti al libro
+                for (int i = 0; i < book.getTags().size(); i++) {
+                    rs = BookQueries.getIdTag(conn, book.getTags().get(i));
+                    rs.first();
+                    int id = rs.getInt("id");
+                    BookQueries.setTag(conn, book.getIsbn(), id);
+                }
 
-            rs.close();
+                rs.close();
+            }
 
 
         } catch(SQLException e) {

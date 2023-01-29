@@ -28,6 +28,10 @@ public class ShiftBean {
         this.date = Date.valueOf(date);
     }
 
+    public void setDateString(String date) {
+        this.date = Date.valueOf(date);
+    }
+
     public void setStartTime(Time start) {
         this.startTime = start.toString().substring(0, 5);
     }

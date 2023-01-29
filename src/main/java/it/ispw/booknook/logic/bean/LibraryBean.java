@@ -5,6 +5,8 @@ import it.ispw.booknook.logic.entity.Library;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 
 public class LibraryBean {
     private String username;
@@ -32,6 +34,15 @@ public class LibraryBean {
         this.setLatitude(library.getLatitude().doubleValue());
         this.setLongitude(library.getLongitude().doubleValue());
         this.setCity(library.getCity());
+    }
+
+    public LibraryBean(String username, String name, String address, String city, String openingTime, String closingTime) {
+        setUsername(username);
+        setName(name);
+        setAddress(address);
+        setCity(city);
+        setOpeningTime(openingTime);
+        setClosingTime(closingTime);
     }
 
     public Time opening() {
@@ -160,5 +171,14 @@ public class LibraryBean {
 
     public void setAuthorCopyAvailable(String authorCopyAvailable) {
         this.authorCopyAvailable = authorCopyAvailable;
+    }
+
+    public boolean checkOpeningTimeFormat() {
+        return (this.openingTime.matches("(?:[0-1][0-9]|2[0-4]):[0-5]\\d"));
+
+    }
+
+    public boolean checkClosingTimeFormat() {
+        return (this.openingTime.matches("(?:[0-1][0-9]|2[0-4]):[0-5]\\d"));
     }
 }

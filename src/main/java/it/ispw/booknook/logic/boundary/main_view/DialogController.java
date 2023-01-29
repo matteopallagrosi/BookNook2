@@ -5,6 +5,8 @@ import it.ispw.booknook.logic.bean.LoginBean;
 import it.ispw.booknook.logic.bean.ShiftBean;
 import it.ispw.booknook.logic.control.*;
 import it.ispw.booknook.logic.entity.User;
+import it.ispw.booknook.logic.exception.LostConnectionException;
+import it.ispw.booknook.logic.exception.UserNotFoundException;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -100,13 +102,14 @@ public class DialogController extends UIController {
 
         Button btnOk = (Button) dialog.getDialogPane().lookupButton(buttonTypeOk);
         btnOk.addEventFilter(ActionEvent.ACTION, event -> {
-            LoginBean loginBean = new LoginBean();
-            loginBean.setEmail(emailField.getText());
-            loginBean.setPassword(passwordField.getText());
+            LoginBean loginBean = new LoginBean(emailField.getText(), passwordField.getText());
             switch (dialog.getTitle()) {
                 case LOGIN -> {
                     LoginController controller = new LoginController();
-                    if (!controller.checkUserLogged(loginBean)) {
+                    try {
+                        controller.checkUserLogged(loginBean);
+                    }
+                    catch(UserNotFoundException e) {
                         event.consume();
                         errorLabel.setVisible(true);
                     }
@@ -121,7 +124,6 @@ public class DialogController extends UIController {
                 }
                 default -> errorLabel.setVisible(true);
             }
-
         });
 
         dialog.showAndWait();
@@ -178,7 +180,12 @@ public class DialogController extends UIController {
         if (result.isPresent() && result.get() == confirm) {
             //aggiorna db e manda mail di conferma (delega il controller applicativo)
             BorrowBookController borrowBookController = new BorrowBookController();
-            borrowBookController.borrowBook(library);
+            try {
+                borrowBookController.borrowBook(library);
+            } catch(LostConnectionException e ) {
+                successLoanDialog(actionEvent, e.getMessage());
+                return;
+            }
             //ritorna alla pagine iniziale
             Parent root = null;
             try {
@@ -254,10 +261,10 @@ public class DialogController extends UIController {
         }
     }
 
-    public void successLoanDialog(ActionEvent actionEvent) {
+    public void successLoanDialog(ActionEvent actionEvent, String text) {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Successfull loan");
-        dialog.setContentText("Loan has been successfull! You will receive an email with the order details.");
+        dialog.setContentText(text);
         ButtonType confirm = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().add(confirm);
         dialog.getDialogPane().setStyle(STYLE);

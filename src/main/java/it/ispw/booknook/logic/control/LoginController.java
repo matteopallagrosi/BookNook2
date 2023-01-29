@@ -6,10 +6,13 @@ import it.ispw.booknook.logic.boundary.BcryptAdapter;
 import it.ispw.booknook.logic.database.dao.UserDao;
 import it.ispw.booknook.logic.entity.User;
 import it.ispw.booknook.logic.entity.UserType;
+import it.ispw.booknook.logic.exception.UserNotFoundException;
+
+import java.sql.SQLException;
 
 public class LoginController {
 
-    public boolean checkUserLogged(LoginBean loginBean) {
+    public void checkUserLogged(LoginBean loginBean) throws UserNotFoundException {
         String userPass = null;
         try {
             //recupera l'hash della password dal db
@@ -17,16 +20,16 @@ public class LoginController {
             //verica se la password inserita dall'utente corrisponde
             Encrypter encrypter = new BcryptAdapter();
             encrypter.verify(loginBean.getPassword(), userPass);
-            if ( encrypter.verify(loginBean.getPassword(), userPass)) {
+            if (encrypter.verify(loginBean.getPassword(), userPass)) {
                 //crea l'istanza di utente loggato
                 UserDao.getReaderUser(loginBean.getEmail());
-                return true;
             }
             else {
-                return false;
+                throw new UserNotFoundException("Invalid email or password");
             }
-        } catch (Exception e) {
-            return false;
+        } catch (SQLException e) {
+            //chaining
+            throw new UserNotFoundException("Invalid email or password", e);
         }
     }
 

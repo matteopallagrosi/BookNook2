@@ -25,7 +25,8 @@ public class JSONManager implements Runnable {
 
     @Override
     public void run() {
-        JSONObject bookJson = getJsonFromUrl();
+        JSONObject bookJson = null;
+        bookJson = getJsonFromUrl();
         String url = getImageURL(bookJson);
         book.setCover(url);
     }
@@ -55,7 +56,8 @@ public class JSONManager implements Runnable {
 
             myResponse = new JSONObject(response.toString());
 
-        } catch (IOException | JSONException e) {
+        }
+        catch (IOException | JSONException e) {
             e.printStackTrace();
         }
 

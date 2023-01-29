@@ -4,7 +4,6 @@ package it.ispw.booknook.logic.boundary.main_view;
 import it.ispw.booknook.logic.bean.BookBean;
 import it.ispw.booknook.logic.bean.LibraryBean;
 import it.ispw.booknook.logic.control.ConsultationController;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -61,7 +60,7 @@ public class ConsultationUIController extends UIController implements Initializa
     }
 
     public void createListLibraries(BookBean book) {
-        //compare la lista delle biblioteche con disponiilità
+        //compare la lista delle biblioteche con disponibilità
         ConsultationController consultationController = new ConsultationController();
         List<LibraryBean> libraries = consultationController.checkLibraries(book);
         librariesList.getItems().clear();

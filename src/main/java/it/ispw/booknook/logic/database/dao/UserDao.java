@@ -113,7 +113,7 @@ public class UserDao {
 
     }
 
-    public static String getPassUser(String email) {
+    public static String getPassUser(String email) throws SQLException {
         Connection conn = null;
         String readerPassword = null;
 
@@ -121,55 +121,57 @@ public class UserDao {
         BookNookDB db = BookNookDB.getInstance();
         conn = db.getConn();
 
-
-        try {
-            ResultSet rs = LogQueries.getpass(conn, email);
-
-            if (!rs.first()) { // rs empty
-                throw new SQLException("No User Found matching with email and password");
-            }
+        ResultSet rs = LogQueries.getpass(conn, email);
 
             //altrimenti l'utente è presente
-            rs.first();
+        rs.first();
 
-            readerPassword = rs.getString("password");
+        readerPassword = rs.getString("password");
 
 
-            rs.close();
+        rs.close();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
+
         return readerPassword;
     }
 
 
-    public static void updateEmail(String oldEmail, String newEmail) throws SQLException {
+    public static void updateEmail(String oldEmail, String newEmail) {
         Connection conn = null;
 
         BookNookDB db = BookNookDB.getInstance();
         conn = db.getConn();
-
-        LogQueries.saveEmail(conn, oldEmail, newEmail);
+        try {
+            LogQueries.saveEmail(conn, oldEmail, newEmail);
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void updatePassword(String username, String password) throws SQLException {
+    public static void updatePassword(String username, String password) {
         Connection conn = null;
 
         BookNookDB db = BookNookDB.getInstance();
         conn = db.getConn();
-
-        LogQueries.savePassword(conn, username, password);
+        try {
+            LogQueries.savePassword(conn, username, password);
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void updateProfile() throws SQLException {
+    public static void updateProfile() {
         Connection conn = null;
 
         BookNookDB db = BookNookDB.getInstance();
         conn = db.getConn();
 
-
-        LogQueries.updateProfileDetails(conn);
+        try {
+            LogQueries.updateProfileDetails(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void getProfile(String username) {
@@ -232,7 +234,6 @@ public class UserDao {
 
         String username = user.getUsername();
         try {
-            LogQueries.deleteReader(conn, username);
             LogQueries.deleteUser(conn, username);
         } catch (SQLException e) {
             e.printStackTrace();

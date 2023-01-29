@@ -53,11 +53,6 @@
                         <Image url="@favorite_border_black_24dp.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="87.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@icons8-plus-+-24.png" />
-                     </image>
-                  </ImageView>
                         <Label alignment="CENTER_RIGHT" layoutX="62.0" layoutY="95.0" onMouseClicked="#onLoanClick" prefHeight="27.0" prefWidth="173.0" text=" Books on loan      " textAlignment="CENTER" AnchorPane.leftAnchor="62.0" AnchorPane.topAnchor="95.0">
                             <font>
                                 <Font name="Roboto Medium" size="14.0" />
@@ -76,11 +71,6 @@
                                 <Font name="Roboto Medium" size="14.0" />
                             </font>
                         </Label>
-                  <Label alignment="CENTER" layoutX="89.0" layoutY="234.0" prefHeight="18.0" prefWidth="147.0" text="Add a list">
-                     <font>
-                        <Font name="Roboto Medium" size="14.0" />
-                     </font>
-                  </Label>
                     </children>
                 </AnchorPane>
             </left>

@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class ConsultationController {
 
-    //recupera lista di libri dato un certo autore o titolo
+    //recupera lista di libri consultabili dato un certo autore o titolo
     public List<BookBean> searchBook(BookBean requestedBook) {
         List<BookBean> bookBeans = new ArrayList<BookBean>();
         List<Book> books = BookDao.getConsutableBook(requestedBook.getTitle());
@@ -62,6 +62,7 @@ public class ConsultationController {
         return shifts;
     }
 
+    //conferma la prenotazione
     public void reserveConsultation(ShiftBean selectedShift, LibraryBean selectedLibrary) {
         Library library = new Library();
         library.setUsername(selectedLibrary.getUsername());

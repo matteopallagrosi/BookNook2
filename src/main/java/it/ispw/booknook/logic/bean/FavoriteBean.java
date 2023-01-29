@@ -4,6 +4,8 @@ public class FavoriteBean {
     private String isbn;
     private String listName;
 
+    public FavoriteBean() {}
+
     public FavoriteBean(String isbn, String listName) {
         setIsbn(isbn);
         setListName(listName);

@@ -2,6 +2,7 @@ package it.ispw.booknook.logic.boundary.main_view;
 
 import it.ispw.booknook.logic.bean.LoginBean;
 import it.ispw.booknook.logic.control.LoginController;
+import it.ispw.booknook.logic.exception.UserNotFoundException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -34,7 +35,9 @@ public class LoginUIController extends UIController {
         //verifica email e password inseriti su database
         LoginController controller = new LoginController();
         //se corretti verifica tipo utente
-        if (controller.checkUserLogged(loginB)) {
+        try {
+            controller.checkUserLogged(loginB);
+
             //se utente lettore apre homepage per reader
             if (controller.isUserReader()) {
                 //apre hompepage
@@ -42,11 +45,11 @@ public class LoginUIController extends UIController {
             }
             //se utente bibliotecario apre interfaccia bibliotecario
             else {
-                changePage("/it/ispw/booknook/mainView/librarian-home-view.fxml", event);
+            changePage("/it/ispw/booknook/mainView/librarian-home-view.fxml", event);
             }
-        }
-        //altrimenti mostra messaggio d'errore
-        else {
+        } catch(UserNotFoundException e) {
+            //altrimenti mostra messaggio d'errore
+            errorField.setText(e.getMessage());
             errorPanel.setVisible(true);
             errorField.setVisible(true);
         }

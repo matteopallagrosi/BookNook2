@@ -2,6 +2,7 @@ package it.ispw.booknook.logic.boundary.main_view;
 
 import it.ispw.booknook.logic.bean.BookBean;
 import it.ispw.booknook.logic.control.BorrowBookController;
+import it.ispw.booknook.logic.exception.BookNotFoundException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -92,12 +93,18 @@ public class DiscoverUIController extends UIController implements Initializable 
             String searchedTx = searchField.getText(); //titolo o autore libro richiesto
             BookBean searchedBook = new BookBean(searchedTx);
             BorrowBookController controller = new BorrowBookController();
-            List<BookBean> results = controller.borrowByName(searchedBook);
-            resultList.getItems().clear();
-            results.forEach(bookBean -> resultList.getItems().add(bookBean.getTitle() + ", " + bookBean.getAuthor()));
-            resultList.setVisible(true);
+            try {
+                List<BookBean> results = controller.borrowByName(searchedBook);
+                resultList.getItems().clear();
+                results.forEach(bookBean -> resultList.getItems().add(bookBean.getTitle() + ", " + bookBean.getAuthor()));
+                resultList.setVisible(true);
+            } catch(BookNotFoundException e) {
+                //mostra messaggio d'errore
+                searchField.setText(e.getMessage());
+                resultList.getItems().clear();
+                resultList.setVisible(false);
+            }
     }
-
 }
 
 

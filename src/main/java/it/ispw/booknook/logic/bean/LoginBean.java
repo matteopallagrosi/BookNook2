@@ -27,6 +27,21 @@ public class LoginBean extends Observer {
 
     public LoginBean() {}
 
+    public LoginBean(String email, String username, String password) {
+        setEmail(email);
+        setUsername(username);
+        setPassword(password);
+    }
+
+    public LoginBean(String firstName, String lastName, String street, String country, String zip, String city) {
+        setFirstName(firstName);
+        setLastName(lastName);
+        setAddress(street);
+        setCountry(country);
+        setZip(zip);
+        setCity(city);
+    }
+
     public String getUsername() {
         return username;
     }
@@ -37,6 +52,10 @@ public class LoginBean extends Observer {
 
     public LoginBean(String email, String password) {
         this.email = email;
+        this.password = password;
+    }
+
+    public void setPlainPassword(String password) {
         this.password = password;
     }
 

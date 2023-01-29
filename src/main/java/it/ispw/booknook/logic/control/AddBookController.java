@@ -16,6 +16,7 @@ public class AddBookController {
         book.setAuthor(insertedBook.getAuthor());
         book.setPublisher(insertedBook.getPublisher());
         book.setPublishingYear(insertedBook.getYear());
+        book.setConsultationState(insertedBook.getForConsultation());
         book.setTags(insertedBook.getTags());
         Library library = new Library();
         library.setUsername(User.getUser().getUsername());

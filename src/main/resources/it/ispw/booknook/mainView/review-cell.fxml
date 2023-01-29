@@ -26,12 +26,12 @@
             <Font name="Roboto Medium" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="57.0" text="Recensito il:">
+      <Label layoutX="14.0" layoutY="57.0" text="Reviewed on:">
          <font>
             <Font name="Roboto Light" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="dateLabel" layoutX="81.0" layoutY="56.0" text="28-12-2022" />
+      <Label fx:id="dateLabel" layoutX="89.0" layoutY="56.0" text="28-12-2022" />
       <Label fx:id="titleLabel" layoutX="14.0" layoutY="102.0" text="Una buona biblioteca di quartiere">
          <font>
             <Font name="Roboto Medium" size="14.0" />

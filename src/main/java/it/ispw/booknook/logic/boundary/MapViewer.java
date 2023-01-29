@@ -61,7 +61,6 @@ public class MapViewer {
         mapView.setViewpoint(new Viewpoint(currentLatitude, currentLongitude, 5000));
         graphicsOverlay.getGraphics().clear();
         createMarkerAtCurrentPos();
-
     }
 
 

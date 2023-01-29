@@ -6,6 +6,7 @@ import it.ispw.booknook.logic.bean.ReviewBean;
 import it.ispw.booknook.logic.database.dao.ReviewDao;
 import it.ispw.booknook.logic.entity.Rate;
 import it.ispw.booknook.logic.entity.Review;
+import it.ispw.booknook.logic.entity.User;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,7 +38,7 @@ public class ReviewController {
         Review review = new Review();
         review.setTitle(reviewToAdd.getTitle());
         review.setContent(reviewToAdd.getText());
-        review.setUsername(reviewToAdd.getUsername());
+        review.setUsername(User.getUser().getUsername());
         review.setDate(new Date());
         Rate rate = new Rate();
         rate.setAvailability(reviewToAdd.getAvailabilityRate());

@@ -26,6 +26,7 @@ public class BookBean extends Subject {
     private String publisher;
     private String publishingYear;
     private int numCopies;
+    private boolean forConsultation;
 
     public void setViewToUpdate(ImageView view) {
         this.viewToUpdate = view;
@@ -44,7 +45,15 @@ public class BookBean extends Subject {
         this.tags = book.getTags();
         this.cover = book.getCover();
         this.isbn = book.getIsbn();
+    }
 
+    public BookBean(String title, String author, String publisher, String publishingYear, String isbn, String numCopies) {
+        setTitle(title);
+        setAuthor(author);
+        setPublisher(publisher);
+        setYear(publishingYear);
+        setIsbn(isbn);
+        setNumCopiesString(numCopies);
     }
 
     public String getTitle() {
@@ -186,5 +195,17 @@ public class BookBean extends Subject {
 
     public void setNumCopies(int numCopies) {
         this.numCopies = numCopies;
+    }
+
+    public void setNumCopiesString(String numCopies) {
+        this.numCopies = Integer.parseInt(numCopies);
+    }
+
+    public void setForConsultation(boolean state) {
+        this.forConsultation = state;
+    }
+
+    public boolean getForConsultation() {
+        return this.forConsultation;
     }
 }

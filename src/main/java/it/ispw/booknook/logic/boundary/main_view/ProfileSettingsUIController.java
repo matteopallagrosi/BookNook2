@@ -124,11 +124,8 @@ public class ProfileSettingsUIController extends UIController implements Initial
         newProfile.setCountry(countryField.getText());
         //aggiorna nome e cognome
         SettingsController settingsController = new SettingsController();
-        try {
-            settingsController.changeProfileDetails(newProfile);
-        } catch(SQLException e) {
-            e.printStackTrace();
-        }
+
+        settingsController.changeProfileDetails(newProfile);
 
         updatedSettings.setVisible(true);
 

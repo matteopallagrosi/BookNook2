@@ -7,19 +7,31 @@ import it.ispw.booknook.logic.boundary.JSONManager;
 import it.ispw.booknook.logic.database.dao.BookDao;
 import it.ispw.booknook.logic.database.dao.LibraryDao;
 import it.ispw.booknook.logic.entity.*;
+import it.ispw.booknook.logic.exception.BookNotFoundException;
+import it.ispw.booknook.logic.exception.LostConnectionException;
 
+import javax.mail.MessagingException;
+import java.io.IOException;
+import java.net.UnknownHostException;
+import java.security.GeneralSecurityException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
 public class BorrowBookController {
 
-    public List<BookBean> borrowByName(BookBean requestedBook) {
+    //ritorna la lista di libri corrispondenti al titolo o autore inserito
+    public List<BookBean> borrowByName(BookBean requestedBook) throws BookNotFoundException {
         List<BookBean> bookBeans = new ArrayList<BookBean>();
-        List<Book> bookList = BookDao.getRequestedBooks(requestedBook.getTitle());
-        for (int i = 0; i < bookList.size(); i++) {
-            BookBean bookBean = new BookBean();
-            bookBean.setBookDetails(bookList.get(i));
-            bookBeans.add(bookBean);
+        try {
+            List<Book> bookList = BookDao.getRequestedBooks(requestedBook.getTitle());
+            for (int i = 0; i < bookList.size(); i++) {
+                BookBean bookBean = new BookBean();
+                bookBean.setBookDetails(bookList.get(i));
+                bookBeans.add(bookBean);
+            }
+        } catch (SQLException e) {
+            throw new BookNotFoundException("No books found matching with title or author", e);
         }
 
         return bookBeans;
@@ -146,7 +158,7 @@ public class BorrowBookController {
         return libraryList;
     }
 
-    public void borrowBook(LibraryBean libraryDetails) {
+    public void borrowBook(LibraryBean libraryDetails) throws LostConnectionException {
         BookCopy copyToBorrow = new BookCopy();
         Book book = new Book();
         Library library = new Library();
@@ -165,11 +177,18 @@ public class BorrowBookController {
 
         try {
             new Gmailer().sendEmail(readerToNotify, "Loan confirmation from BookNook", messageToReader);
-        } catch(Exception e) {
+
+        } catch (UnknownHostException e) {
+            //connessione mancante
+            throw new LostConnectionException("Cannot send email due to connection error", e);
+        }
+        catch(IOException | GeneralSecurityException | MessagingException e) {
             e.printStackTrace();
         }
     }
 
+
+    //calcola la lista dei libri con un certo tag
     public List<BookBean> borrowByTag(BookBean book) {
         String selectedTag = book.getTags().get(0);
         List<Book> bookList = BookDao.getBookByCategory(selectedTag);

@@ -108,6 +108,7 @@ public class AddBookUIController extends UIController implements Initializable {
         insertedBook.setPublisher(publisherField.getText());
         insertedBook.setYear(yearField.getText());
         insertedBook.setNumCopies(numCopiesField.getValue());
+        insertedBook.setForConsultation(consultationBox.isSelected());
         if (!consultationBox.isSelected()) {
             insertedBook.setTags(tagsComboBox.getCheckModel().getCheckedItems());
         }

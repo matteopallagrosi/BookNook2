@@ -160,7 +160,6 @@ public class CreateReviewUIController extends UIController {
             //salva la recensione
             ReviewController reviewController = new ReviewController();
             ReviewBean newReview = new ReviewBean();
-            newReview.setUsername(User.getUser().getUsername());
             newReview.setTitle(titleField.getText());
             newReview.setText(contentField.getText());
             newReview.setServiceRate(servicesRate);

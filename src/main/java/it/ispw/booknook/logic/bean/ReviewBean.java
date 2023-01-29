@@ -87,4 +87,16 @@ public class ReviewBean {
         this.availabilityRate = rate.getAvailability();
         this.locationRate = rate.getLocation();
     }
+
+    public void setAvailability(String availability){
+        this.availabilityRate = Integer.valueOf(availability);
+    }
+    public void setService(String service){
+        this.serviceRate = Integer.valueOf(service);
+    }
+    public void setLocation(String location){
+        this.locationRate = Integer.valueOf(location);
+    }
+
+
 }
