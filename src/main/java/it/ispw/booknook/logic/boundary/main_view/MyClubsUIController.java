@@ -16,7 +16,7 @@ public class MyClubsUIController extends UIController implements Initializable {
     @FXML
     private ListView<Club> clubsList;
 
-    private static final String CLUB_TITLE = "A wonderful book club ";
+    private static final String CLUB_TITLE = "A wonderful book club";
     private static final long NUM_MEMBERS = 20500L;
     private static final String CLUB_DESCRIPTION = "Keeping romance, history, humor, mystery, love, intrigue, and passion interesting and fun. We discuss everything from reading to music to playing games to what makes a book good!!";
 
