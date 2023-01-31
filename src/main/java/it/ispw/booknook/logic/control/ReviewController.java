@@ -1,6 +1,5 @@
 package it.ispw.booknook.logic.control;
 
-
 import it.ispw.booknook.logic.bean.LibraryBean;
 import it.ispw.booknook.logic.bean.ReviewBean;
 import it.ispw.booknook.logic.database.dao.ReviewDao;

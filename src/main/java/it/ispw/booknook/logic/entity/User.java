@@ -1,6 +1,5 @@
 package it.ispw.booknook.logic.entity;
 
-
 import it.ispw.booknook.logic.Subject;
 
 //Singleton

@@ -114,6 +114,7 @@ public class CreateReviewUIController extends UIController {
     private int locationRate = 0;
 
     public void setLibraryDetails(LibraryBean bean) {
+        setAvatar();
         libraryUsername = bean.getUsername();
         usernameLabel.setText(User.getUser().getUsername());
     }
