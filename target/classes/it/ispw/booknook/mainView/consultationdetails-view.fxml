@@ -50,7 +50,7 @@
                         <Font name="Roboto Medium" size="18.0" />
                      </font>
                   </Label>
-                  <ListView fx:id="timeTable" layoutX="63.0" layoutY="127.0" prefHeight="200.0" prefWidth="171.0" stylesheets="@list.css" AnchorPane.leftAnchor="63.0" AnchorPane.topAnchor="141.0" />
+                  <ListView fx:id="timeTable" layoutX="63.0" layoutY="127.0" prefHeight="200.0" prefWidth="171.0" AnchorPane.leftAnchor="63.0" AnchorPane.topAnchor="141.0" />
                   <Label layoutX="63.0" layoutY="99.0" text="Select time" AnchorPane.leftAnchor="63.0" AnchorPane.topAnchor="99.0">
                      <font>
                         <Font name="Roboto Medium" size="18.0" />

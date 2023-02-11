@@ -10,6 +10,7 @@ import it.ispw.booknook.logic.entity.User;
 public class AddBookController {
 
     public void addABook(BookBean insertedBook) {
+        int a;
         Book book =  new Book();
         book.setIsbn(insertedBook.getIsbn());
         book.setTitle(insertedBook.getTitle());
