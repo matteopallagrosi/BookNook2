@@ -1,4 +1,4 @@
-package it.ispw.booknook.logic.boundary;
+package it.ispw.booknook.logic;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import it.ispw.booknook.logic.Encrypter;

@@ -3,7 +3,7 @@ package it.ispw.booknook.logic.control;
 import it.ispw.booknook.logic.Encrypter;
 import it.ispw.booknook.logic.bean.LibraryBean;
 import it.ispw.booknook.logic.bean.LoginBean;
-import it.ispw.booknook.logic.boundary.BcryptAdapter;
+import it.ispw.booknook.logic.BcryptAdapter;
 import it.ispw.booknook.logic.database.dao.UserDao;
 import it.ispw.booknook.logic.entity.Library;
 import it.ispw.booknook.logic.entity.User;

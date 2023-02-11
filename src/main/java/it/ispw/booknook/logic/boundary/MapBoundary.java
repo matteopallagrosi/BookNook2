@@ -11,7 +11,7 @@ import com.esri.arcgisruntime.mapping.view.MapView;
 import com.esri.arcgisruntime.symbology.PictureMarkerSymbol;
 import javafx.scene.image.Image;
 
-public class MapViewer {
+public class MapBoundary {
 
     private ArcGISMap map;
     private MapView mapView;

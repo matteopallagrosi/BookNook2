@@ -3,7 +3,7 @@ package it.ispw.booknook.logic.boundary.main_view;
 import com.esri.arcgisruntime.mapping.view.MapView;
 import it.ispw.booknook.logic.bean.BookBean;
 import it.ispw.booknook.logic.bean.LibraryBean;
-import it.ispw.booknook.logic.boundary.MapViewer;
+import it.ispw.booknook.logic.boundary.MapBoundary;
 import it.ispw.booknook.logic.control.BorrowBookController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -64,7 +64,7 @@ public class BorrowDetailsUIController extends UIController {
     public void displayLibraryList(String isbn, String title) {
         setAvatar();
         introLabel.setText("'" + title + "' is available in the following libraries.");
-        MapViewer mapViewer = new MapViewer();
+        MapBoundary mapBoundary = new MapBoundary();
 
 
         BorrowBookController controller = new BorrowBookController();
@@ -85,7 +85,7 @@ public class BorrowDetailsUIController extends UIController {
             nameLabel.setText(t1.getName());
             addrLabel.setText(t1.getAddress() + ", " + t1.getCity());
             hoursLabel.setText(t1.getOpeningTime() + " - " + t1.getClosingTime());
-            mapViewer.changePosition(t1.getLatitude(), t1.getLongitude());
+            mapBoundary.changePosition(t1.getLatitude(), t1.getLongitude());
             currentLibrary = t1;
 
         });
@@ -95,7 +95,7 @@ public class BorrowDetailsUIController extends UIController {
         hoursLabel.setText(libraries.get(0).getOpeningTime() + " - " + libraries.get(0).getClosingTime());
 
         // create a MapView to display the map and add it to the AnchorPane
-        mapView = mapViewer.createMap(libraries.get(0).getLatitude(), libraries.get(0).getLongitude());
+        mapView = mapBoundary.createMap(libraries.get(0).getLatitude(), libraries.get(0).getLongitude());
         mapView.setId("map");
         mapPane.getChildren().add(mapView);
         mapPane.lookup("#map").prefWidth(330);

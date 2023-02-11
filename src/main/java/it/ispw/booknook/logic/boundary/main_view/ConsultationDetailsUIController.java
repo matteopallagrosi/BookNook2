@@ -3,7 +3,7 @@ package it.ispw.booknook.logic.boundary.main_view;
 import com.esri.arcgisruntime.mapping.view.MapView;
 import it.ispw.booknook.logic.bean.LibraryBean;
 import it.ispw.booknook.logic.bean.ShiftBean;
-import it.ispw.booknook.logic.boundary.MapViewer;
+import it.ispw.booknook.logic.boundary.MapBoundary;
 import it.ispw.booknook.logic.control.ConsultationController;
 import it.ispw.booknook.logic.control.LoginController;
 import javafx.event.ActionEvent;
@@ -55,8 +55,8 @@ public class ConsultationDetailsUIController extends UIController {
         setAvatar();
         currentLibrary = library;
         //creazione mappa con posizione biblioteca
-        MapViewer mapViewer = new MapViewer();
-        MapView mapView = mapViewer.createMap(library.getLatitude(), library.getLongitude());
+        MapBoundary mapBoundary = new MapBoundary();
+        MapView mapView = mapBoundary.createMap(library.getLatitude(), library.getLongitude());
         mapView.setId("map");
         mapPane.getChildren().add(mapView);
         mapPane.lookup("#map").prefWidth(561);

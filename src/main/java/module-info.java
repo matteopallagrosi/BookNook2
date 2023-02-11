@@ -36,5 +36,7 @@ module it.ispw.booknook {
     exports it.ispw.booknook.logic.control;
     exports it.ispw.booknook.logic.exception;
     exports it.ispw.booknook.logic.boundary.secondary_view;
+    exports it.ispw.booknook.logic;
+    opens it.ispw.booknook.logic to javafx.fxml;
 
 }

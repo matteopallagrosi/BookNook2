@@ -3,7 +3,7 @@ package it.ispw.booknook.logic.boundary.main_view;
 import it.ispw.booknook.logic.bean.BookBean;
 import it.ispw.booknook.logic.bean.CreditCardBean;
 import it.ispw.booknook.logic.bean.LibraryBean;
-import it.ispw.booknook.logic.boundary.JSONManager;
+import it.ispw.booknook.logic.boundary.BookDetailsBoundary;
 import it.ispw.booknook.logic.control.BorrowBookController;
 import it.ispw.booknook.logic.entity.User;
 import it.ispw.booknook.logic.exception.FormatException;
@@ -100,7 +100,7 @@ public class DeliveryDetailsUIController extends UIController {
         BookBean book = new BookBean();
         book.setViewToUpdate(cover);
         book.setIsbn(library.getIsbnAvailableBook());
-        Thread t1 = new Thread(new JSONManager(book));
+        Thread t1 = new Thread(new BookDetailsBoundary(book));
         t1.start();
     }
 

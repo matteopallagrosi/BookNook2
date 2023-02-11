@@ -1,4 +1,4 @@
-import it.ispw.booknook.logic.boundary.BcryptAdapter;
+import it.ispw.booknook.logic.BcryptAdapter;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;

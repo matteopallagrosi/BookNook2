@@ -1,4 +1,4 @@
-import it.ispw.booknook.logic.boundary.CardValidator;
+import it.ispw.booknook.logic.CardValidator;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

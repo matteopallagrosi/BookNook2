@@ -85,12 +85,12 @@ public class UserDao {
                 int profileImage = rs.getInt("immagine_profilo");
 
                 String imageUrl = switch (profileImage) {
-                    case 0 -> "C:\\Users\\HP\\IdeaProjects\\BookNook\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\account_circle_24dp.png";
-                    case 1 -> "C:\\Users\\HP\\IdeaProjects\\BookNook\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\avatar_1.png";
-                    case 2 -> "C:\\Users\\HP\\IdeaProjects\\BookNook\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\avatar_2.png";
-                    case 3 -> "C:\\Users\\HP\\IdeaProjects\\BookNook\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\avatar_3.png";
-                    case 4 -> "C:\\Users\\HP\\IdeaProjects\\BookNook\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\avatar_4.png";
-                    default -> "C:\\Users\\HP\\IdeaProjects\\BookNook\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\account_circle_24dp.png";
+                    case 0 -> "C:\\Users\\Simonetta\\IdeaProjects\\BookNook2\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\account_circle_24dp.png";
+                    case 1 -> "C:\\Users\\Simonetta\\IdeaProjects\\BookNook2\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\avatar_1.png";
+                    case 2 -> "C:\\Users\\Simonetta\\IdeaProjects\\BookNook2\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\avatar_2.png";
+                    case 3 -> "C:\\Users\\Simonetta\\IdeaProjects\\BookNook2\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\avatar_3.png";
+                    case 4 -> "C:\\Users\\Simonetta\\IdeaProjects\\BookNook2\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\avatar_4.png";
+                    default -> "C:\\Users\\Simonetta\\IdeaProjects\\BookNook2\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\account_circle_24dp.png";
                 };
 
                 user.setImageProfile(imageUrl);

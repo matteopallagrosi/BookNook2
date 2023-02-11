@@ -2,8 +2,8 @@ package it.ispw.booknook.logic.control;
 
 import it.ispw.booknook.logic.bean.BookBean;
 import it.ispw.booknook.logic.bean.LibraryBean;
-import it.ispw.booknook.logic.boundary.Gmailer;
-import it.ispw.booknook.logic.boundary.JSONManager;
+import it.ispw.booknook.logic.boundary.MailBoundary;
+import it.ispw.booknook.logic.boundary.BookDetailsBoundary;
 import it.ispw.booknook.logic.database.dao.BookDao;
 import it.ispw.booknook.logic.database.dao.LibraryDao;
 import it.ispw.booknook.logic.entity.*;
@@ -51,8 +51,8 @@ public class BorrowBookController {
 
         related.forEach(bookBean1 -> {
             bookBean1.setTags(BookDao.getTagsByISBN(bookBean1.getIsbn()));
-            JSONManager jsonManager = new JSONManager(bookBean1);
-            Thread t1 = new Thread(jsonManager);
+            BookDetailsBoundary bookDetailsBoundary = new BookDetailsBoundary(bookBean1);
+            Thread t1 = new Thread(bookDetailsBoundary);
             t1.start();
             //se l'utente è loggato deve scoprire quali libri sono stati aggiunti ad una qualche lista
             if (new LoginController().verifyLogin()) {
@@ -179,7 +179,7 @@ public class BorrowBookController {
                     ".\nYou will have to return it within " + LocalDate.now().plusMonths(1) + ".";
 
         try {
-            new Gmailer().sendEmail(readerToNotify, "Loan confirmation from BookNook", messageToReader);
+            new MailBoundary().sendEmail(readerToNotify, "Loan confirmation from BookNook", messageToReader);
 
         } catch (UnknownHostException e) {
             //connessione mancante
@@ -202,8 +202,8 @@ public class BorrowBookController {
             bookBean.setBookDetails(bookList.get(i));
             bookBean.setTags(bookList.get(i).getTags());
             bookBeans.add(bookBean);
-            JSONManager jsonManager = new JSONManager(bookBean);
-            Thread t1 = new Thread(jsonManager);
+            BookDetailsBoundary bookDetailsBoundary = new BookDetailsBoundary(bookBean);
+            Thread t1 = new Thread(bookDetailsBoundary);
             t1.start();
             //se l'utente è loggato deve scoprire quali libri sono stati aggiunti ad una qualche lista
             if (new LoginController().verifyLogin()) {

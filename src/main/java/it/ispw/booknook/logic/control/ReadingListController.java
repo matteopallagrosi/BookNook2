@@ -2,7 +2,7 @@ package it.ispw.booknook.logic.control;
 
 import it.ispw.booknook.logic.bean.BookBean;
 import it.ispw.booknook.logic.bean.FavoriteBean;
-import it.ispw.booknook.logic.boundary.JSONManager;
+import it.ispw.booknook.logic.boundary.BookDetailsBoundary;
 import it.ispw.booknook.logic.database.dao.BookDao;
 import it.ispw.booknook.logic.entity.Book;
 import it.ispw.booknook.logic.entity.BookCopy;
@@ -28,8 +28,8 @@ public class ReadingListController {
             bookBean.setIsbn(book.getIsbn());
             bookBean.setAuthor(book.getAuthor());
             bookBean.setTitle(book.getTitle());
-            JSONManager jsonManager = new JSONManager(bookBean);
-            Thread t1 = new Thread(jsonManager);
+            BookDetailsBoundary bookDetailsBoundary = new BookDetailsBoundary(bookBean);
+            Thread t1 = new Thread(bookDetailsBoundary);
             t1.start();
             bookList.add(bookBean);
             }
@@ -49,8 +49,8 @@ public class ReadingListController {
             bookBean.setLoanDate(copy.getLoanDate());
             bookBean.setLibraryName(copy.getLibrary().getName());
             bookBean.setUsernameLibrary(copy.getLibrary().getUsername());
-            JSONManager jsonManager = new JSONManager(bookBean);
-            Thread t1 = new Thread(jsonManager);
+            BookDetailsBoundary bookDetailsBoundary = new BookDetailsBoundary(bookBean);
+            Thread t1 = new Thread(bookDetailsBoundary);
             t1.start();
             bookList.add(bookBean);
             }

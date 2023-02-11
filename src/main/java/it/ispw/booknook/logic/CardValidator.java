@@ -1,4 +1,4 @@
-package it.ispw.booknook.logic.boundary;
+package it.ispw.booknook.logic;
 
 //Luhn algorithm
 public class CardValidator {

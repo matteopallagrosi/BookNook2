@@ -31,7 +31,7 @@ public class BookNookDB {
             p = new Properties();
 
             //FileInputStream implementa interfaccia Autoclosable perciò try-with-resources assicura sempre la chiusura
-            try (FileInputStream f = new FileInputStream("C:\\Users\\HP\\IdeaProjects\\BookNook\\src\\main\\resources\\dbconfig.properties")) {
+            try (FileInputStream f = new FileInputStream("src/main/resources/dbconfig.properties")) {
                 p.load(f);
                 Class.forName(p.getProperty("jdbcDriver"));
                 db.conn = DriverManager.getConnection(p.getProperty("jdbcUrl"), p.getProperty("jdbcUser"), p.getProperty("jdbcPass"));

@@ -15,11 +15,11 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class JSONManager implements Runnable {
+public class BookDetailsBoundary implements Runnable {
 
     private BookBean book;
 
-    public JSONManager(BookBean book) {
+    public BookDetailsBoundary(BookBean book) {
         this.book = book;
     }
 

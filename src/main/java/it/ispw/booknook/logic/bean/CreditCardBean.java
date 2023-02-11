@@ -1,6 +1,6 @@
 package it.ispw.booknook.logic.bean;
 
-import it.ispw.booknook.logic.boundary.CardValidator;
+import it.ispw.booknook.logic.CardValidator;
 import it.ispw.booknook.logic.exception.FormatException;
 import it.ispw.booknook.logic.exception.InvalidDateException;
 

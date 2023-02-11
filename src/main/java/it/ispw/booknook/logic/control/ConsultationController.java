@@ -3,7 +3,7 @@ package it.ispw.booknook.logic.control;
 import it.ispw.booknook.logic.bean.BookBean;
 import it.ispw.booknook.logic.bean.LibraryBean;
 import it.ispw.booknook.logic.bean.ShiftBean;
-import it.ispw.booknook.logic.boundary.Gmailer;
+import it.ispw.booknook.logic.boundary.MailBoundary;
 import it.ispw.booknook.logic.database.dao.BookDao;
 import it.ispw.booknook.logic.database.dao.LibraryDao;
 import it.ispw.booknook.logic.entity.Book;
@@ -76,7 +76,7 @@ public class ConsultationController {
                 " (" + selectedLibrary.getAddress() + ", " + selectedLibrary.getCity() + ") " + "at the following time:  " + selectedShift.getTime() + ".";
 
        try {
-            new Gmailer().sendEmail(readerToNotify, "Consultation confirmed from BookNook", messageToReader);
+            new MailBoundary().sendEmail(readerToNotify, "Consultation confirmed from BookNook", messageToReader);
         } catch(Exception e) {
             e.printStackTrace();
         }

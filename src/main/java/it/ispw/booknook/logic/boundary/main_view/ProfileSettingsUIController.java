@@ -85,28 +85,28 @@ public class ProfileSettingsUIController extends UIController implements Initial
 
     @FXML
     void onFirstAvatarClick(MouseEvent event) {
-        Image image = new Image("C:\\Users\\HP\\IdeaProjects\\BookNook\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\avatar_1.png");
+        Image image = new Image("C:\\Users\\Simonetta\\IdeaProjects\\BookNook2\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\avatar_1.png");
         profilePicture.setImage(image);
         updatePicture(image);
     }
 
     @FXML
     void onSecondAvatarClick(MouseEvent event) {
-        Image image = new Image("C:\\Users\\HP\\IdeaProjects\\BookNook\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\avatar_2.png");
+        Image image = new Image("C:\\Users\\Simonetta\\IdeaProjects\\BookNook2\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\avatar_2.png");
         profilePicture.setImage(image);
         updatePicture(image);
     }
 
     @FXML
     void onThirdAvatarClick(MouseEvent event) {
-        Image image = new Image("C:\\Users\\HP\\IdeaProjects\\BookNook\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\avatar_3.png");
+        Image image = new Image("C:\\Users\\Simonetta\\IdeaProjects\\BookNook2\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\avatar_3.png");
         profilePicture.setImage(image);
         updatePicture(image);
     }
 
     @FXML
     void onFourthAvatarClick(MouseEvent event) {
-        Image image = new Image("C:\\Users\\HP\\IdeaProjects\\BookNook\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\avatar_4.png");
+        Image image = new Image("C:\\Users\\Simonetta\\IdeaProjects\\BookNook2\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\avatar_4.png");
         profilePicture.setImage(image);
         updatePicture(image);
     }
