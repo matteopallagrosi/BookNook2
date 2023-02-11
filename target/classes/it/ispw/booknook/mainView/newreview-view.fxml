@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.ispw.booknook.logic.boundary.main_view.CreateReviewUIController">
+    <center>
+        <BorderPane prefHeight="300.0" prefWidth="900.0">
+            <top>
+                <BorderPane fx:id="homePage" prefHeight="94.0" prefWidth="900.0" stylesheets="@home.css">
+                    <center>
+                        <Label fx:id="titleLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Reviews">
+                            <font>
+                                <Font name="Roboto Medium" size="30.0" />
+                            </font>
+                        </Label>
+                    </center>
+                    <left>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <ImageView fx:id="backBtn" fitHeight="37.0" fitWidth="91.0" layoutX="51.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="51.0">
+                                    <image>
+                                        <Image url="@back.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                        </AnchorPane>
+                    </left>
+                    <right>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                    </right>
+                </BorderPane>
+            </top>
+            <center>
+                <BorderPane prefWidth="900.0" BorderPane.alignment="CENTER">
+               <center>
+                  <AnchorPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="309.0" prefWidth="558.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="Create a review">
+                           <font>
+                              <Font name="Roboto Medium" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="52.0" text="categories">
+                           <font>
+                              <Font name="Roboto Medium" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="88.0" text="services">
+                           <font>
+                              <Font name="Roboto Light" size="16.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="servStar1" fitHeight="20.0" fitWidth="20.0" layoutX="14.0" layoutY="115.0" onMouseClicked="#onStarClick" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-stella-vuota-30.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="servStar2" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="115.0" onMouseClicked="#onStarClick" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-stella-vuota-30.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="servStar3" fitHeight="20.0" fitWidth="20.0" layoutX="66.0" layoutY="115.0" onMouseClicked="#onStarClick" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-stella-vuota-30.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="servStar4" fitHeight="20.0" fitWidth="20.0" layoutX="92.0" layoutY="115.0" onMouseClicked="#onStarClick" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-stella-vuota-30.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="servStar5" fitHeight="20.0" fitWidth="20.0" layoutX="118.0" layoutY="115.0" onMouseClicked="#onStarClick" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-stella-vuota-30.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="14.0" layoutY="151.0" text="availability">
+                           <font>
+                              <Font name="Roboto Light" size="16.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="avStar1" fitHeight="20.0" fitWidth="20.0" layoutX="14.0" layoutY="178.0" onMouseClicked="#onStarClick" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-stella-vuota-30.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="avStar2" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="178.0" onMouseClicked="#onStarClick" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-stella-vuota-30.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="avStar3" fitHeight="20.0" fitWidth="20.0" layoutX="66.0" layoutY="178.0" onMouseClicked="#onStarClick" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-stella-vuota-30.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="avStar4" fitHeight="20.0" fitWidth="20.0" layoutX="92.0" layoutY="178.0" onMouseClicked="#onStarClick" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-stella-vuota-30.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="avStar5" fitHeight="20.0" fitWidth="20.0" layoutX="118.0" layoutY="178.0" onMouseClicked="#onStarClick" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-stella-vuota-30.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="14.0" layoutY="215.0" text="location">
+                           <font>
+                              <Font name="Roboto Light" size="16.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="locStar1" fitHeight="20.0" fitWidth="20.0" layoutX="14.0" layoutY="242.0" onMouseClicked="#onStarClick" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-stella-vuota-30.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="locStar2" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="242.0" onMouseClicked="#onStarClick" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-stella-vuota-30.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="locStar3" fitHeight="20.0" fitWidth="20.0" layoutX="66.0" layoutY="242.0" onMouseClicked="#onStarClick" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-stella-vuota-30.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="locStar4" fitHeight="20.0" fitWidth="20.0" layoutX="92.0" layoutY="242.0" onMouseClicked="#onStarClick" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-stella-vuota-30.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="locStar5" fitHeight="20.0" fitWidth="20.0" layoutX="118.0" layoutY="242.0" onMouseClicked="#onStarClick" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-stella-vuota-30.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="279.0" layoutY="53.0" text="add a title">
+                           <font>
+                              <Font name="Roboto Medium" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="titleField" layoutX="279.0" layoutY="88.0" prefHeight="26.0" prefWidth="265.0" promptText="What are the most important things to know?" />
+                        <Label layoutX="279.0" layoutY="130.0" text="write a review">
+                           <font>
+                              <Font name="Roboto Medium" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="contentField" layoutX="279.0" layoutY="164.0" prefHeight="102.0" prefWidth="266.0" promptText="What did you like and what did you not like?" wrapText="true" />
+                        <Label layoutX="279.0" layoutY="17.0" text="created by:">
+                           <font>
+                              <Font name="Roboto Medium" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="usernameLabel" layoutX="359.0" layoutY="17.0" text="simonetta.ricci">
+                           <font>
+                              <Font name="Roboto Light" size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="submitBtn" layoutX="404.0" layoutY="282.0" mnemonicParsing="false" onAction="#onSubmitClick" prefHeight="26.0" prefWidth="140.0" stylesheets="@buttonYellow.css" text="Submit" />
+                        <Label fx:id="errorLabel" layoutX="14.0" layoutY="286.0" text="Please, fill the missing fields!" textFill="RED" visible="false">
+                           <font>
+                              <Font name="Roboto Light" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </center>
+                </BorderPane>
+            </center>
+        </BorderPane>
+    </center>
+    <top>
+        <BorderPane prefHeight="90.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+            <center>
+                <ImageView fitHeight="71.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                    <image>
+                        <Image url="@logoNoText.png" />
+                    </image>
+                    <viewport>
+                        <Rectangle2D />
+                    </viewport>
+                </ImageView>
+            </center>
+            <left>
+                <AnchorPane prefHeight="90.0" prefWidth="370.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button fx:id="discoverBtn" layoutX="37.0" layoutY="30.0" mnemonicParsing="false" onAction="#onDiscoverClick" style="-fx-background-color: transparent;" text="Discover " AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="30.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="consultBtn" layoutX="136.0" layoutY="30.0" mnemonicParsing="false" onAction="#onConsultationClick" style="-fx-background-color: transparent;" text="Consultation" textFill="#8c8c8c" AnchorPane.leftAnchor="136.0" AnchorPane.topAnchor="30.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="clubsBtn" layoutX="263.0" layoutY="30.0" mnemonicParsing="false" onAction="#onClubsClick" style="-fx-background-color: transparent;" text="Clubs" textFill="#8c8c8c" AnchorPane.leftAnchor="263.0" AnchorPane.topAnchor="30.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Button>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e9bf8e" height="6.0" layoutX="48.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 0;" width="70.0" AnchorPane.leftAnchor="48.0" />
+                    </children>
+                </AnchorPane>
+            </left>
+            <right>
+                <AnchorPane prefHeight="90.0" prefWidth="370.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <ImageView fx:id="profileBtn" fitHeight="60.0" fitWidth="60.0" layoutX="286.0" layoutY="18.0" onMouseClicked="#onProfileClick" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="18.0">
+                            <image>
+                                <Image url="@account_circle_24dp.png" />
+                            </image>
+                        </ImageView>
+                        <Button fx:id="myListBtn" layoutX="171.0" layoutY="30.0" mnemonicParsing="false" onAction="#onMyListClick" style="-fx-background-color: transparent;" text="My List" textFill="#8c8c8c" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="30.0">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </AnchorPane>
+            </right>
+        </BorderPane>
+    </top>
+</BorderPane>
