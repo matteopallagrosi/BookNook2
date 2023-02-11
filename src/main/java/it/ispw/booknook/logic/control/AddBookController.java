@@ -11,6 +11,7 @@ public class AddBookController {
 
     public void addABook(BookBean insertedBook) {
         int a;
+        int b;
         Book book =  new Book();
         book.setIsbn(insertedBook.getIsbn());
         book.setTitle(insertedBook.getTitle());
