@@ -15,7 +15,7 @@ public class BookBean extends Subject {
     private String author;
     private List<String> tags;
     private String cover;
-    private Image coverImage = new Image("C:\\Users\\HP\\IdeaProjects\\BookNook\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\product-not-found.png");
+    private Image coverImage = new Image("C:\\Users\\Simonetta\\IdeaProjects\\BookNook2\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\product-not-found.png");
     //questa bean è usata anche per tenere traccia delle informazioni sulla copia
     private String loanDate;
     private String expireDate;

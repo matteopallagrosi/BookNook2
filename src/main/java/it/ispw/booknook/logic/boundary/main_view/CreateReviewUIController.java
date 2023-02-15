@@ -105,8 +105,8 @@ public class CreateReviewUIController extends UIController {
     @FXML
     private Label errorLabel;
 
-    private static final String STAR_FULL = "C:\\Users\\HP\\IdeaProjects\\BookNook2\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\icons8-stella-riempita-30.png";
-    private static final String STAR_EMPTY = "C:\\Users\\HP\\IdeaProjects\\BookNook2\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\icons8-stella-vuota-30.png";
+    private static final String STAR_FULL = "C:\\Users\\Simonetta\\IdeaProjects\\BookNook2\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\icons8-stella-riempita-30.png";
+    private static final String STAR_EMPTY = "C:\\Users\\Simonetta\\IdeaProjects\\BookNook2\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\icons8-stella-vuota-30.png";
 
     private String libraryUsername;
     private int servicesRate = 0;

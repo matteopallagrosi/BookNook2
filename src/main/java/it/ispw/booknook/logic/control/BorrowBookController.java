@@ -22,6 +22,7 @@ public class BorrowBookController {
 
     //ritorna la lista di libri corrispondenti al titolo o autore inserito
     public List<BookBean> borrowByName(BookBean requestedBook) throws BookNotFoundException {
+        int a;
         List<BookBean> bookBeans = new ArrayList<BookBean>();
         try {
             List<Book> bookList = BookDao.getRequestedBooks(requestedBook.getTitle());

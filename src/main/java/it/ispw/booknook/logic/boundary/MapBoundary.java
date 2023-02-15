@@ -19,7 +19,7 @@ public class MapBoundary {
     private double currentLongitude;
     private GraphicsOverlay graphicsOverlay;
 
-    private static final String MARKER_SYMBOL = "C:\\Users\\HP\\IdeaProjects\\BookNook\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\icons8-segnaposto-40.png";
+    private static final String MARKER_SYMBOL = "C:\\Users\\Simonetta\\IdeaProjects\\BookNook2\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\icons8-segnaposto-40.png";
 
     public MapView createMap(double latitude, double longitude) {
         //crea la finestra che conterrà la mappa

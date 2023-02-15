@@ -17,7 +17,7 @@ public class SignUpController {
         String encryptedHash = encrypter.encrypt(loginBean.getPassword());
         //setta i dettagli dell'utente e li salva sul db
         reader.setLogDetails(loginBean.getUsername(), loginBean.getEmail(), encryptedHash, loginBean.getType());
-        reader.setImageProfile("C:\\Users\\HP\\IdeaProjects\\BookNook\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\account_circle_24dp.png");
+        reader.setImageProfile("C:\\Users\\Simonetta\\IdeaProjects\\BookNook\\src\\main\\resources\\it\\ispw\\booknook\\mainView\\account_circle_24dp.png");
         UserDao.registerReaderUser(reader);
     }
 
